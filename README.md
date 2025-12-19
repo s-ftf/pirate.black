@@ -1,7 +1,7 @@
 
 # This repository is a demo static website for the Pirate Chain Network
 
-The demo can be veiwed at [https://scott-fff.github.io/pirate.black/](https://scott-ftf.github.io/pirate.black/). 
+The demo can be veiwed at [https://s-fff.github.io/pirate.black/](https://s-ftf.github.io/pirate.black/). 
 <br /><br />
 The main intent of this demo was to create a static website that is automated, low maintenence, and open to the community. 
 
