@@ -1,0 +1,9 @@
+---
+layout: null
+---
+{% assign deployment_path_length = site.baseurl.size | minus: 1 %}
+{% assign deployment_path = site.baseurl | slice: 0, deployment_path_length %}
+User-agent: *
+Allow: /
+
+Sitemap: {{ site.url }}{{ deployment_path }}/sitemap.xml

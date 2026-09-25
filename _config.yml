@@ -16,13 +16,41 @@
 name: Pirate Chain (ARRR)
 title: Pirate Chain | Money Made Private
 email: marketing@pirate.black
+discord_invite_url: https://discord.com/invite/sqrCJce
+medium_publication_url: https://medium.com/piratechain
+pirate_history_url: https://xkosiusx.github.io/piratechain-timeline/#
+medium_feed_url: https://medium.com/feed/piratechain
+medium_feed_api_url: https://api.rss2json.com/v1/api.json
+medium_article_count: 3
+whitepaper_url: https://github.com/PirateNetwork/pirate-docs/blob/master/assets/whitepaper/Pirate_Chain_White_Paper.pdf
+site_repository_url: https://github.com/s-ftf/pirate.black
+donation_address: zs1arrr009w0jngmq4r9uqg97p4t0h6hc52yqt0mn32qm0pmcnvpzfef47jfqmq4e3q2p5es4pygcr
 keywords: cryptocurrency, privacy, pirate chain, arrr, fungible
 description: Pirate Chain is a privacy-focused cryptocurrency that uses zk-SNARKs technology to enable anonymous transactions. It is designed to be resistant to surveillance and censorship, and aims to provide a secure and private platform for financial transactions. The project has a strong emphasis on privacy and decentralization.
 locale: en_US
 lang: en
 baseurl: "/pirate.black/"
-url: "" # https://pirate.black
+url: "https://s-ftf.github.io"
 img: assets/img/
-default_thumbnail: meta/pirate.jpeg
+default_thumbnail: meta/pirate-chain-default-social-preview.webp
 twitter_username: PirateChain
 github_username:  PirateNetwork
+
+# GitHub repositories supply the Wallets page's latest release downloads.
+# GitLab paths are used for the repository mirror links shown on the cards.
+wallet_repositories:
+  core:
+    github: PirateNetwork/pirate
+    gitlab: piratenetwork_mirror/pirate
+  stashi:
+    github: PirateNetwork/Stashi-Wallet
+  paper:
+    github: PirateNetwork/piratepaperwallet
+    gitlab: piratenetwork_mirror/piratepaperwallet
+
+# Supplemental wallet downloads, Stashi guide, and official store listing.
+wallet_links:
+  bootstrap: https://eu.bootstrap.dexstats.info/ARRR-bootstrap.tar.gz
+  paper_launcher: https://github.com/lilszi/piratepaperwallet/releases/download/1.0/generate_addresses.bat
+  stashi_guide: https://piratenetwork.github.io/Stashi-Wallet/
+  stashi_play_store: https://play.google.com/store/apps/details?id=com.pirate.wallet&hl=en

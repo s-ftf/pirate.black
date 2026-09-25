@@ -1,48 +1,71 @@
-<html lang="{{ page.lang }}">
+{% assign deployment_path_length = site.baseurl.size | minus: 1 %}
+{% assign deployment_path = site.baseurl | slice: 0, deployment_path_length %}
+{% assign site_origin = site.url | append: deployment_path %}
+{% assign canonical_path = page.url | remove: '.html' %}
+{% if canonical_path == '/index' %}{% assign canonical_path = '/' %}{% endif %}
+{% assign canonical_url = site_origin | append: canonical_path %}
+{% assign meta_title = page.title | default: site.title %}
+{% assign meta_description = page.description | default: site.description | strip %}
+{% assign preview_image = site.default_thumbnail | default: 'meta/pirate-chain-default-social-preview.webp' %}
+{% assign preview_url = site_origin | append: '/' | append: site.img | append: preview_image %}
+{% assign website_id = site_origin | append: '/#website' %}
+<html lang="{{ site.lang | escape }}">
   <head>
-    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">  
-    <meta name="author" content="Pirate Chain">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#151326">
-    <meta name="robots" content="index, follow">
+    <meta charset="utf-8" />
+    <title>{{ meta_title | escape }}</title>
+    <meta name="description" content="{{ meta_description | escape }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#151326" />
+    <meta name="robots" content="{% if page.noindex %}noindex, follow{% else %}index, follow, max-image-preview:large{% endif %}" />
+    {% unless page.noindex %}<link rel="canonical" href="{{ canonical_url | escape }}" />{% endunless %}
 
-    <!--Translations-->
-    <link rel="alternate" href="https://pirate.black/" hreflang="x-default" />
-    {% for language in site.data.languages.list -%}
-      {% if language[0] == "en" -%}
-        <link rel="alternate" hreflang="{{ language[0] }}" href="https://pirate.black/{{ page.name | replace:'.html',''}}" />
-      {% else -%}
-        <link rel="alternate" hreflang="{{ language[0] }}" href="https://pirate.black/lang/{{ language[0] }}/{{ page.name | replace:'.html',''}}" />
-      {% endif %}  
-    {%- endfor %}
-
-    <!--Open Graph Tags-->
-    <meta property="og:locale" content="{{ site.data.languages.list[page.lang].locale }}" />
+    <meta property="og:locale" content="{{ site.locale | escape }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    <meta property="og:url" content="https://pirate.black/" />
-    <meta property="og:site_name" content="{{ site.name }}" />
-    <meta property="og:image" content="{% if page.thumbnail %}{{ site.baseurl }}{{ site.img }}{{ page.thumbnail }}{% else %}{{ site.baseurl }}{{ site.img }}{{ site.default_thumbnail }}{% endif %}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content="{{ site.name | escape }}" />
+    <meta property="og:title" content="{{ meta_title | escape }}" />
+    <meta property="og:description" content="{{ meta_description | escape }}" />
+    <meta property="og:url" content="{{ canonical_url | escape }}" />
+    <meta property="og:image" content="{{ preview_url | escape }}" />
+    <meta property="og:image:type" content="image/webp" />
 
-    <!--Twitter Card Tags-->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@PirateChain" />
-    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-    <meta name="twitter:image" content="{% if page.thumbnail %}{{ site.baseurl }}{{ site.img }}{{ page.thumbnail }}{% else %}{{ site.baseurl }}{{ site.img }}{{ site.default_thumbnail }}{% endif %}" />
+    <meta name="twitter:site" content="@{{ site.twitter_username | escape }}" />
+    <meta name="twitter:title" content="{{ meta_title | escape }}" />
+    <meta name="twitter:description" content="{{ meta_description | escape }}" />
+    <meta name="twitter:image" content="{{ preview_url | escape }}" />
 
-    <!--Link Tags-->
-    <link rel="canonical" href="https://pirate.black/" />
+    {% unless page.noindex %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": {{ website_id | jsonify }},
+          "url": {{ site_origin | append: '/' | jsonify }},
+          "name": {{ site.name | jsonify }},
+          "description": {{ site.description | jsonify }},
+          "inLanguage": {{ site.lang | jsonify }}
+        },
+        {
+          "@type": {{ page.schema_type | default: 'WebPage' | jsonify }},
+          "@id": {{ canonical_url | append: '#webpage' | jsonify }},
+          "url": {{ canonical_url | jsonify }},
+          "name": {{ meta_title | jsonify }},
+          "description": {{ meta_description | jsonify }},
+          "inLanguage": {{ site.lang | jsonify }},
+          "isPartOf": { "@id": {{ website_id | jsonify }} },
+          "primaryImageOfPage": { "@type": "ImageObject", "url": {{ preview_url | jsonify }} }
+        }
+      ]
+    }
+    </script>
+    {% endunless %}
+
     <link rel="icon" href="{{ site.baseurl }}{{ site.img }}logo/Pirate_Logo_P_Gold.svg" sizes="any" type="image/svg+xml" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/css/nav.css">
-    <script>BASEURL="{{ site.baseurl }}"</script>
+    {% if canonical_path == '/' %}<link rel="preload" as="image" href="{{ site.baseurl }}{{ site.img }}site/community-hero-poster.webp" fetchpriority="high" />{% endif %}
+    <link rel="stylesheet" href="{{ site.baseurl }}assets/css/global.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}assets/css/nav.css" />
+    <script>BASEURL={{ site.baseurl | jsonify }};</script>
     {% include links.html %}
   </head>

@@ -1,19 +1,23 @@
 /* ----- fonts ----- */
 @font-face { 
     font-family: 'Bai Jamjuree'; 
-    src: url("../fonts/Bai_Jamjuree/BaiJamjuree-SemiBold.ttf") format('truetype'); 
+    src: url("../fonts/Bai_Jamjuree/BaiJamjuree-SemiBold.woff2") format('woff2');
+    font-display: swap;
 }
 @font-face { 
     font-family: 'Poppins'; 
-    src: url("../fonts/Poppins/Poppins-Regular.ttf") format('truetype'); 
+    src: url("../fonts/Poppins/Poppins-Regular.woff2") format('woff2');
+    font-display: swap;
 }
 @font-face { 
     font-family: 'Roboto'; 
-    src: url("../fonts/Roboto/Roboto-Regular.ttf") format('truetype'); 
+    src: url("../fonts/Roboto/Roboto-Regular.woff2") format('woff2');
+    font-display: swap;
 }
 @font-face { 
     font-family: 'IBM Plex Mono'; 
-    src: url("../fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf") format('truetype'); 
+    src: url("../fonts/IBM_Plex_Mono/IBMPlexMono-Regular.woff2") format('woff2');
+    font-display: swap;
 }
 
 /* ----- vars ----- */
@@ -69,6 +73,9 @@ body {
     color: var(--text-main);
     font-family: var(--pirate-font-alternative);
     overflow-x: hidden;     
+}
+img {
+    height: auto;
 }
 a {
     color: var(--pirate-doubloon);
@@ -203,6 +210,42 @@ h3 {
     text-align: left;
     float: right;
     width: 48%;
+}
+.pirate-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 700px;
+    margin: 120px auto 95px;
+}
+.pirate-divider::before,
+.pirate-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+}
+.pirate-divider::before {
+    background: linear-gradient(90deg, transparent, #B38C30);
+}
+.pirate-divider::after {
+    background: linear-gradient(90deg, #F2DE98, transparent);
+}
+.pirate-divider img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+@media screen and (max-width: 800px) {
+    .pirate-divider {
+        gap: 10px;
+        margin: 90px auto 75px;
+    }
+    .pirate-divider img {
+        width: 28px;
+        height: 28px;
+    }
 }
 .deepglowdown {
     background: linear-gradient(rgb(40, 36, 70) 0%, rgb(21,19,38) 30%);

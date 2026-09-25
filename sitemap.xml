@@ -1,0 +1,16 @@
+---
+layout: null
+---
+{%- assign deployment_path_length = site.baseurl.size | minus: 1 -%}
+{%- assign deployment_path = site.baseurl | slice: 0, deployment_path_length -%}
+{%- assign site_origin = site.url | append: deployment_path -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for content_page in site.pages %}
+  {%- if content_page.layout == 'page' and content_page.noindex != true %}
+    {%- assign path = content_page.url | remove: '.html' %}
+    {%- if path == '/index' %}{% assign path = '/' %}{% endif %}
+  <url><loc>{{ site_origin | append: path | xml_escape }}</loc></url>
+  {% endif %}
+{% endfor %}
+</urlset>
