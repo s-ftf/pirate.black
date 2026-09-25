@@ -1,5 +1,34 @@
+# Generated site and local dependencies
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
+vendor/bundle/
+vendor/cache/
 node_modules/
-.DS_Store
 build/
 logs/
+*.log
+
+# Editor and assistant-local settings
+.agents/
+.codex/
+.vscode/
+.idea/
+.fleet/
+.history/
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Local environment values (examples may be committed)
 .env
+.env.*
+!.env.example
+!.env.sample
