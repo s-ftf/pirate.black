@@ -10,9 +10,9 @@ To run it locally, install the Ruby dependencies with `bundle install`, then run
 
 ## License and reuse
 
-The project's original code and content are available under the [Zero-Clause BSD (0BSD) License](LICENSE). You may use, change, redistribute, and host them for any purpose, including commercially, with no requirement to keep a license or copyright notice. They come without a warranty. Third-party material keeps its own terms; for example, the borrowed 404 flag retains its [ARRRmada MIT notice](assets/img/site/404.LICENSE.txt).
+The project's original code and content are available under the [Zero-Clause BSD (0BSD) License](LICENSE). You may use, change, redistribute, and host them for any purpose, including commercially, with no requirement to keep a license or copyright notice. They come without a warranty.
 
-Fork away—but fly yarrrr own flag. Clearly label independent copies so visitors do not mistake them for the Pirate Chain site.
+Fork away, but fly yarrrr own flag. Clearly label independent copies so visitors do not mistake them for the Pirate Chain site.
 
 ## Maintaining the site
 
