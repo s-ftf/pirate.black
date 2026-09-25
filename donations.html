@@ -9,7 +9,6 @@ css-list:
   - "assets/css/donations.css"
 javascript-list:
   - "assets/js/donations.js"
-lang: en 
 --- 
 
 <!-- donation section -->
@@ -25,89 +24,40 @@ lang: en
           To support Pirate Chain, donate ARRR privately to the<br />Community Funds Pool address:
       </p>
       <div class="address-container">
-        <div id="addy" class="ARRRaddress" translate="no">zs1arrr009w0jngmq4r9uqg97p4t0h6hc52yqt0mn32qm0pmcnvpzfef47jfqmq4e3q2p5es4pygcr</div>    
-        <div class="copy-icon">
-          <div id="tooltip">copied</div>
-          <div  onclick='copyText("addy")'><img alt="Button to copy donation address" src="{{ site.baseurl }}{{ site.img }}icons/copy.svg" /></div>
-        </div>     
+        <div id="addy" class="ARRRaddress" translate="no">{{ site.donation_address }}</div>
+        <button class="copy-icon" type="button" onclick='copyText("addy")' aria-label="Copy donation address">
+          <span id="tooltip">copied</span>
+          <img alt="" src="{{ site.baseurl }}{{ site.img }}icons/copy.svg" />
+        </button>
       </div>
       <span class="donation-disclaimer">
         <i><b>PLEASE NOTE:</b> To prevent fraud, donations to the community funds pool are not refundable.</i><br />
       </span>
     </div>
   </div>
-  
-  <!-- waves effect -->
-  <svg class="editorial" style="z-index: 20000;"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 24 150 28 "
-      preserveAspectRatio="none">
-    <defs>
-      <path id="gentle-wave"
-      d="M-160 44c30 0 
-      58-18 88-18s
-      58 18 88 18 
-      58-18 88-18 
-      58 18 88 18
-      v44h-352z" />
-    </defs>
-    <g class="parallax1">
-      <use xlink:href="#gentle-wave" x="50" y="3" fill="rgba(32,32,54,.4)"/>
-    </g>
-    <g class="parallax2">
-      <use xlink:href="#gentle-wave" x="50" y="0" fill="rgba(21,19,38,0.7)"/>
-    </g>
-    <g class="parallax3">
-      <use xlink:href="#gentle-wave" x="50" y="9" fill="rgba(32,32,54,.8)"/>
-    </g>
-    <g class="parallax4" style="z-index:999999;">
-      <use xlink:href="#gentle-wave" x="50" y="6" fill="#171621"/>  
-    </g>
-  </svg>
-</section>
-
-<!-- swap section -->
-<section class="full-width deepbg swap-section">
-  <div class="content">
-    <div class="middle-box"> 
-      <p>
-        <h2>Don't Have <span class="highlight-txt" translate="no">ARRR</span>?</h2>
-        Donate using <b>other</b> cryptocurrencies
-      </p>
-      <div class="swapbox" id="swapbox"> 
-        <h3>Get a one-time Deposit Address</h3>
-        <h4 style="color:red;">service in demo is turned off.
-          Normally there woudl be a dropdown of nearly all blockchains to select from. 
-          The deposit auto exchanges to ARRR and sent to donation address</h4>
-        <input type="number" id="quantity" value="0.01000000" />
-        <select id="currency">
-          <option value="BTC" selected="true" translate="no">BTC | Bitcoin</option>
-        </select><br />
-        <button class="a-btn" onclick="generate()">
-          Generate Deposit Address
-        </button>
-      </div>
-      <div class="swapbox" id="confirm-swapbox">
-      </div> 
-    </div>
-  </div>
 </section>
 
 <!-- contribute section -->
 <section class="full-width lightbg contribute-section">
+  <svg class="editorial" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <path id="donation-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+    </defs>
+    <g class="parallax1"><use href="#donation-wave" x="50" y="3" fill="rgba(32,32,54,.4)" /></g>
+    <g class="parallax2"><use href="#donation-wave" x="50" y="0" fill="rgba(21,19,38,.7)" /></g>
+    <g class="parallax3"><use href="#donation-wave" x="50" y="9" fill="rgba(32,32,54,.8)" /></g>
+    <g class="parallax4"><use href="#donation-wave" x="50" y="6" style="fill: var(--pirate-navyblue);" /></g>
+  </svg>
   <div class="content">
-    <div class="box-container">
-      <div class="box-right">
-        <h2> Want to  <span class="highlight-txt">contribute</span>?</h2>
+    <div class="contribute-layout">
+      <img class="contribute-image" alt="Pirate Chain community booth displaying merchandise" src="{{ site.baseurl }}{{ site.img }}site/pirate-chain-community-booth.webp" width="1024" height="702" decoding="async" loading="lazy" />
+      <div class="contribute-copy">
+        <h2>Want to <span class="highlight-txt">contribute</span>?</h2>
         <p>
-          Donating <b>$ARRR</b> isn't the only way to be a part of the Pirate Chain network. 
-          Come help make the community a great place to be! We would love to see you here!
+          Donating <b>$ARRR</b> isn't the only way to support Pirate.
+          Come make the community a great place to be and help shape its future! As a grassroots community project, we can always use your help and would love to see you here!
         </p>
-        <a class="a-btn" href="https://discord.gg/DT3UhzdzGa" target="_blank" rel="noopener" >Contribute</a>     
-      </div>
-      <div class="box">
-        <img alt="Pirate Community Members Smiling" src="{{ site.baseurl }}{{ site.img }}site/community.png" />
+        <a class="a-btn" href="{{ site.discord_invite_url }}" target="_blank" rel="noopener">Contribute</a>
       </div>
     </div>
   </div>
