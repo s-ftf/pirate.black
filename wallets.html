@@ -1,52 +1,56 @@
 ---
 name: wallets
 title: Pirate Chain | Wallets
+schema_type: CollectionPage
 description:  Pirate Chain wallets allow users to securely store, manage, and transact with Pirate Chain (ARRR), 
               a privacy-focused cryptocurrency. These wallets use advanced encryption and other security measures 
               to protect user's funds and maintain their privacy. Additionally, they provide an easy and convenient 
               way for users to interact with the Pirate Chain network and participate in the cryptocurrency economy.
 keywords: full node wallet, best crypto wallet, privacy coin wallet, decentralized wallet, private wallets, anonymous wallets, cryptocurrency wallets, lite wallet, Pirate wallet
-thumbnail: meta/wallets.png
 layout: page
 css-list:
   - "assets/css/wallets.css"
 javascript-list:
   - "assets/js/wallets.js"
-lang: en 
 --- 
 
+<script>
+  window.WALLET_REPOSITORIES = {{ site.wallet_repositories | jsonify }};
+  window.WALLET_LINKS = {{ site.wallet_links | jsonify }};
+</script>
+
 <!-- hero section -->
-<section class="full-width lightbg hero-section">  
+<section class="full-width lightbg hero-section">
   <div class="content">
-    <div class="box-container">
-      <div class="box-right">
-        <img alt="A Laptop Runnnig A Pirate Wallet" src="{{ site.baseurl }}{{ site.img }}site/laptop.png" class="laptop" />
-        <img alt="A Celphone with Pirate Mobile Wallet" src="{{ site.baseurl }}{{ site.img }}site/skullcell.png" class="skull" />
+    <div class="wallet-hero-layout">
+      <div class="wallet-hero-copy">
+        <h1>Wallets</h1>
+        <p class="wallet-hero-tagline">Keep your treasure safe.</p>
+        <p class="wallet-hero-detail">Pirate Chain wallets ARRR designed to protect your finances and keep you in control of your coins.</p>
       </div>
-      <div class="box">
-        <h1>WALLETS</h1>
-        <p>Pirate Chain wallets provide industry leading privacy technology, helping you keep your finances safe. 
-          Privacy is a human right and we intend to keep it that way.</p>
+      <div class="wallet-hero-art">
+        <img alt="The Moon with deep craters" class="treasure-moon moon-rotate" src="{{ site.baseurl }}{{ site.img }}site/pirate-chain-wallet-moon.webp" width="151" height="162" decoding="async" />
+        <img alt="An astronaut wearing a pirate hat" class="astro-pirate floating" src="{{ site.baseurl }}{{ site.img }}site/pirate-chain-wallet-astronaut.webp" width="1024" height="1536" decoding="async" fetchpriority="high" />
       </div>
-    </div> 
+    </div>
   </div>
+  <!-- waves effect -->
+  <svg class="editorial" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+    </defs>
+    <g class="parallax1"><use href="#gentle-wave" x="50" y="3" fill="rgba(32,32,54,.4)" /></g>
+    <g class="parallax2"><use href="#gentle-wave" x="50" y="0" fill="rgba(21,19,38,.7)" /></g>
+    <g class="parallax3"><use href="#gentle-wave" x="50" y="9" fill="rgba(32,32,54,.8)" /></g>
+    <g class="parallax4"><use href="#gentle-wave" x="50" y="6" style="fill: var(--pirate-navyblue);" /></g>
+  </svg>
 </section>
 
 <!-- wallets section -->
-<section class="full-width deepbg wallets-section ">
+<section class="full-width deepbg wallets-section">
   <div class="overlay"></div>
-  <div class="content">    
-    <div class="switch">
-        <span id="official-label">Official</span>
-        <form autocomplete="off">
-          <label class="toggle-control">
-            <input id="type" type="checkbox" onclick="toggle()">
-            <span class="control"></span>
-          </label>
-        </form>
-        <span id="thirdparty-label">3rd Party</span>
-    </div>  
-    <div id="official" class="official">
+  <div class="content">
+    <div class="official">
       <div id="treasure-chest" class="wallet-container" onclick="bookmark('treasure-chest')">
         <img alt="Treasure Chest Wallet for Pirate ARRR" class="wallet-icon" src="{{ site.baseurl }}{{ site.img }}icons/treasure-chest.svg" />
         <div class="overview">
@@ -57,17 +61,17 @@ lang: en
             <li>Preferred Choice</li>
           </ul>
           Project Repository:<br />         
-          <a class="git" href="https://github.com/PirateNetwork/pirate/releases/latest" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" /> 
+          <a class="git" href="https://github.com/{{ site.wallet_repositories.core.github }}" translate="no">
+            <img alt="Treasure Chest GitHub" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" />
           </a>
-          <a class="git" href="https://gitlab.com/piratenetwork_mirror/pirate" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/gitlab.svg" /> 
+          <a class="git" href="https://gitlab.com/{{ site.wallet_repositories.core.gitlab }}" translate="no">
+            <img alt="Treasure Chest GitLab" src="{{ site.baseurl }}{{ site.img }}wallets/gitlab.svg" />
           </a> 
           <button class="download a-btn" onclick="flip('treasure-chest', 'download');">Downloads</button> 
           <button class="desc a-btn" onclick="flip('treasure-chest', 'description');">Descripton</button>            
         </div>
         <div class="flip-container">
-          <div class="flip" id="flip">
+          <div class="flip">
             <div class="description">
               <p>
                 Treasure Chest is a <a href="https://youtu.be/j6IAzyDWhDI">full node</a> wallet, offering the most secure and private mechanism to keep your assets safe.
@@ -76,11 +80,11 @@ lang: en
               </p>
               <a class="tutorial a-btn" href="https://www.youtube.com/watch?v=qNV_uC2BHyg">Treasure Chest Guide</a>
             </div>
-            <div class="downloads" id="downloads">
+            <div class="downloads">
               <div class="version"> 
-                <a title="Most recent version of Treasure Chest" href="https://github.com/PirateNetwork/pirate/releases/latest">latest</a>
+                <a title="Most recent version of Treasure Chest" href="https://github.com/{{ site.wallet_repositories.core.github }}/releases/latest">latest</a>
               </div>
-              <div class="links" id="links">
+              <div class="links">
                 <div class="psoload" style="margin-top: 120px;">
                   <div class="straight"></div>
                   <div class="curve"></div>
@@ -92,84 +96,39 @@ lang: en
           </div>
         </div>
       </div>
-      <div id="lite-wallet" class="wallet-container" onclick="bookmark('lite-wallet')">
-        <img alt="Pirate Chain Lite Wallet" class="wallet-icon" src="{{ site.baseurl }}{{ site.img }}icons/lite-wallet.svg" />
+      <div id="stashi" class="wallet-container" onclick="bookmark('stashi')">
+        <img alt="Island icon for Stashi Wallet" class="wallet-icon" src="{{ site.baseurl }}{{ site.img }}icons/stashi.svg" />
         <div class="overview">
-          <h3>Lite Wallet</h3>
+          <h3>Stashi Wallet</h3>
           <ul>
-            <li>Uses less harddrive!</li>
-            <li>4GB RAM Recommended</li>
-            <li>Most Convenient</li>
+            <li>Unified light wallet</li>
+            <li>Desktop and Android</li>
+            <li>Premier light wallet</li>
           </ul>
-          Project Repository:<br />         
-          <a class="git" href="https://github.com/PirateNetwork/PirateWallet-Lite/releases/latest" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" /> 
+          Project Repository:<br />
+          <a class="git" href="https://github.com/{{ site.wallet_repositories.stashi.github }}" translate="no">
+            <img alt="Stashi GitHub" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" />
           </a>
-          <a class="git" href="https://gitlab.com/piratenetwork_mirror/PirateWallet-Lite" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/gitlab.svg" /> 
-          </a> 
-          <button class="download a-btn" onclick="flip('lite-wallet', 'download');">Downloads</button> 
-          <button class="desc a-btn" onclick="flip('lite-wallet', 'description');">Descripton</button>            
+          <a class="mobile-store" href="{{ site.wallet_links.stashi_play_store }}" aria-label="Get Stashi Wallet on Google Play">
+            <img alt="Get it on Google Play" src="{{ site.baseurl }}{{ site.img }}wallets/google-play-store-badge.webp" width="201" height="60" decoding="async" loading="lazy" />
+          </a>
+          <button class="download a-btn" onclick="flip('stashi', 'download');">Downloads</button>
+          <button class="desc a-btn" onclick="flip('stashi', 'description');">Description</button>
         </div>
         <div class="flip-container">
-          <div class="flip" id="flip">
+          <div class="flip">
             <div class="description">
               <p>
-                The Pirate Chain <a href="https://youtu.be/j6IAzyDWhDI">lite wallet</a> offers the most convenient solution for devices with smaller hard drives
-                such as laptops or older desktops. 
-                <br /><br />
-                Does not have all the features of a full-node wallet, but has everything you need for receiving and sending ARRR.
+                Stashi is a unified light wallet that works across desktop and mobile.
+                It gives you access to Pirate Chain's privacy features, so you can send, receive, and manage your ARRR without the weight of running a full node.
               </p>
-              <a class="tutorial a-btn" href="https://www.youtube.com/watch?v=279QzgHU-wk">Lite Wallet Guide</a>
+              <a class="tutorial a-btn" href="{{ site.wallet_links.stashi_guide }}">Stashi User Guide</a>
             </div>
-            <div class="downloads" id="downloads">
-              <div class="version"> 
-                <a title="Most recent version of the Lite Wallet" href="https://github.com/PirateNetwork/PirateWallet-Lite/releases/latest">latest</a>
+            <div class="downloads">
+              <div class="version">
+                <a title="Most recent version of Stashi Wallet" href="https://github.com/{{ site.wallet_repositories.stashi.github }}/releases/latest">latest</a>
               </div>
-              <div class="links" id="links">
-                <div class="psoload" style="margin-top: 120px;">
-                  <div class="straight"></div>
-                  <div class="curve"></div>
-                  <div class="center"></div>
-                  <div class="inner"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="skull-island" class="wallet-container" onclick="bookmark('skull-island')">
-        <img alt="Skull Island Mobile Wallet Pirate Listing" class="wallet-icon" src="{{ site.baseurl }}{{ site.img }}icons/skull-island.svg" />
-        <div class="overview">
-          <h3>Skull Island</h3>
-          <ul>
-            <li>Take ARRR with you!</li>
-            <li>3GB RAM Recommended</li>
-            <li>Mobile Wallet</li>
-          </ul>
-          <a class="mobile-store" href="https://play.google.com/store/apps/details?id=pirate.sapling.litewallet&pli=1">
-            <img alt="playstore mobile wallet" src="{{ site.baseurl }}{{ site.img }}wallets/playstore.png" />
-          </a>
-          <a class="mobile-store" href="https://apps.apple.com/app/arrr-pirate-chain-wallet/id1590729869">
-            <img alt="app store mobile wallet" src="{{ site.baseurl }}{{ site.img }}wallets/appstore.png" />
-          </a>
-          <button class="download a-btn" onclick="flip('skull-island', 'download');">Downloads</button> 
-          <button class="desc a-btn" onclick="flip('skull-island', 'description');">Descripton</button>   
-        </div>
-        <div class="flip-container">
-          <div class="flip" id="flip">
-            <div class="description">
-              <p>
-                The Pirate Chain Android wallet is recommended for people wanting to manage their ARRR on the go, 
-                or on their favorite Android device, in a safe and secure Android application.
-              </p>
-              <a class="tutorial a-btn" href="https://www.youtube.com/watch?v=zAIdQNhB6Z4">Skull Island Guide</a>
-            </div>
-            <div class="downloads" id="downloads">
-              <div class="version"> 
-                <a title="Most recent version of the Skull Island Wallet" href="https://github.com/PirateNetwork/Skull-Island/releases/latest">latest</a>
-              </div>
-              <div class="links" id="links">
+              <div class="links">
                 <div class="psoload" style="margin-top: 120px;">
                   <div class="straight"></div>
                   <div class="curve"></div>
@@ -191,17 +150,17 @@ lang: en
             <li>Create Addresses Offline</li>
           </ul>
           Project Repository:<br />         
-          <a class="git" href="https://github.com/PirateNetwork/piratepaperwallet/releases/latest" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" /> 
+          <a class="git" href="https://github.com/{{ site.wallet_repositories.paper.github }}" translate="no">
+            <img alt="Paper Wallet GitHub" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" />
           </a>
-          <a class="git" href="https://gitlab.com/piratenetwork_mirror/piratepaperwallet" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/gitlab.svg" /> 
+          <a class="git" href="https://gitlab.com/{{ site.wallet_repositories.paper.gitlab }}" translate="no">
+            <img alt="Paper Wallet GitLab" src="{{ site.baseurl }}{{ site.img }}wallets/gitlab.svg" />
           </a> 
           <button class="download a-btn" onclick="flip('paper-wallet', 'download');">Downloads</button> 
           <button class="desc a-btn" onclick="flip('paper-wallet', 'description');">Descripton</button>                       
         </div>
         <div class="flip-container">
-          <div class="flip" id="flip">
+          <div class="flip">
             <div class="description">
               <p>
                 The Pirate Chain paper wallet is perfect for people that love paper and want to 
@@ -209,11 +168,11 @@ lang: en
               </p>
               <a class="tutorial a-btn" href="">Paper Wallet Guide</a>
             </div>
-            <div class="downloads" id="downloads">
+            <div class="downloads">
               <div class="version"> 
-                <a title="Most recent version of the Pirate Paper Wallet" href="https://github.com/PirateNetwork/piratepaperwallet/releases/latest">latest</a>
+                <a title="Most recent version of the Pirate Paper Wallet" href="https://github.com/{{ site.wallet_repositories.paper.github }}/releases/latest">latest</a>
               </div>
-              <div class="links" id="links">
+              <div class="links">
                 <div class="psoload" style="margin-top: 120px;">
                   <div class="straight"></div>
                   <div class="curve"></div>
@@ -235,17 +194,17 @@ lang: en
             <li>Command Line Interface</li>
           </ul>
           Project Repository:<br />         
-          <a class="git" href="https://github.com/PirateNetwork/pirate/releases/latest" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" /> 
+          <a class="git" href="https://github.com/{{ site.wallet_repositories.core.github }}" translate="no">
+            <img alt="CLI Wallet GitHub" src="{{ site.baseurl }}{{ site.img }}wallets/github.svg" />
           </a>
-          <a class="git" href="https://gitlab.com/piratenetwork_mirror/pirate" translate="no">
-            <img alt="Treasure Chest Github" src="{{ site.baseurl }}{{ site.img }}wallets/gitlab.svg" /> 
+          <a class="git" href="https://gitlab.com/{{ site.wallet_repositories.core.gitlab }}" translate="no">
+            <img alt="CLI Wallet GitLab" src="{{ site.baseurl }}{{ site.img }}wallets/gitlab.svg" />
           </a> 
           <button class="download a-btn" onclick="flip('cli-wallet', 'download');">Downloads</button> 
           <button class="desc a-btn" onclick="flip('cli-wallet', 'description');">Descripton</button>  
         </div>
         <div class="flip-container">
-          <div class="flip" id="flip">
+          <div class="flip">
             <div class="description">
               <p>
                 This is the core implementation. Command-line interface means no GUI which is perfect
@@ -253,11 +212,11 @@ lang: en
               </p>
               <a class="tutorial a-btn" href="https://docs.pirate.black/docs/installation/ubuntu-deb/">CLI Guide</a>
             </div>
-            <div class="downloads" id="downloads">
+            <div class="downloads">
               <div class="version"> 
-                <a title="Most recent version of Pirate CLI" href="https://github.com/PirateNetwork/pirate/releases/latest">latest</a>
+                <a title="Most recent version of Pirate CLI" href="https://github.com/{{ site.wallet_repositories.core.github }}/releases/latest">latest</a>
               </div>
-              <div class="links" id="links">
+              <div class="links">
                 <div class="psoload" style="margin-top: 120px;">
                   <div class="straight"></div>
                   <div class="curve"></div>
@@ -269,52 +228,6 @@ lang: en
           </div>
         </div>
       </div>
-    </div> 
-    <div id="third" class="thirdparty">
-      <div class="listings-container">
-        <a class="thirdparty-listing" href="https://atomicdex.io/">
-          <h3>atomicDEX</h3>
-          <p>
-            Multi-coin wallet with built-in atomic swap based dexentralized exchange. Supports ARRR and wARRR
-          </p>
-          <img alt="AtomicDex Wallet" src="{{ site.baseurl }}{{ site.img }}exchanges/atomicdex.svg" />
-        </a>
-        <a class="thirdparty-listing" href="https://edge.app/">
-          <h3>Edge Wallet</h3>
-          <p>
-            Popular multi-currency wallet with tons of features.
-          </p>
-          <img alt="Edge Wallet :ogo" src="{{ site.baseurl }}{{ site.img }}wallets/edge.svg"/>
-        </a>
-        <a class="thirdparty-listing" href="https://barrrter.com/ad/details/pirate-chain-hardware-wallet">
-          <h3>Hardware Wallet</h3>
-          <p>
-            A first of its kind! A hardware wallet powerful enough to handle zk-snark transactions made by Pirate Chain community member Mulroy!
-          </p>
-          <img alt="Hardware Wallet" src="{{ site.baseurl }}{{ site.img }}projects/hardware.svg" />
-        </a>
-        <a class="thirdparty-listing" href="https://piratewallet.io/">
-          <h3>MeshBits iOS</h3>
-          <p>
-            A pure iOS wallet created by the MeshBits team, speciffically for Pirate Chain.
-          </p>
-          <img alt="Meshbits Wallet" src="{{ site.baseurl }}{{ site.img }}wallets/meshbits.svg" style="width: 120px;" />
-        </a>
-        <a class="thirdparty-listing" href="https://qortal.org/qortal-3-0-and-beyond-what-is-happening-now-april-2022/">
-          <h3>Qortal</h3>
-          <p>
-            Fully functional decentralized ARRR wallet, and Cross-Chain trades in the Trade Portal
-          </p>
-          <img alt="Qortal Wallet" src="{{ site.baseurl }}{{ site.img }}wallets/qortal.svg" />
-        </a>
-        <a class="thirdparty-listing" href="https://verus.io/wallet/desktop">
-          <h3>Verus Wallet</h3>
-          <p>
-            Secure public blockchains as a service (PBaaS), with built in DeFi, privacy, and Digital identities,
-          </p>
-          <img alt="Verus Wallet" src="{{ site.baseurl }}{{ site.img }}wallets/verus.svg" />
-        </a>
-      </div>
-    </div>  
+    </div>
   </div>
 </section>

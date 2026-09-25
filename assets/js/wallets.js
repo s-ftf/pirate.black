@@ -1,347 +1,341 @@
-// store the current switch selection
-let selection = "official";
-
-// switch between official and 3rd party wallets
-function toggle() {
-
-    // switch to 3rd party
-    if (selection === "official") {
-        selection = "thirdparty";
-        document.getElementById("type").checked = true;
-        window.location.hash = ("#thirdparty")
-
-        // change switch able color
-        document.getElementById("official-label").style.opacity = .5;
-        document.getElementById("thirdparty-label").style.opacity = 1;
-
-        // switch the visible div
-        document.getElementById("official").style.display = "none";
-        document.getElementById("third").style.display = "block";
-
-
-    // switch to official
-    } else {
-        selection = "official";
-        document.getElementById("type").checked = false;
-        history.replaceState({}, document.title, window.location.href.split('#')[0]);
-
-        // change switch able color
-        document.getElementById("official-label").style.opacity = 1;
-        document.getElementById("thirdparty-label").style.opacity = .5;
-
-        // switch the visible div
-        document.getElementById("official").style.display = "block";
-        document.getElementById("third").style.display = "none";
-    };
-};
-
-// bookmark a section into the url on click
+// Bookmark a wallet card when it is selected.
 function bookmark(section) {
-    history.replaceState({}, document.title, window.location.href.split('#')[0]);
-    const nextURL = window.location.href + "#" + section;
-    const nextTitle = section;
-    const nextState = { additionalInformation: section };
-    window.history.pushState(nextState, nextTitle, nextURL);
-    document.querySelectorAll('.wallet-container').forEach(e => e.style.border = "1px solid transparent")
-
-    document.getElementById(section).style.border = "1px solid var(--pirate-neon)"
-};
-
-// utility function to generate the wallet links
-function genrateLink(link, img, target) {
-  element = document.getElementById(target);
-  var title = link.split("/").pop();
-  var anchor = document.createElement('a');
-    anchor.setAttribute('href',link);
-    anchor.setAttribute('title',title);
-    anchor.innerHTML = '<img src="'+BASEURL+'assets/img/wallets/' + img + '" />';
-    element.appendChild(anchor);
-};
-
-
-// object of github wallet api data
-let wallets = {
-  'treasure-chest':{
-    'reponame': "pirate",
-    'updated': false,
-    'links': [{
-        "icon": BASEURL + "assets/img/icons/blockchain.svg",
-        "os": "Resources",
-        "name": "ARRR-bootstrap.tar.gz",
-        "link": "https://eu.bootstrap.dexstats.info/ARRR-bootstrap.tar.gz"}]     
-  },
-  'lite-wallet':{
-    'reponame': "PirateWallet-Lite",
-    'updated': false,
-    'links': []
-  },
-  'skull-island':{
-    'reponame': "Skull-Island",
-    'updated': false,
-    'links': []
-  },
-  'paper-wallet':{
-    'reponame': "piratepaperwallet",
-    'updated': false,
-    'links': [{
-        "icon": BASEURL + "assets/img/wallets/windows.svg",
-        "os": "Windows",
-        "name": "Windows launcher (.bat file)",
-        "link": "https://github.com/lilszi/piratepaperwallet/releases/download/1.0/generate_addresses.bat"}]
-  },
-  'cli-wallet':{
-    'reponame': "pirate",
-    'updated': false,
-    'links': [{
-        "icon": BASEURL + "assets/img/icons/blockchain.svg",
-        "os": "Resources",
-        "name": "ARRR-bootstrap.tar.gz",
-        "link": "https://eu.bootstrap.dexstats.info/ARRR-bootstrap.tar.gz"}]
-  } 
-};
-
-
-
-// detirmine which os from filename 
-function getOS(name) {
-  let icon = '';
-  let osname = '';
-
-  name = name.toLowerCase();
-  let ext = name.split('.').pop();
-
-  // guess what OS 
-  if (name.includes("aarch")) {
-    osname = "ARM Linux";
-    icon = BASEURL + "assets/img/wallets/arm.svg";
-  
-  } else if (name.includes("macos")) {
-    osname = "Mac OS";
-    icon = BASEURL + "assets/img/wallets/apple.svg";
-
-  } else if (name.includes("ubuntu") || name.includes("linux")) {
-    osname = "Linux";
-    icon = BASEURL + "assets/img/wallets/linux.svg";
-  
-  } else if (name.includes("windows")) {
-    osname = "Windows";
-    icon = BASEURL + "assets/img/wallets/windows.svg";
-
-  } else if (ext === "apk") {
-    osname = "Android APK";
-    icon = BASEURL + "assets/img/wallets/android.svg";
-
-  } else {
-    osname = "Resources";
-    icon = BASEURL + "assets/img/icons/blockchain.svg";
-  }; 
-
-  return {'name': osname, 'icon': icon};
-};
-
-
-// prepare the links 
-function buildLinks(data) {
-  let assets = data.repo.assets;
-
-  for (let i = 0; i < assets.length; i++) {
-    // guess the os    
-    let os = getOS(assets[i].name);
-
-    // if we could determine the OS add the link
-    if (os) {
-      var link = {
-        'icon': os.icon,
-        'os': os.name,
-        'name': assets[i].name,
-        'link': assets[i].browser_download_url
-      };
-      data.links.push(link); 
-    };
-  };
-  return data;
+  history.replaceState({}, document.title, window.location.href.split('#')[0]);
+  const nextURL = window.location.href + "#" + section;
+  window.history.pushState({ additionalInformation: section }, section, nextURL);
+  document.querySelectorAll('.wallet-container').forEach(card => {
+    card.style.border = "1px solid transparent";
+  });
+  document.getElementById(section).style.border = "1px solid var(--pirate-neon)";
 }
 
+const bootstrapDownload = {
+  os: "Resources",
+  name: "ARRR-bootstrap.tar.gz",
+  label: "Blockchain bootstrap",
+  link: WALLET_LINKS.bootstrap
+};
 
-// if QT or CLI, remove the other
-function seperatePirate(data) {
-
-  // what files do we need to remove?
-  let target = "-qt-";
-  if (data.wallet == "treasure-chest") target = "-cli-";
-
-  var list = [];
-  
-  // if the link has the target, remove it
-  for (let i = 0; i < data.links.length; i++) {
-    let filename = data.links[i].name.toLowerCase();
-    
-    if (!filename.includes(target)) {
-      list.push(data.links[i]);
-    }
+// Repository paths are rendered from _config.yml in wallets.html.
+const wallets = {
+  'treasure-chest': {
+    repository: WALLET_REPOSITORIES.core.github,
+    assetType: 'qt',
+    extras: [bootstrapDownload]
+  },
+  'stashi': {
+    repository: WALLET_REPOSITORIES.stashi.github,
+    installerOnly: true
+  },
+  'paper-wallet': {
+    repository: WALLET_REPOSITORIES.paper.github,
+    extras: [{
+      os: "Windows",
+      name: "Windows launcher (.bat file)",
+      label: "Windows launcher",
+      link: WALLET_LINKS.paper_launcher
+    }]
+  },
+  'cli-wallet': {
+    repository: WALLET_REPOSITORIES.core.github,
+    assetType: 'cli',
+    extras: [bootstrapDownload]
   }
-  data.links = list
-  
-  return data;
-}
-
-
-// sort the links by OS
-function sortOS(links) {
-  var categories = {};
-
-  for (let i = 0; i < links.length; i++) {
-    if (links[i].os in categories) {
-      categories[links[i].os].links.push(links[i]);
-    } else {
-      categories[links[i].os] = {
-        "icon": links[i].icon,
-        "links": [links[i]]
-      }
-    };
-  };
-  const sortObject = obj => Object.keys(obj).sort().reverse().reduce((res, key) => (res[key] = obj[key], res), {});
-
-  categories = sortObject(categories);
-  return categories;
-}
-
-// create the html for the links
-function createLinkElement(title,data) {
-  // create the conatiner div
-  var container = document.createElement("div");
-  container.id = "link-container";
-
-  // add the icon image
-  container.innerHTML += '<img alt="'+title+' icon" src="'+data.icon+'" />'
-
-  // create linkbox div
-  var linkbox = document.createElement("div");
-  linkbox.id = "linkbox";
-  var headline = document.createElement("h3");
-  headline.innerHTML = title;
-  linkbox.appendChild(headline)
-
-  // add links to linkbox
-  for (let i = 0; i < data.links.length; i++) {
-    var link = document.createElement("a");
-    link.href = data.links[i].link;
-    link.title = data.links[i].name + " download link";
-    link.innerHTML = data.links[i].name;
-    linkbox.appendChild(link);
-  };  
-
-  container.appendChild(linkbox);  
-  return container;
 };
 
-// finnaly add all the links to the page
-function addToPage(data) {
-  let section = document.getElementById(data.wallet);
-  let links = section.getElementsByClassName("links")[0];
-  let version = section.getElementsByClassName("version")[0].getElementsByTagName('a')[0];
-  var ul = document.createElement('ul'); 
-  var hr = document.createElement('hr'); 
+const osIcons = {
+  'Android APK': 'wallets/android.svg',
+  'ARM Linux': 'wallets/arm.svg',
+  'iOS': 'wallets/ios.svg',
+  'Linux': 'wallets/linux.svg',
+  'Mac OS': 'wallets/apple.svg',
+  'Windows': 'wallets/windows.svg',
+  'Resources': 'icons/blockchain.svg'
+};
+const osOrder = ['Windows', 'Mac OS', 'iOS', 'Linux', 'ARM Linux', 'Android APK', 'Resources'];
+const releaseRequests = new Map();
 
-   // update version
-  version.href = data.repo.html_url;
-  version.innerHTML = data.repo.tag_name;
+function getOS(filename) {
+  const name = filename.toLowerCase();
+  if (name.endsWith('.ipa')) return 'iOS';
+  if (name.includes('android') || name.endsWith('.apk')) return 'Android APK';
+  if (name.includes('macos') || name.includes('darwin') || name.endsWith('.dmg')) return 'Mac OS';
+  if (name.includes('windows') || name.endsWith('.exe') || name.endsWith('.msi')) return 'Windows';
+  if (name.includes('aarch') || name.includes('arm')) return 'ARM Linux';
+  if (name.includes('linux') || name.includes('ubuntu') ||
+      name.endsWith('.deb') || name.endsWith('.rpm') || name.endsWith('.appimage')) return 'Linux';
+  return 'Resources';
+}
 
-  // list each OS  
-  var list = sortOS(data.links);
-  for (const key in list) {
-    if (list.hasOwnProperty(key)) {
- 
-      // if it has a OS, add it
-      if (key != "Resources") {
-        var li = document.createElement('li');
-        li.appendChild(createLinkElement(key, list[key]));    
-        ul.appendChild(li);
+function isGithubReleaseUrl(value, repository, segment) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && url.hostname === 'github.com' &&
+      url.pathname.toLowerCase().startsWith(
+        `/${repository.toLowerCase()}/releases/${segment}`
+      );
+  } catch {
+    return false;
+  }
+}
+
+// Match package type and platform rather than a fixed version or exact prefix.
+// Stashi releases also contain developer artifacts that must stay off the
+// install list. The iOS SDK is shown under iOS with a developer label.
+function stashiInstaller(filename) {
+  const name = filename.toLowerCase();
+  if (/(?:sdk|artifact|component|test|metadata|debug|source|symbols|plugin|qortal|react.native)/.test(name)) return null;
+  if (/\.msi$/.test(name) || (/\.exe$/.test(name) && /(?:windows|win|setup)[-_.]/.test(name))) {
+    return { os: 'Windows', order: 10 };
+  }
+  if (/\.dmg$/.test(name)) return { os: 'Mac OS', order: 20 };
+  if (/\.ipa$/.test(name)) return { os: 'iOS', order: 25 };
+  if (/\.appimage$/.test(name)) return { os: 'Linux', order: 30 };
+  if (/\.deb$/.test(name)) return { os: getOS(name), order: 31 };
+  if (/\.flatpak$/.test(name)) return { os: 'Linux', order: 32 };
+  if (/\.apk$/.test(name)) return { os: 'Android APK', order: /(?:v7|armeabi|armv7)/.test(name) ? 41 : 40 };
+  return null;
+}
+
+function stashiResource(filename) {
+  const name = filename.toLowerCase();
+  if (/(?:sha[-_]?256|checksums?)/.test(name) && /\.(?:txt|sha256)$/.test(name)) {
+    return { os: 'Resources', label: 'SHA-256 checksums', order: 50 };
+  }
+  if (/signatures?/.test(name) && /\.(?:zip|tar\.gz)$/.test(name)) {
+    return { os: 'Resources', label: 'Release signatures', order: 51 };
+  }
+  if (/(?:public|signing)[-_]?key/.test(name) && /\.(?:asc|pub)$/.test(name)) {
+    return { os: 'Resources', label: 'Signing key', order: 52 };
+  }
+  if (/(?:^|[-_.])ios[-_.]sdk(?:[-_.]|$)/.test(name) && /\.(?:zip|tar\.gz)$/.test(name)) {
+    return { os: 'iOS', label: 'SDK for developers', order: 53 };
+  }
+  return null;
+}
+
+function downloadLabel(filename) {
+  const name = filename.toLowerCase();
+  const arm64 = /(?:aarch64|arm64|arm[-_]?v8|android[-_]?v8|arm[-_]macos|macos[-_]arm)/.test(name);
+  const arm32 = /(?:arm[-_]?v7|android[-_]?v7|armeabi)/.test(name);
+  const x64 = /(?:x86[_-]?64|amd64|x64|intel)/.test(name);
+  const architecture = arm64 ? 'ARM64' : arm32 ? '32-bit ARM' : x64 ? 'x64' : '';
+
+  if (/(?:sha[-_]?256|checksums?)/.test(name) && /\.(?:txt|sha256)$/.test(name)) return 'SHA-256 checksums';
+  if (/signatures?/.test(name) && /\.(?:zip|tar\.gz)$/.test(name)) return 'Release signatures';
+  if (/(?:public|signing)[-_]?key/.test(name) && /\.(?:asc|pub)$/.test(name)) return 'Signing key';
+  if (/\.exe$/.test(name) || /\.msi$/.test(name)) return 'Windows installer';
+  if (/\.dmg$/.test(name)) {
+    const details = [];
+    if (arm64) details.push('Apple silicon');
+    else if (x64) details.push('Intel Mac');
+    if (name.includes('unsigned')) details.push('unsigned');
+    return `macOS disk image${details.length ? ` (${details.join(', ')})` : ''}`;
+  }
+  if (/\.ipa$/.test(name)) return name.includes('unsigned') ? 'iOS app (unsigned IPA)' : 'iOS app (IPA)';
+  if (/\.appimage$/.test(name)) return architecture ? `AppImage (${architecture})` : 'AppImage';
+  if (/\.deb$/.test(name)) return architecture ? `Debian package (${architecture})` : 'Debian package';
+  if (/\.rpm$/.test(name)) return architecture ? `RPM package (${architecture})` : 'RPM package';
+  if (/\.flatpak$/.test(name)) return 'Flatpak';
+  if (/\.apk$/.test(name)) {
+    return arm64 ? 'Android APK — 64-bit ARM (V8)' :
+      arm32 ? 'Android APK — 32-bit ARM (V7)' : 'Android APK';
+  }
+  if (/\.zip$/.test(name) || /\.(?:tar\.gz|tgz)$/.test(name)) {
+    const packageType = /\.zip$/.test(name) ? 'ZIP archive' : 'Tar archive';
+    if (getOS(name) === 'Mac OS' && arm64) return `${packageType} (Apple silicon)`;
+    if (getOS(name) === 'Mac OS' && x64) return `${packageType} (Intel Mac)`;
+    return architecture ? `${packageType} (${architecture})` : packageType;
+  }
+  return filename;
+}
+
+function releaseLinks(release, wallet) {
+  return release.assets
+    .filter(asset => typeof asset.name === 'string' &&
+      isGithubReleaseUrl(asset.browser_download_url, wallet.repository, 'download/'))
+    .filter(asset => !wallet.assetType ||
+      asset.name.toLowerCase().includes(`-${wallet.assetType}-`))
+    .map(asset => {
+      const installer = wallet.installerOnly ? stashiInstaller(asset.name) : null;
+      const resource = wallet.installerOnly && !installer ? stashiResource(asset.name) : null;
+      if (wallet.installerOnly && !installer && !resource) return null;
+      return {
+        os: installer ? installer.os : resource ? resource.os : getOS(asset.name),
+        name: asset.name,
+        link: asset.browser_download_url,
+        label: downloadLabel(asset.name),
+        isResource: Boolean(resource),
+        ...installer,
+        ...resource
       };
-    };
-  };
+    })
+    .filter(Boolean)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
+}
 
-  // add resources
-  if ("Resources" in list) {
-    var li = document.createElement('li');
-    li.appendChild(createLinkElement("Resources",list["Resources"]));    
-    ul.appendChild(li);
-  };
-  
-  links.innerHTML = ""
-  links.appendChild(ul);   
-};
+// Cache successful requests, including the core release shared by QT and CLI.
+function getRelease(repository) {
+  if (!releaseRequests.has(repository)) {
+    const url = `https://api.github.com/repos/${repository}/releases/latest`;
+    const request = fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error(`GitHub returned HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(release => {
+        if (!release || !Array.isArray(release.assets) ||
+            typeof release.tag_name !== 'string' ||
+            !isGithubReleaseUrl(release.html_url, repository, 'tag/')) {
+          throw new Error('GitHub returned an invalid release');
+        }
+        return release;
+      })
+      .catch(error => {
+        releaseRequests.delete(repository); // A later click can retry.
+        throw error;
+      });
+    releaseRequests.set(repository, request);
+  }
+  return releaseRequests.get(repository);
+}
 
-// call api and process
-async function getapi(data) {
-  let response = await fetch(data.apiurl);  
+function createLinkGroup(os, links) {
+  const item = document.createElement('li');
+  const container = document.createElement('div');
+  container.className = 'link-container';
 
-  if (response.ok) { 
-    data.repo = await response.json();
-  } else {
-    console.log("HTTP-Error: " + response.status);
-    return;
-  };
-  
-  // make a list of links with icons and names
-  data = buildLinks(data);
+  const icon = document.createElement('img');
+  icon.alt = `${os} icon`;
+  icon.src = BASEURL + 'assets/img/' + osIcons[os];
+  container.appendChild(icon);
 
-  // if QT or CLI, remove the other
-  if (data.reponame === "pirate") {
-    data = seperatePirate(data);
-  };
+  const linkbox = document.createElement('div');
+  linkbox.className = 'linkbox';
+  const heading = document.createElement('h3');
+  heading.textContent = os;
+  linkbox.appendChild(heading);
 
-  // apply links to page
-  addToPage(data);
-};
+  links.forEach(file => {
+    const link = document.createElement('a');
+    link.href = file.link;
+    link.title = file.name;
+    link.textContent = file.label || file.name;
+    linkbox.appendChild(link);
+  });
 
-// prepare data for api
-function updateLinks(wallet) {
-  // if links already updated, skip updating to prevent spamming
-  if (wallets[wallet]['updated']) return;
+  container.appendChild(linkbox);
+  item.appendChild(container);
+  return item;
+}
 
-  // start a data object
-  wallets[wallet]['updated'] = true;
-  data = wallets[wallet];
-  data['wallet'] = wallet;
-  data.apiurl = "https://api.github.com/repos/PirateNetwork/" + data.reponame + "/releases/latest";
+function renderLinks(section, release, wallet) {
+  const version = section.querySelector('.version a');
+  version.href = release.html_url;
+  version.textContent = release.tag_name;
 
-  getapi(data);
-};
+  const links = section.querySelector('.links');
+  const files = releaseLinks(release, wallet);
+  const grouped = new Map();
+  const moreResources = wallet.installerOnly ? [{
+    os: 'Resources',
+    name: 'More resources on GitHub',
+    label: 'More resources on GitHub',
+    link: release.html_url
+  }] : [];
+  [...files, ...(wallet.extras || []), ...moreResources].forEach(file => {
+    if (!grouped.has(file.os)) grouped.set(file.os, []);
+    grouped.get(file.os).push(file);
+  });
 
-// flip the description and download cards
-function flip(wallet, side) { 
-  let desc = document.getElementById(wallet).getElementsByClassName("desc")[0];
-  let download = document.getElementById(wallet).getElementsByClassName("download")[0];
+  const list = document.createElement('ul');
+  osOrder.forEach(os => {
+    if (grouped.has(os)) list.appendChild(createLinkGroup(os, grouped.get(os)));
+  });
+  links.replaceChildren();
 
-  // switch the buttons
-  if (side === "download") {
-    download.style.opacity = 0;
-    desc.style.opacity = 1;
-    download.style.zIndex = 0;
-    desc.style.zIndex = 99;
+  if (!files.some(file => !wallet.installerOnly || !file.isResource)) {
+    const notice = document.createElement('p');
+    notice.textContent = wallet.installerOnly
+      ? 'No wallet installers found in this release. Check the release on GitHub.'
+      : 'No wallet files found in this release. Check the release on GitHub.';
+    links.appendChild(notice);
+  }
+  links.appendChild(list);
+}
 
-    // if veiwing the downloads side, update the links
-    updateLinks(wallet)
-  } else {
-    download.style.opacity = 1;
-    desc.style.opacity = 0;
-    download.style.zIndex = 99;
-    desc.style.zIndex = 0;
+async function updateLinks(walletId) {
+  const wallet = wallets[walletId];
+  if (!wallet || wallet.loaded || wallet.loading) return;
 
-  }; 
+  const section = document.getElementById(walletId);
+  const links = section.querySelector('.links');
+  wallet.loading = true;
+  const status = document.createElement('p');
+  status.setAttribute('role', 'status');
+  status.textContent = 'Loading downloads…';
+  links.replaceChildren(status);
+  try {
+    const release = await getRelease(wallet.repository);
+    renderLinks(section, release, wallet);
+    wallet.loaded = true;
+  } catch (error) {
+    console.error(`Could not load ${walletId} release:`, error);
+    const notice = document.createElement('p');
+    notice.setAttribute('role', 'alert');
+    notice.textContent = 'Could not load downloads from GitHub. Open the latest release above or try again.';
+    const retry = document.createElement('button');
+    retry.type = 'button';
+    retry.className = 'a-btn retry-downloads';
+    retry.textContent = 'Try again';
+    retry.addEventListener('click', () => updateLinks(walletId));
+    links.replaceChildren(notice, retry);
+  } finally {
+    wallet.loading = false;
+  }
+}
 
-  // flip the card sides
-  const card = document.getElementById(wallet).getElementsByClassName("flip")[0];
-  card.classList.toggle("flipCard");
-};
+function flip(walletId, side) {
+  const section = document.getElementById(walletId);
+  const desc = section.querySelector('.overview .desc');
+  const download = section.querySelector('.overview .download');
+  const showDownloads = side === 'download';
 
-window.onload = function() {
-  // check if 3rd party wallets url was used
-  var hash = window.location.hash.slice(1).toLocaleLowerCase();  
-  if( hash  == 'thirdparty' ) {
-      toggle();
-  }  else if (hash) {
-    document.getElementById(hash).style.border = "1px solid var(--pirate-neon)"
-  };
-};
+  download.style.opacity = showDownloads ? 0 : 1;
+  desc.style.opacity = showDownloads ? 1 : 0;
+  download.style.zIndex = showDownloads ? 0 : 99;
+  desc.style.zIndex = showDownloads ? 99 : 0;
+  section.querySelector('.flip').classList.toggle('flipCard', showDownloads);
+
+  if (showDownloads) updateLinks(walletId);
+}
+
+// Fetch a card's release only when the visitor reaches that part of the page.
+// Clicking Downloads still fetches immediately if the observer has not fired.
+function preloadVisibleWallets() {
+  if (typeof window.IntersectionObserver !== 'function') return;
+
+  const observer = new window.IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      updateLinks(entry.target.id);
+    });
+  }, { rootMargin: '0px 0px 100px 0px' });
+
+  document.querySelectorAll('.wallet-container').forEach(card => observer.observe(card));
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const requestedWallet = window.location.hash.slice(1).toLowerCase();
+  const walletId = ['lite-wallet', 'skull-island'].includes(requestedWallet)
+    ? 'stashi' : requestedWallet;
+  const wallet = document.getElementById(walletId);
+  if (wallet && wallet.classList.contains('wallet-container')) {
+    if (walletId !== requestedWallet) {
+      history.replaceState({}, document.title, `#${walletId}`);
+    }
+    wallet.style.border = '1px solid var(--pirate-neon)';
+  }
+  preloadVisibleWallets();
+});

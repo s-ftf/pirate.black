@@ -1,85 +1,168 @@
 /* ----- hero section ----- */
 .hero-section {
-    padding-top: 120px;
-    padding-bottom: 90px;
-    -webkit-filter: drop-shadow(15px 20px 15px rgba(0, 0, 0, 0.281));
-    filter: drop-shadow(15px 20px 15px rgba(0, 0, 0, 0.281));
-
-}
-.hero-section h1 {
-    margin: 30px 0px 40px;
-}
-.hero-section p {
-    max-width: 740px;
-}
-.hero-section .box {
-    padding-left: 60px;
-    text-align: left;
-}
-.hero-section .box-container {
-    text-align: center;
-}
-.hero-section .box-right {
     position: relative;
-    height: 300px;
+    background: linear-gradient(180deg, #3b4380 0%, var(--pirate-storm) 70%, #30335f 100%);
+    padding: 100px 0 90px;
+}
+.wallet-hero-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1150px;
+    min-height: 550px;
     margin: auto;
-    width: 100%;
-    max-width: 300px;
-    float: none;
-    display: inline-block;
 }
-.hero-section .laptop {
-    position: absolute;
-    top: 20px;
-    left:80px;
-    width: 100%;
-    max-width: 300px;
-    padding: 1px 1px 2px 3px;
-    display: block;    
+.wallet-hero-copy {
+    flex: 1 1 50%;
+    padding-left: 60px;
 }
-.hero-section .skull {
+.wallet-hero-copy h1 {
+    max-width: 630px;
+    color: var(--pirate-doubloon);
+    font-family: var(--pirate-font-primary);
+    font-size: 60px;
+    line-height: 1.1;
+}
+.wallet-hero-tagline {
+    margin-top: 30px;
+    color: var(--pirate-cloud);
+    font-family: var(--pirate-font-alternative);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.wallet-hero-detail {
+    max-width: 510px;
+    margin-top: 32px;
+    color: var(--pirate-cloud);
+    font-size: 16px;
+    line-height: 1.6;
+}
+.wallet-hero-art {
+    position: relative;
+    flex: 1 1 50%;
+    width: 100%;
+    max-width: 500px;
+    height: 520px;
+}
+.wallet-hero-art .treasure-moon {
     position: absolute;
-    top: 0px;
+    top: 10px;
+    left: -25%;
+    width: 44%;
+    max-width: 220px;
+    filter: blur(1px);
+}
+.wallet-hero-art .astro-pirate {
+    position: absolute;
+    top: 35px;
+    left: 3%;
+    width: 66%;
+    max-width: 330px;
+}
+.hero-section .editorial {
+    position: absolute;
+    bottom: 0;
     left: 0;
-    max-width: 140px;
-    border-radius: 20px;
-    background-color: rgba(75, 75, 75, 0.5);
-    padding: 1px 1px 2px 3px;
     display: block;
-    -webkit-filter: drop-shadow(0px 0px 30px rgb(0, 0, 0));
-    filter: drop-shadow(0px 0px 30px rgb(0, 0, 0));
-    transform: rotate(3deg);
+    width: 100%;
+    height: 60px;
 }
-@media screen and (max-width:800px) {
+@media screen and (max-width: 800px) {
     .hero-section {
-        padding-top: 80px;
-        padding-bottom: 60px;
+        padding-top: 85px;
+        padding-bottom: 90px;
     }
-    .hero-section .box {
-        float: none;
-        display: block;
+    .wallet-hero-layout {
+        flex-direction: column;
+        gap: 25px;
+        min-height: 0;
+    }
+    .wallet-hero-copy {
+        padding-left: 0;
         text-align: center;
-        width: 100%;
-        padding: 0px 30px;
-        margin-bottom: 40px;
     }
-    .hero-section .box-right {
-        float: none;
-        display: block;
-        width: 100%;
-        margin-bottom: 60px;
+    .wallet-hero-copy h1 {
+        max-width: 650px;
+        font-size: 60px;
+    }
+    .wallet-hero-art {
+        flex: none;
+        height: 440px;
+        margin: auto;
+    }
+    .wallet-hero-art .treasure-moon {
+        left: 7%;
+    }
+    .wallet-hero-art .astro-pirate {
+        left: 33%;
+    }
+    .wallet-hero-detail {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+@media screen and (max-width: 480px) {
+    .hero-section {
+        padding-top: 65px;
+    }
+    .wallet-hero-copy h1 {
+        font-size: 52px;
+    }
+    .wallet-hero-tagline {
+        font-size: 30px;
+    }
+    .wallet-hero-art {
+        height: 360px;
+    }
+    .wallet-hero-art .astro-pirate {
+        top: 25px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .wallet-hero-art .treasure-moon,
+    .wallet-hero-art .astro-pirate {
+        animation: none;
     }
 }
 
 /* ----- wallets section ----- */
 .wallets-section {
-    /*background-image: url("../img/site/wallets.png"); */
-    background-color: var(--pirate-storm);
+    background-color: var(--pirate-navyblue);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     position: relative;
+}
+
+.hero-section .parallax1 > use {
+    animation: wallet-wave-right 10s linear infinite;
+}
+.hero-section .parallax2 > use {
+    animation: wallet-wave-left 8s linear infinite;
+}
+.hero-section .parallax3 > use {
+    animation: wallet-wave-right 6s linear infinite;
+}
+.hero-section .parallax4 > use {
+    animation: wallet-wave-left 4s linear infinite;
+}
+
+@keyframes wallet-wave-right {
+    from { transform: translate(85px, 0); }
+    to { transform: translate(-90px, 0); }
+}
+@keyframes wallet-wave-left {
+    from { transform: translate(-90px, 0); }
+    to { transform: translate(85px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-section .editorial use {
+        animation: none;
+    }
 }
 
 .wallets-section h2 {
@@ -93,117 +176,15 @@
     margin: 60px 0px 10px;
     font-size: 20px;
 }
-.switch #official-label {
-    opacity: 1;
-    transition: all 0.5s;
-}
-.switch #thirdparty-label {
-    opacity: 0.5;
-    transition: all 0.5s;
-}
-.wallets {
-    display:inline-block;
-    padding-left: 20px;
-    text-align: left;
-}
-.wallets a {
-    display: inline-block;
-    background-color: rgba(256,256,256,0.08);
-    height: 80px;
-    width: 290px;
-    margin: 10px 5px;
-    text-align: center;
-    padding: 15px 25px;
-    border: 1px solid transparent;
-}
-.wallets a:hover {
-    border: 1px solid var(--pirate-neon)
-}
-.wallets img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-.official {
-    display:block;
-}
-.thirdparty {
-    display: none;
-}
-
-/* ----- toggle switch ----- */
-.switch {
-    display: inline-block;
-    color: var(--pirate-doubloon);
-    font-size: 20px;
-    font-weight: 700;
-    background-color: var(--pirate-navyblue);
-    padding: 20px 30px;
-    position: relative;
-    top: -75px;
-    border-radius: 10px;    
-}
-.switch form {
-    display: inline-table;
-    margin: 0px 5px;
-}
-.toggle-control {
-    display: inline-block;
-    position: relative;
-    top: -15px;
-    left: 5px;
-    padding-left: 78px;
-    margin-bottom: 6px;
-    cursor: pointer;
-    font-size: 12px;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-  }
-.toggle-control input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-.toggle-control input:checked ~ .control {
-    background-color: rgba(187,150,69,0.2);
-}
-.toggle-control input:checked ~ .control:after {
-    left: 40px;
-}
-.toggle-control .control {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    height: 28px;
-    width: 69px;
-    border-radius: 12px;
-    background-color: rgba(187,150,69,0.2);
-    transition: background-color 0.15s ease-in;
-}
-.toggle-control .control:after {
-    content: "";
-    position: absolute;
-    left: -2px;
-    top: -1px;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    background: var(--pirate-doubloon);
-    transition: left 0.15s ease-in;
-}
 
 /* ----- Official wallets ----- */
 .official {
     text-align: center;
-    padding-top: 60px;
+    padding-top: 110px;
     position: relative;
 }
 .wallet-container {
-    background-color: var(--pirate-navyblue);
+    background-color: var(--pirate-storm);
     width: 100%;
     margin: 10px;
     padding: 30px 10px;
@@ -227,7 +208,7 @@
     right:0;
     left:0;
     display: block;
-    background-color: var(--pirate-navyblue);
+    background-color: var(--pirate-storm);
     padding: 20px;
     border-radius: 50% 50% 0 0;
 }
@@ -275,6 +256,16 @@
 .wallet-container .overview .git img:hover {
     -webkit-filter: grayscale(0);
     filter: none;
+}
+.wallet-container .overview .mobile-store {
+    display: block;
+    width: fit-content;
+    margin: 8px auto 0;
+}
+.wallet-container .overview .mobile-store img {
+    display: block;
+    width: 160px;
+    height: auto;
 }
 .wallet-container .overview button {
     margin: auto;
@@ -325,11 +316,12 @@
     transform: rotateY(180deg);
     text-align: left;
     overflow-x:hidden;
+    overflow-y:auto;
 }
 .wallet-container .downloads .links {
     background-color: var(--pirate-deepblue);
-    white-space: nowrap;
-
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 .wallet-container .downloads a {
     transition: all .2s ease-in-out;
@@ -393,9 +385,12 @@
     width: 100%;
     max-width: 400px;
     margin-top: 20px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 .wallet-container .downloads ul {
     list-style-type: none;
+    padding: 0;
 }
 .wallet-container .downloads img {
     display: inline-block;
@@ -407,15 +402,20 @@
     position: relative;
     top: 5px;
 }
-.wallet-container .downloads #link-container {
+.wallet-container .downloads .link-container {
     width: 100%;
-    display: block;
+    display: flex;
+    gap: 12px;
     margin-bottom: 20px;
-    margin-left: 20px;
     position: relative;
 }
-.wallet-container .downloads #linkbox {
-    display: inline-block;
+.wallet-container .downloads .link-container img {
+    flex: 0 0 40px;
+    margin-right: 0;
+}
+.wallet-container .downloads .linkbox {
+    min-width: 0;
+    flex: 1;
 }
 .wallet-container .downloads h3 {
     margin: 0px;
@@ -423,7 +423,7 @@
     font-size: 18px;
     color: var(--pirate-cloud);
 }
-.wallet-container .downloads #linkbox a {
+.wallet-container .downloads .linkbox a {
     display: block;
     width: 100%;
     font-size: 14px;
@@ -431,20 +431,10 @@
     margin-bottom: 10px;
     line-height: 1;
 }
-
-.wallet-container .mobile-store, .wallet-container .mobile-store img {
-    height: 100%;
-    max-height: 50px;
-    padding: 0px 5px;
-    margin-top: 20px;
+.wallet-container .downloads .retry-downloads {
+    margin-top: 12px;
+    cursor: pointer;
 }
-@media screen and (max-width:895px) {
-    .wallet-container .mobile-store, .wallet-container .mobile-store img {
-        height: 100%;
-        max-height: 35px;
-        padding: 0px 5px;
-        margin-top: 10px;
-    }
 
 @media screen and (max-width:740px) {
     .wallet-container {
@@ -461,75 +451,4 @@
     .wallet-container .description p {
         padding-top: 0px;
     }
-}
-}
-
-/* ----- 3rd party wallets ----- */
-.thirdparty {
-    text-align: center;
-    padding-bottom: 120px;
-}
-.thirdparty .listings-container {
-    margin-top: 50px;
-}
-.thirdparty-listing {
-    border: 0px solid  transparent;
-    display: inline-block;
-    height: 360px;
-    width: 270px;
-    background-color: var(--pirate-navyblue);
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    padding-top: 0px;
-    position: relative;
-    vertical-align: top;
-    text-align: left;
-    border-radius: 10px;
-    transition: all .3s ease-in-out;
-    -webkit-filter: drop-shadow(0px 0px 30px rgb(0, 0, 0));
-    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.582));
-}
-.thirdparty-listing:hover {
-    border: 1px solid var(--pirate-neon)
-}
-.thirdparty-listing h3 {
-    display: inline-block;
-    width: 100%;
-    color: var(--pirate-cloud);
-    background-color: var(--pirate-calmseas);
-    margin-top: 0px;
-    margin-bottom: 20px;
-    padding: 20px 0px;
-    font-weight: normal;
-    text-align: center;
-    border-radius: 10px 10px 0px 0px;
-}
-.thirdparty-listing p {
-    padding: 0px 20px;
-    color: var(--pirate-fog);
-    font-weight: normal;
-    font-family: var(--pirate-font-alternative);
-    font-size: 16px;
-}
-.thirdparty-listing img {
-    position: absolute;
-    bottom:0;
-    left:0;
-    right: 0;
-    margin:auto;
-    margin-bottom: 20px;
-    width: auto;
-    max-height: 30px;
-    height: auto;
-    transition: all .4s ease-in-out;
-    -webkit-filter: grayscale(1);
-    filter: grayscale(1);
-}
-.thirdparty-listing:hover {
-    transform: translateY(-10px)
-}
-.thirdparty-listing:hover > img {
-    -webkit-filter: grayscale(0);
-    filter: none;
 }
