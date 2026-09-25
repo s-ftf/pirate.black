@@ -1,0 +1,24 @@
+# Edit this file to add, update, remove, or reorder exchange listings.
+# Logo filenames are relative to assets/img/exchanges/.
+# Link to a working ARRR market or swap pair. For wallet-based DEXs without
+# shareable pair URLs, link to the official wallet release page.
+- name: Gleec DEX
+  url: "https://github.com/GLEECBTC/gleec-wallet/releases"
+  logo: gleec.svg
+- name: Gate.io
+  url: "https://www.gate.com/trade/ARRR_USDT"
+  logo: gate-io-exchange-logo.webp
+  light_background: true
+- name: MEXC
+  url: "https://www.mexc.com/exchange/ARRR_USDT"
+  logo: mexc.svg
+- name: NonKYC
+  url: "https://nonkyc.io/market/ARRR_USDT"
+  logo: nonkyc.svg
+- name: SafeTrade
+  url: "https://safetrade.com/exchange/ARRR-USDT?type=basic"
+  logo: safetrade.svg
+- name: CoinEx
+  url: "https://www.coinex.com/exchange/arrr-usdt"
+  logo: coinex.svg
+  light_background: true

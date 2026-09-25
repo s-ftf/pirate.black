@@ -1,162 +1,66 @@
 ---
-title: Pirate Chain | ARRR and wARRR Exchanges
+title: Pirate Chain | ARRR Exchanges
+schema_type: CollectionPage
 description:  Pirate Chain is a privacy-focused cryptocurrency that is traded on various cryptocurrency exchanges, 
               also known as the secondary market. These exchanges allow individuals to buy and sell Pirate Chain 
               and other cryptocurrencies using fiat currency or other cryptocurrencies.
 keywords: cryptocurrency exchanges, altcoin exchanges, crypto trading, decentralized exchange, dex, centralized exchange, atomic swaps, p2p exchanges, off-chain trading
-thumbnail: meta/exchanges.png
 layout: page
 css-list:
   - "assets/css/exchanges.css"
-javascript-list:
-  - "assets/js/exchanges.js"
-lang: en
 --- 
 
 <!-- exchanges section -->
 <section class="full-width lightbg exchanges-section lightglowdown">
-  <div class="content">
-    <div class="hero"> 
-      <h1>EXCHANGES</h1>
-      <p>The most common way to acquire $ARRR is on the secondary market.
-        Below are exchanges that have independently listed $ARRR
-      </p>
-    </div>
+  <div class="exchange-bubbles" aria-hidden="true">
+{% for bubble in (1..16) %}
+    <span></span>
+{% endfor %}
   </div>
-  <div class="atomicdex-container">
-  
-    <a href="https://atomicdex.io/" >
-      <img alt="AtomicDEX" class="atomicdex" src="{{ site.baseurl }}{{ site.img }}exchanges/atomicdex.svg" />
+  <h1 class="exchanges-title">Exchanges</h1>
+<!-- Featured atomic-swap wallet, separate from the community-maintained exchange listings. -->
+  <div class="featured-exchange">
+    <a href="https://github.com/ShorelineCrypto/cheetahdex-wallet-web/releases" target="_blank" rel="noopener noreferrer" aria-label="CheetahDEX wallet releases">
+      <img alt="CheetahDEX logo" class="featured-logo" src="{{ site.baseurl }}{{ site.img }}exchanges/cheetahdex-atomic-swap-logo.webp" width="384" height="384" decoding="async" />
     </a>
-    <p>By our freinds at Komodo Platform, <a href="https://atomicdex.io/en/blog/atomic-swaps/">AtomicDex</a>
-       is a true, <a href="https://atomicdex.io/en/blog/atomic-swaps/">atomic-swap</a> based decentralized exchange built into a multi-currency wallet.
-      Your ARRR never leaves your wallet until the P2P trade completes. Your keys, your coins. 
-    </p>
-    <a href="https://atomicdex.io/" >
-      <img alt="AtomicDEX preview" class="deximg" src="{{ site.baseurl }}{{ site.img }}site/atomicdex.png" />
+    <h2>CheetahDEX</h2>
+    <p>Built by Komodo Platform, AtomicDEX was a pioneering atomic-swap-based, cross-chain decentralized exchange. No intermediaries, no middlemen, and no trusted third parties: true peer-to-peer swaps.</p>
+    <p class="key-quote"><em>“Not your keys, not your coins.”</em></p>
+    <a class="featured-preview" href="https://github.com/ShorelineCrypto/cheetahdex-wallet-web/releases" target="_blank" rel="noopener noreferrer" aria-label="Get CheetahDEX from GitHub releases">
+      <img alt="AtomicDEX trading dashboard preview" src="{{ site.baseurl }}{{ site.img }}site/cheetahdex-atomic-swap-dashboard.webp" width="1258" height="764" decoding="async" loading="lazy" />
     </a>
-  </div>
-  <div class="content">
-  </div>
-</section>
-
-<!-- listings section -->
-<section class="full-width deepbg listings-section">
-  <div class="switch-container">
-    <div class="switch"  translate="no">
-      <span id="arrr-label">ARRR</span>
-      <form autocomplete="off">
-        <label class="toggle-control">
-          <input id="type" type="checkbox" onclick="toggle()">
-          <span class="control"></span>
-        </label>
-      </form>
-      <span id="warrr-label">wARRR</span>
-    </div>
-  </div> 
-
-  <div class="content">
-    <div id="arrr-exchanges" class="arrr-exchanges">
-  
-      <h3>DECENTRALIZED</h3>
+    <p>ARRRtomic swaps were developed for Pirate Chain and integrated into AtomicDEX <a href="https://komodoplatform.com/en/blog/atomicdex-desktop-v0-5-7/" target="_blank" rel="noopener noreferrer">in 2022</a>, enabling peer-to-peer atomic swaps directly with shielded Pirate Chain wallets. Gleec acquired Komodo's technology, brand, and team in 2025 and continues the work in <a href="https://github.com/GLEECBTC/gleec-wallet/releases" target="_blank" rel="noopener noreferrer">Gleec DEX</a>.</p>
+    <p>Our preferred way to use this distributed atomic-swap order book is <a href="https://github.com/ShorelineCrypto/cheetahdex-wallet-web/releases" target="_blank" rel="noopener noreferrer">CheetahDEX</a>, an open-source wallet and DEX that supports ARRR and vARRR.</p>
+    <a class="a-btn featured-download" href="https://github.com/ShorelineCrypto/cheetahdex-wallet-web/releases" target="_blank" rel="noopener noreferrer">Get CheetahDEX</a>
+    {% include pirate-divider.html %}
+    <div class="other-exchanges">
+      <h2>Other Exchanges</h2>
+      <p class="exchange-intro">The most common way to acquire $ARRR is on the secondary market. Below are exchanges that have independently listed $ARRR.</p>
       <div class="listings">
-        <a href="https://atomicdex.io/">
-          <img alt="AtomicDEX exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/atomicdex.svg" />
+{% for exchange in site.data.exchanges %}
+        <a href="{{ exchange.url | escape }}" target="_blank" rel="noopener noreferrer"{% if exchange.light_background %} class="light-background"{% endif %}>
+          <img alt="{{ exchange.name | escape }} exchange logo" src="{{ site.baseurl }}{{ site.img }}exchanges/{{ exchange.logo | escape }}" width="240" height="50" loading="lazy" decoding="async" />
         </a>
-        <a href="https://polarity.exchange/trade?assetId2=9gTWnHstaAkhD7hEGBqNdgcAru5872d8Xf1QmoPrz5iz&assetId1=7RB3BWayeCVPq3kkpkeJZAFv2DYCB5gEwnutEpRofaw4">
-          <img alt="Polarity Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/polarity.svg" />
-        </a>
-        <a href="https://wallet.turtlenetwork.eu/">
-          <img alt="Turtle Network Exchange" src="{{ site.baseurl }}{{ site.img }}exchanges/tndex.svg" />
-        </a>
-        <a href="https://btdex.trade/">
-          <img alt="btDEX Exchange" src="{{ site.baseurl }}{{ site.img }}exchanges/btdex.svg" />
-        </a>
-        <a href="https://wiki.qortal.org/doku.php?id=coin_token_listings">
-          <img alt="Qortal Network Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/qortal.svg" />
-        </a>
+{% endfor %}
       </div>
-      <h3>CENTRALIZED</h3>
-      <div class="listings">
-        <a href="https://www.kucoin.com/price/ARRR?rcode=rJK9Q9Y">
-          <img alt="KuCoin Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/kucoin.svg" />
-        </a>
-        <a href="https://tradeogre.com/exchange/BTC-ARRR">
-          <img alt="TradeOgre Exchange  Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/to.svg" />
-        </a>
-        <a href="https://www.gate.io/trade/ARRR_USDT?ref=5427136">
-          <img alt="Gate Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/gateio.png" />
-        </a>
-        <a href="https://fmfw.io/referral/0567368c1ad34f01">
-          <img alt="FMFW Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/fmfw.svg" />
-        </a>
-        <a href="https://pro.changelly.com/?from=btc&to=arrr&amount=0.01&ref_id=402f732598f5">
-          <img alt="Changelly Pro Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/changellypro.svg" />
-        </a>
-        <a href="https://safe.trade/signup?refid=SN3767A7D355">
-          <img alt="SafeTrade Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/safetrade.svg" />
-          </a>
-        <a href="https://p2pb2b.io/trade/ARRR_BTC">
-          <img alt="P2PB2B Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/p2pb2b.svg" />
-        </a>
-        <a href="https://hitbtc.com/arrr-to-btc">
-          <img alt="HitBTC Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/hitbtc.svg" />
-        </a>
-        <a href="https://www.coinex.com/exchange/arrr-usdt">
-          <img alt="CoinEx Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/coinex.svg" />
-        </a>        
-      </div>
-      <h3>SWAPS</h3>
-      <div class="listings">
-        <a href="https://changelly.com/?from=btc&to=arrr&amount=0.01&ref_id=402f732598f5">
-          <img alt="Changelly Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/changelly.svg" />
-        </a>
-        <a href="https://exolix.com/exchange">
-          <img alt="Exolix Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/exolix.svg" />
-        </a>
-        <a href="https://simpleswap.io/coins/pirate-chain">
-          <img alt="SimpleSwap Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/ss.svg" />
-        </a>
-        <a href="https://stealthex.io/?to=arrr">
-          <img alt="StealthEx Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/stealthex.svg" />
-        </a>
-        <a href="https://swapspace.co/exchange/arrr">
-          <img alt="Swapspace Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/swapspace.svg" />
-        </a>
-        <a href="https://swapzone.io/exchange/pirate-chain">
-          <img alt="Swapzone Exchange Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/swapzone.svg" />
-        </a>
+      <div class="disclaimer">
+        <span>Pirate Chain does not own, operate, or endorse any exchange.</span>
+        <span>Please do your own due diligence and use discretion.</span>
       </div>
     </div>
-    <div id="warrr-exchanges" class="warrr-exchanges">     
-      <h3 translate="no">BINANCE SMART CHAIN</h3>
-      <div class="listings">
-        <a href="https://changenow.io/?from=btc&to=arrr">
-          <img alt="ChangeNow Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/changenow.svg" />
-        </a>
-        <a href="https://pancakeswap.finance/swap?outputCurrency=0xCDAF240C90F989847c56aC9Dee754F76F41c5833">
-          <img alt="Pancake Swap Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/pancake.svg" />
-        </a>
-      </div>
-      <h3 translate="no">ETHEREUM NETWORK</h3>
-      <div class="listings">
-        <a href="https://balancer.fi/">
-          <img alt="Balancer Logo" src="{{ site.baseurl }}{{ site.img }}exchanges/balancer.svg" />
-        </a>
-      </div>    
-    </div>  
-    <div class="disclaimer">Pirate Chain does not own, operate, or endorse any exchange. Please do your own due diligence and use discretion.</div>
   </div>
+  <div class="shipwreck-seafloor" aria-hidden="true"></div>
 </section>
 
-<!-- art section -->
-<section class="full-width deepbg art-section deepglowup">
-  <div class="content">  
-    <div class="middle-box">
-      <div class="art-box">
-<!--         <img alt="kraken Art" class="kraken floating" src="{{ site.baseurl }}{{ site.img }}site/octo.png" />  
-        <img alt="A Pirate Coin Floating" class="coin floating2" id="coin" src="{{ site.baseurl }}{{ site.img }}site/pirate_coin.svg" />  -->
-      </div> 
-    </div>
-  </div>
-</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Other ARRR exchanges",
+  "itemListElement": [
+    {% for exchange in site.data.exchanges %}
+    { "@type": "ListItem", "position": {{ forloop.index }}, "name": {{ exchange.name | jsonify }}, "url": {{ exchange.url | jsonify }} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
