@@ -7,9 +7,6 @@
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    width="95.55352"
    height="80"
-   inkscape:export-filename="/home/orion/working/PIRATE/websites/pirate.black/pirate.black_BUILD/keywords/handshake.png"
-   inkscape:export-xdpi="96.448563"
-   inkscape:export-ydpi="96.448563"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -255,10 +252,7 @@
   <!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
   <g
      id="g1043"
-     transform="matrix(0.12816991,0,0,0.12816991,2.9704154,13.672742)"
-     inkscape:export-filename="/home/orion/working/PIRATE/websites/pirate.black/pirate.black_BUILD/keywords/g1043.png"
-     inkscape:export-xdpi="96.448563"
-     inkscape:export-ydpi="96.448563">
+     transform="matrix(0.12816991,0,0,0.12816991,2.9704154,13.672742)">
     <path
        d="M 351.95,49.749999 255.15,128.15 c -16.1,13 -19.2,36.4 -7,53.1 12.9,17.8 38,21.3 55.3,7.8 l 99.3,-77.2 c 7,-5.4 17,-4.2 22.5,2.8 5.5,7 4.2,17 -2.8,22.5 l -20.9,16.2 177.2,163.2 h 41.8 c 26.5,0 48,-21.5 48,-48 v -128 c 0,-26.5 -21.5,-48.000001 -48,-48.000001 h -76 -4 -0.7 l -3.9,-2.5 -72.6,-46.5 c -15.3,-9.8 -33.2,-15 -51.4,-15 -21.8,0 -43,7.5 -60,21.2 z m 22.8,124.400001 -51.7,40.2 c -31.5,24.6 -77.2,18.2 -100.8,-14.2 -22.2,-30.5 -16.6,-73.1 12.7,-96.8 l 83.2,-67.300001 c -11.6,-4.9 -24.1,-7.4 -36.8,-7.4 -18.8,-0.1 -37.1,5.5 -52.8,15.9 l -72,48 H 76.549999 c -26.5,0 -48,21.500001 -48,48.000001 v 128 c 0,26.5 21.5,48 48,48 H 184.75 l 91.4,83.4 c 19.6,17.9 49.9,16.5 67.8,-3.1 5.5,-6.1 9.2,-13.2 11.1,-20.6 l 17,15.6 c 19.5,17.9 49.9,16.6 67.8,-2.9 4.5,-4.9 7.8,-10.6 9.9,-16.5 19.4,13 45.8,10.3 62.1,-7.5 17.9,-19.5 16.6,-49.9 -2.9,-67.8 z"
        id="path2"
