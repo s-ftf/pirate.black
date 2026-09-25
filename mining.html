@@ -1,44 +1,42 @@
 ---
 title: Pirate Chain | Mining ARRR
-description:  Mining Pirate Chain is a great way to earn ARRR while supporting the 
-              decentralized and secure nature of the Pirate Chain network. By participating in 
-              the mining process, miners help validate transactions and secure the network, potentially 
-              earning a profit in the process. Additionally, mining can be a way for a person to learn 
+description:  Mining Pirate Chain is a great way to earn ARRR while supporting the
+              decentralized and secure nature of the Pirate Chain network. By participating in
+              the mining process, miners help validate transactions and secure the network, potentially
+              earning a profit in the process. Additionally, mining can be a way for a person to learn
               more about cryptocurrency and gain experience in the field.
 keywords: crypto mining, Pirate Chain mining, blockchain mining, altcoin mining, mining pool, mining calculator, mining hashrate, mining rewards, privacy coin mining
-thumbnail: meta/mining.png
 layout: page
 css-list:
   - "assets/css/mining.css"
 javascript-list:
   - "assets/js/mining.js"
-lang: en 
---- 
+---
 
 <!-- hero section -->
 <section class="full-width deepbg hero-section" id="rippled" >
-  <div class="content"> 
-    <div class="bubble header-container floating3"> 
+  <div class="content">
+    <div class="bubble header-container floating3">
       <h1>MINING</h1>
       <p><span class="highlight-txt">Earn</span> $ARRR by<br />
         <span class="action">securing the network</span></p>
     </div>
-    <div class="kraken-container"> 
-      <img alt="ASIC Miner" class="asic floating2" src="{{ site.baseurl }}{{ site.img }}site/asic.png" />           
-      <img alt="A Miner's GPU" class="gpu floating3" src="{{ site.baseurl }}{{ site.img }}site/gpu.png" />
-      <img alt="A Sea Kraken" class="kraken floating" src="{{ site.baseurl }}{{ site.img }}site/kraken.png" /> 
-    </div>  
-    <audio id="og" src="{{ site.baseurl }}assets/audio/og.mp3"></audio>  
-    <button type="button" onclick="play_pause()"><img id="pp" src="{{ site.baseurl }}{{ site.img }}icons/play.svg"></button>
+    <div class="kraken-container">
+      <img alt="ASIC Miner" class="asic floating2" src="{{ site.baseurl }}{{ site.img }}site/pirate-chain-mining-asic.webp" width="1254" height="1254" decoding="async" />
+      <img alt="A Miner's GPU" class="gpu floating3" src="{{ site.baseurl }}{{ site.img }}site/pirate-chain-mining-gpu.webp" width="1254" height="1254" decoding="async" />
+      <img alt="A Sea Kraken" class="kraken floating" src="{{ site.baseurl }}{{ site.img }}site/pirate-chain-mining-kraken.webp" width="1254" height="1254" decoding="async" />
+    </div>
+    <audio id="og" src="{{ site.baseurl }}assets/audio/og.mp3" preload="none"></audio>
+    <button type="button" onclick="play_pause()" aria-label="Play mining audio"><img id="pp" alt="" src="{{ site.baseurl }}{{ site.img }}icons/play.svg"></button>
   </div>
   <div class="hero-divider"></div>
 </section>
 
 <!-- stats section -->
 <section class="full-width lightbg stats-section lightglowup">
-  <div class="content">  
-    <h1>Network <span class="highlight-txt">Stats</span></h1>
-    <p class="desc">Pirate Chain network utilizes equihash, a Proof-of-Work (PoW) consensus algorithim that secures the blockchain. 
+  <div class="content">
+    <h2 class="mining-section-title">Network <span class="highlight-txt">Stats</span></h2>
+    <p class="desc">Pirate Chain network utilizes equihash, a Proof-of-Work (PoW) consensus algorithim that secures the blockchain.
     While technically CPU and GPU mineable, miners typically earn $ARRR by mining with ASIC mining hardware.</p>
     <div class="stat-container">
       <div class="mining-stat">
@@ -58,17 +56,17 @@ lang: en
       <div class="mining-stat">
         <div>
           Block Rewards
-          <h3 id="subsidy">8</h3>
+          <h3 id="subsidy">—</h3>
           ARRR
         </div>
       </div>
       <div class="mining-stat">
         <div>
           Height
-          <h3 id="height">2190462</h3>
+          <h3 id="height">—</h3>
           Blocks
         </div>
-      </div>  
+      </div>
       <div class="mining-stat">
         <div>
           Halving Length
@@ -76,10 +74,10 @@ lang: en
           Days
         </div>
       </div>
-    </div>    
+    </div>
     <div class="nexthalving">
       <h2 onclick="halvening();">Next Halving</h2>
-      <div id="celebrate"></div>    
+      <div id="celebrate"></div>
       <div id="anymoment">Any moment now!</div>
       <div class="countdown" translate="no">
         <div class="countbox">
@@ -99,7 +97,7 @@ lang: en
           Secs
         </div>
       </div>
-      <h3 style="margin-top:40px;">Block #<span id="next_halving_block">000000</span></h3> 
+      <h3 style="margin-top:40px;">Block #<span id="next_halving_block">000000</span></h3>
       Estimated on <span id="next_halving_date"></span>
       <div class="blksremaining">
         Progress: <span id="progress_percent">0.00%</span>
@@ -113,34 +111,33 @@ lang: en
 
 <!-- calculator section -->
 <section class="full-width deepbg calculator-section">
-  <div class="middle-box"> 
-    <h1>Mining <span class="highlight-txt">Calculator</span></h1>
+  <div class="middle-box">
+    <h2 class="mining-section-title">Mining <span class="highlight-txt">Calculator</span></h2>
     <div class="calc-container">
       <form id="calcForm">
         <div class="input-area" translate="no">
           <div class="field">
             <label for="hashrate">Hashrate:</label>
-            <input type="number" size="6" id="hashrate" name="hashrate" value="420" required=""> kSol/s
+            <input type="number" size="6" id="hashrate" name="hashrate" value="420" min="0.001" step="any" required> kSol/s
           </div>
           <div class="field">
             <label for="power">Power:</label>
-            <input type="number" size="6" id="power" name="power" value="1500" required=""> Watts
+            <input type="number" size="6" id="power" name="power" value="1500" min="0" step="any" required> Watts
           </div>
           <div class="field">
             <label for="cost">Energy Cost:</label>
-            <input type="number" size="4" id="cost" name="cost" value="0.12" required=""> $/kWh
+            <input type="number" size="4" id="cost" name="cost" value="0.12" min="0" step="any" required> $/kWh
           </div>
           <div class="field">
             <label for="fee">Pool Fee:</label>
-            <input type="number" size="3" id="fee" name="fee" value="1" required=""> %
+            <input type="number" size="3" id="fee" name="fee" value="1" min="0" max="100" step="any" required> %
           </div>
         </div>
-        <button class="a-btn">Calculate</button>
+        <button type="submit" class="a-btn">Calculate</button>
       </form>
+      <p id="mining-status" role="status" aria-live="polite"></p>
       <div class="result-area" id="instructions-area"  style="display:block;">
-        <p>
-        <i>NOTE: these results are an estimate. Network dificulty adjusts every block. Actual revenue may vary significantly over time</i>
-        </P>
+        <p>Estimates use current <a href="https://explorer.pirate.black/">network difficulty</a> and the <a href="https://www.coingecko.com/en/coins/pirate-chain">ARRR/USD price</a>. Difficulty, price, block time, pool payouts and hardware performance can change.</p>
       </div>
       <div class="result-area" id="result-area"  style="display:none;">
         <h3>Results</h3>
@@ -157,6 +154,8 @@ lang: en
           </thead>
           <tbody></tbody>
         </table>
+        <p id="result-note"></p>
+        <p>Each period projects the current difficulty, reward and price unchanged. Actual mining results may differ.</p>
       </div>
     </div>
   </div>
@@ -164,18 +163,18 @@ lang: en
 
 <!-- pools section -->
 <section class="full-width lightbg pools-section">
-  <div class="content"> 
-    <div class="box-container"> 
+  <div class="content">
+    <div class="box-container">
       <div class="box-right">
-        <img alt="CPU with Pirate Skull Logo" src="{{ site.baseurl }}{{ site.img }}site/cpu.png" />
+        <img alt="CPU with Pirate Skull Logo" src="{{ site.baseurl }}{{ site.img }}site/pirate-chain-mining-cpu.webp" width="655" height="500" decoding="async" loading="lazy" />
       </div>
       <div class="box">
-        <h1>Mining <span class="highlight-txt">Pools</span></h1>
+        <h2 class="mining-section-title">Mining <span class="highlight-txt">Pools</span></h2>
         <p>The preferred mining pool for Pirate Chain is <a href="https://piratepool.io/">piratepool.io, created and operated by the community</a>
         Plus, 66% of the 1% fee is donated back to the Pirate Chain <a href="donations">Community Funds Pool</a>.
         </p>
         <p>
-          It is also recommended when possible to spread hashpower between the various pools. 
+          It is also recommended when possible to spread hashpower between the various pools.
         </p>
         <a href="https://miningpoolstats.stream/piratechain" target="_blank" rel="noopener" class="a-btn">More Pools</a>
       </div>
@@ -185,31 +184,31 @@ lang: en
 
 <!-- howto section -->
 <section class="full-width deepbg howto-section">
-  <div class="content"> 
+  <div class="content">
     <h2>Mining Guides</h2>
     <div class="box-container">
       <div class="box yt">
         <div class="yt-container" id="asic-howto"  onclick="playVideo('asic-howto')">
-          <iframe 
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/GIMCapXZKQw" 
-            title="How to Mine ARRR with a ASIC video player" 
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/GIMCapXZKQw"
+            title="How to Mine ARRR with a ASIC video player"
             frameborder="0"  rel="0" enablejsapi="1" modestbranding="0"  controls="0"
-            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" 
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
       </div>
       <div class="box-right yt">
         <div class="yt-container" id="gpu-howto"  onclick="playVideo('gpu-howto')">
-          <iframe 
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/hJ7OYGc9_Lk" 
-            title="How to MINE ARRR with a GPU video player" 
-            rel="0" enablejsapi="1" modestbranding="0"  controls="0" 
-            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" 
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/hJ7OYGc9_Lk"
+            title="How to MINE ARRR with a GPU video player"
+            rel="0" enablejsapi="1" modestbranding="0"  controls="0"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
@@ -223,20 +222,16 @@ lang: en
   <div class="content">
     <div class="box-container">
       <div class="box">
-        <img alt="Moving image of Pirate Ship on Moving Waves" src="{{ site.baseurl }}assets/gifs/cARRRtoon.gif" />
+        <img alt="Animated pirate ship sailing on waves" src="{{ site.baseurl }}assets/img/animations/pirate-chain-mining-ship-animation.webp" width="500" height="282" decoding="async" loading="lazy" />
       </div>
       <div class="box-right">
         <h2>Still have <span class="highlight-txt">Questions</span>?</h2>
         <p>
-          Come and chat with us about hardware, configuration, 
+          Come and chat with us about hardware, configuration,
           pools, or any other questions in regards to mining $ARRR!
         </p>
-        <a class="a-btn" href="https://discord.gg/DT3UhzdzGa" target="_blank" rel="noopener" >Ask a Question</a>     
+        <a class="a-btn" href="{{ site.discord_invite_url }}" target="_blank" rel="noopener" >Ask a Question</a>
       </div>
     </div>
   </div>
 </section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery.ripples@0.6.3/dist/jquery.ripples.min.js"></script>
-<script src="https://explorer.pirate.black/socket.io/socket.io.js"></script>

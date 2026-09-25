@@ -1,6 +1,14 @@
 h1 {
     color: var(--pirate-cloud);
 }
+.mining-section-title {
+    color: var(--pirate-cloud);
+    font-size: 48px;
+    font-weight: 700;
+}
+@media screen and (max-width:400px) {
+    .mining-section-title { font-size: 32px; }
+}
 .divider-bottom {
     position: relative;
     top: 10px;
@@ -9,7 +17,7 @@ h1 {
 /* ----- hero-section ----- */
 .hero-section {
     height: 840px;
-    background-image: url("../img/site/seaweed.png");
+    background-image: url("../img/site/underwater-seaweed-background.webp");
     background-repeat: no-repeat;
     background-position: left;
     background-size: auto 100%;
@@ -92,7 +100,7 @@ h1 {
 }
 .hero-section .asic {
     width: 100%;
-    max-width: 180px;
+    max-width: 150px;
     position: absolute;
     left: -30px;
     top: 80px;
@@ -102,13 +110,18 @@ h1 {
 }
 .hero-section .gpu {
     width: 100%;
-    max-width: 180px;
+    max-width: 205px;
     position: absolute;
     left: 380px;
     top: 220px;
     filter: blur(1px);
     -webkit-filter: drop-shadow(10px 10px 5px rgb(0, 0, 0, 0.8));
     filter: drop-shadow(10px 10px 5px rgb(0, 0, 0, 0.8));
+}
+@media screen and (min-width:901px) {
+    .hero-section .asic {
+        left: -80px;
+    }
 }
 .hero-section button {
     width: 20px;
@@ -138,7 +151,7 @@ h1 {
         left: 25%;   
     }
     .hero-section .asic {
-        max-width: 130px;
+        max-width: 115px;
         left: 5%;
     }    
     .hero-section .gpu {
@@ -156,7 +169,7 @@ h1 {
     width: 100%;
     margin-top: 60px;
 }
-.stats-section h1 {  
+.stats-section .mining-section-title {
     margin-bottom: 40px;
 }
 .stats-section .desc {  
@@ -282,7 +295,7 @@ h1 {
     padding-top: 60px;
     padding-bottom: 0px;
 }
-.calculator-section h1 {
+.calculator-section .mining-section-title {
     margin-bottom: 40px;
     font-size: 2em;    
 }
@@ -337,6 +350,17 @@ h1 {
 }
 .calc-container .a-btn:hover {
     background-color: var(--pirate-neon);
+}
+#mining-status {
+    min-height: 1.5em;
+    margin: -20px 0 20px;
+    color: var(--pirate-doubloon);
+}
+.result-area p {
+    margin: 12px 0 0;
+}
+.result-area a {
+    color: var(--pirate-neon);
 }
 .result-area {
     background: #23252d;
@@ -406,7 +430,7 @@ h1 {
     padding-top: 180px;
     padding-bottom: 120px;
 }
-.pools-section h1 {
+.pools-section .mining-section-title {
     padding-bottom: 40px;    
 }
 .pools-section p {    
@@ -490,11 +514,11 @@ h1 {
     display: none; 
 }
 #asic-howto {     
-    background-image: url("../img/thumbnails/mining-asic.png");
+    background-image: url("../img/thumbnails/pirate-chain-asic-mining-thumbnail.webp");
     border-radius: 15px;
 }
 #gpu-howto {
-    background-image: url("../img/thumbnails/mining-gpu.png");
+    background-image: url("../img/thumbnails/pirate-chain-gpu-mining-thumbnail.webp");
     border-radius: 15px;
 }
 @media screen and (max-width:1150px) {
