@@ -6,6 +6,12 @@
 .content h2 {
     margin-bottom: 30px;
 }
+.brand-section .branding-title {
+    margin-bottom: 30px;
+    color: var(--pirate-leviathan);
+    font-size: 29px;
+    font-weight: 200;
+}
 .brand-section .a-btn{
     margin: auto;
     margin-top: 30px;
