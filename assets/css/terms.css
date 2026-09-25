@@ -1,6 +1,8 @@
 /* ----- privcy policy and terms----- */
+.terms-section h1,
 .terms-section h2 {
     color: var(--pirate-doubloon);
+    font-size: 29px;
     font-weight: 300;
     margin: 40px 0px;
     margin-top: 60px;
@@ -11,4 +13,47 @@
 .terms-section h3 {
     margin-top: 40px;
     font-weight:300;
+}
+
+.legal-section {
+    padding: 95px 0 110px;
+}
+.legal-content {
+    max-width: 850px;
+}
+.legal-section h1 {
+    margin-bottom: 24px;
+    color: var(--pirate-cloud);
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    line-height: 1.1;
+}
+.legal-section .legal-intro {
+    color: var(--pirate-cloud);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.65;
+}
+.legal-section h2 {
+    margin: 40px 0 15px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(242, 222, 153, 0.18);
+    color: var(--pirate-goldensands);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.legal-section p {
+    line-height: 1.75;
+}
+.legal-section a {
+    color: var(--pirate-goldensands);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.legal-section a:hover {
+    color: var(--pirate-neon);
+}
+.legal-section .legal-updated {
+    margin-top: 45px;
+    color: var(--pirate-cloud);
+    font-size: 0.85rem;
+    opacity: 0.8;
 }

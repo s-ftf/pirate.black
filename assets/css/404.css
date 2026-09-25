@@ -1,0 +1,48 @@
+.not-found-section {
+  background-color: #1d1d1d;
+  padding: 100px 20px 80px;
+  text-align: center;
+}
+
+.not-found-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.not-found-content h1 {
+  margin: 0 0 20px;
+  font-size: clamp(5rem, 16vw, 7rem);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.not-found-flag {
+  display: block;
+  margin: 60px auto 40px;
+}
+
+.not-found-flag img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plank-btn {
+  display: inline-block;
+  width: min(240px, 100%);
+  margin-top: 60px;
+  padding: 10px 18px;
+  border: 1px solid var(--pirate-doubloon);
+  background-color: #33373a;
+  color: var(--pirate-neon);
+  text-align: center;
+  transition: background-color .2s, color .2s, outline .2s;
+}
+
+.plank-btn:hover,
+.plank-btn:focus-visible {
+  background-color: var(--pirate-neon);
+  color: var(--pirate-leviathan);
+  outline: 2px solid var(--button-color);
+  outline-offset: 6px;
+}
