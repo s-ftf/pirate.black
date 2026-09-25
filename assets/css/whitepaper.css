@@ -1,8 +1,9 @@
 /* ----- White Paper ----- */
-.whitepaper {
-    display: block;
-    background: var(--pirate-lightblue);
-    border: none;
-    height: 90vh;
-    width: 100%;
+.whitepaper-section .content {
+    text-align: center;
+    padding: 80px 15px;
+}
+
+.whitepaper-section p {
+    margin: 24px 0;
 }

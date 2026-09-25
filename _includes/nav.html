@@ -1,12 +1,13 @@
-{% assign navurl = site.baseurl %}
-{% if page.lang != "en" %}
-{% assign navurl = site.baseurl | append: "lang/"| append: page.lang | append: "/" %}
-{% endif %}
+{% assign current_page = page.url | split: '/' | last | remove: '.html' %}
+{% if current_page == '' %}{% assign current_page = 'index' %}{% endif %}
+{% assign resource_pages = 'branding,contact,donations,whitepaper,discord,varrr' | split: ',' %}
+{% assign resources_active = false %}
+{% if resource_pages contains current_page %}{% assign resources_active = true %}{% endif %}
 <header>
   <nav>
     <div class="wrapper">
       <div class="logo">
-        <a href="{{ navurl }}index">
+        <a href="{{ site.baseurl }}index"{% if current_page == 'index' %} aria-current="page"{% endif %}>
           <img alt="Main Pirate Chain Logo" src="{{ site.baseurl }}{{ site.img }}logo/Pirate_Logo_main.svg" />
         </a>
       </div>
@@ -16,176 +17,155 @@
         <label for="close-btn" class="btn close-btn">
           <img alt="" src="{{ site.baseurl }}{{ site.img }}icons/x.svg" />
         </label>
+{% unless current_page == 'index' %}
         <li>
-          <a href="{{ navurl }}wallets">{{ site.data.languages.list[page.lang].wallets }}</a>
+          <a class="home-link" href="{{ site.baseurl }}index" aria-label="Home">
+            <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" />
+            </svg>
+          </a>
+        </li>
+{% endunless %}
+        <li>
+          <a href="{{ site.baseurl }}wallets"{% if current_page == 'wallets' %} aria-current="page"{% endif %}>Wallets</a>
         </li>
         <li>
-          <a href="{{ navurl }}mining">{{ site.data.languages.list[page.lang].mining }}</a>
+          <a href="{{ site.baseurl }}mining"{% if current_page == 'mining' %} aria-current="page"{% endif %}>Mining</a>
         </li>
         <li>
-          <a href="{{ navurl }}warrr">{{ site.data.languages.list[page.lang].warrr }}</a>
+          <a href="{{ site.baseurl }}exchanges"{% if current_page == 'exchanges' %} aria-current="page"{% endif %}>Exchanges</a>
         </li>
         <li>
-          <a href="{{ navurl }}exchanges">{{ site.data.languages.list[page.lang].exchanges }}</a>
+          <a href="{{ site.baseurl }}community"{% if current_page == 'community' %} aria-current="page"{% endif %}>Community</a>
         </li>
         <li>
-          <a href="{{ navurl }}community">{{ site.data.languages.list[page.lang].community }}</a>
-        </li>
-        <li>
-          <a href="#" class="desktop-item">
-            {{ site.data.languages.list[page.lang].resources }}
+          <a href="#" class="desktop-item{% if resources_active %} is-current{% endif %}">
+            Resources
             <img alt="" src="{{ site.baseurl }}{{ site.img }}icons/caret.svg" />
           </a>
           <input type="checkbox" id="showMega">
-          <label for="showMega" class="mobile-item">
-            {{ site.data.languages.list[page.lang].resources }}
+          <label for="showMega" class="mobile-item{% if resources_active %} is-current{% endif %}">
+            Resources
             <img alt="" src="{{ site.baseurl }}{{ site.img }}icons/caret.svg"/>
           </label>
           <div class="mega-box">
             <div class="nav-content">
               <div class="row">
-                <img src="{{ site.baseurl }}{{ site.img }}navbar/pcf.jpg" alt="Pirate Flag">
+                <img src="{{ site.baseurl }}{{ site.img }}navbar/pirate-chain-flag-navigation.webp" alt="Pirate Flag" width="1912" height="1079" loading="lazy" decoding="async" />
               </div>
               <div class="row">
                 <header>
-                  {{ site.data.languages.list[page.lang].community }}
+                  Community
                 </header>
                 <ul class="mega-links">
                   <li>
-                    <a href="https://medium.com/piratechain">
+                    <a href="{{ site.medium_publication_url }}">
                       <img alt="Pirate Chain Medium Publication" src="{{ site.baseurl }}{{ site.img }}icons/medium.svg" />
-                      {{ site.data.languages.list[page.lang].news }}
+                      News
                     </a>
                   </li>                  
                   <li>
                     <a href="https://twitter.com/PirateChain">
                       <img alt="Pirate Chain Twitter Profile" src="{{ site.baseurl }}{{ site.img }}icons/twitter.svg" />
-                      {{ site.data.languages.list[page.lang].twitter }}
+                      Twitter
                     </a>
                   </li>
                   <li>
-                    <a href="https://discord.gg/V56SH5xzZB">
+                    <a href="{{ site.discord_invite_url }}">
                       <img alt="Pirate Chain Discord Server" src="{{ site.baseurl }}{{ site.img }}icons/discord.svg" />
-                      {{ site.data.languages.list[page.lang].discord }}
+                      Discord
                     </a>
                   </li>
                   <li>
                     <a href="https://t.me/piratechain/">
                       <img alt="Pirate Chain Telegram Account" src="{{ site.baseurl }}{{ site.img }}icons/telegram.svg" />
-                      {{ site.data.languages.list[page.lang].telegram }}
+                      Telegram
                     </a>
                   </li>
                   <li>
-                    <a href="community#socials">
+                    <a href="{{ site.baseurl }}community#socials">
                       <img alt="All Pirate Social Platforms" src="{{ site.baseurl }}{{ site.img }}icons/socials.svg" />
-                      {{ site.data.languages.list[page.lang].socials }}
+                      Socials
                     </a>
                   </li>
                 </ul>
               </div>
               <div class="row">
                 <header>
-                  {{ site.data.languages.list[page.lang].network }}
+                  Network
                 </header>
                 <ul class="mega-links">
                   <li>
                     <a href="https://explorer.pirate.black/">
                       <img alt="Pirate Chain Network Block Explorer" src="{{ site.baseurl }}{{ site.img }}icons/cubes.svg" />
-                      {{ site.data.languages.list[page.lang].explorer }}
+                      Explorer
                     </a>
                   </li>
                   <li>
                     <a href="https://explorer.pirate.black/stats">
                       <img alt="Statistics of teh Pirate Network" src="{{ site.baseurl }}{{ site.img }}icons/chart.svg" />
-                      {{ site.data.languages.list[page.lang].stats }}
+                      Stats
                     </a>
                   </li>
                   <li>
                     <a href="https://anonset.dexstats.info/">
                       <img alt="Pirate Chain Annon Set" src="{{ site.baseurl }}{{ site.img }}icons/secret.svg" />
-                      {{ site.data.languages.list[page.lang].anonset }}
+                      Anonset
                     </a>
                   </li>
                   <li>
                     <a href="https://dexstats.info/piratehash.php">
                       <img alt="ARRR Mining Hash Rate" src="{{ site.baseurl }}{{ site.img }}icons/pickaxe.svg" />
-                      {{ site.data.languages.list[page.lang].hashrate }}
+                      Hashrate
                     </a>
                   </li>
                   <li>
-                    <a href="https://komodostats.com/ecomap/smartchain/PIRATE">
-                      <img alt="Pirate Chain Network Nodes" src="{{ site.baseurl }}{{ site.img }}icons/network.svg" />
-                      {{ site.data.languages.list[page.lang].nodes }}
+                    <a href="{{ site.baseurl }}varrr"{% if current_page == 'varrr' %} aria-current="page"{% endif %}>
+                      <img alt="" src="{{ site.baseurl }}{{ site.img }}site/varrr.svg" />
+                      vARRR
                     </a>
                   </li>
                 </ul>
               </div>
               <div class="row">
                 <header>
-                  {{ site.data.languages.list[page.lang].resources }}
+                  Resources
                 </header>
                 <ul class="mega-links">
                   <li>
-                    <a href="{{ navurl }}whitepaper">
+                    <a href="{{ site.whitepaper_url }}">
                       <img alt="Pirate Network Whitepaper" src="{{ site.baseurl }}{{ site.img }}icons/file.svg" />
-                      {{ site.data.languages.list[page.lang].whitepaper }}
+                      Whitepaper
                     </a>
                   </li>
                   <li>
-                    <a href="{{ navurl }}branding">
+                    <a href="{{ site.baseurl }}branding"{% if current_page == 'branding' %} aria-current="page"{% endif %}>
                       <img alt="Branding Guideline" src="{{ site.baseurl }}{{ site.img }}logo/Pirate_Logo_Ship_Gold.svg" />
-                      {{ site.data.languages.list[page.lang].branding }}
+                      Branding
                     </a>
                   </li>
                   <li>
-                    <a href="{{ navurl }}https://warrr.io">
-                      <img alt="wARRR Bridge" src="{{ site.baseurl }}{{ site.img }}icons/rotate.svg" />
-                      {{ site.data.languages.list[page.lang].bridge }}
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ navurl }}donations">
+                    <a href="{{ site.baseurl }}donations"{% if current_page == 'donations' %} aria-current="page"{% endif %}>
                       <img alt="Pirate Community Donations" src="{{ site.baseurl }}{{ site.img }}icons/heart.svg" />
-                      {{ site.data.languages.list[page.lang].donations }}
+                      Donations
                     </a>
                   </li>
                   <li>
-                    <a href="{{ navurl }}contact" class="support">
+                    <a href="{{ site.pirate_history_url | default: 'https://xkosiusx.github.io/piratechain-timeline/#' }}" target="_blank" rel="noopener noreferrer">
+                      <img alt="" src="{{ site.baseurl }}{{ site.img }}logo/Pirate_Logo_Skull_Gold.svg" />
+                      Pirate History
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ site.baseurl }}contact" class="support"{% if current_page == 'contact' %} aria-current="page"{% endif %}>
                       <img alt="Pirate Community Support" src="{{ site.baseurl }}{{ site.img }}icons/people.svg" />
-                      {{ site.data.languages.list[page.lang].support }}
+                      Support
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </li>
-        <li class="lang">
-          <a href="#" class="desktop-item">
-            <img alt="Language Selector" src="{{ site.baseurl }}{{ site.img }}icons/lang.svg" />
-          </a>
-          <input type="checkbox" id="showDrop">
-          <label for="showDrop" class="mobile-item">
-            <img alt="Language Selector" src="{{ site.baseurl }}{{ site.img }}icons/lang.svg" />
-            Language
-          </label>
-          <ul class="drop-menu">            
-            {% for language in site.data.languages.list %}
-              {% if language[0] == "en" %}
-                <li>
-                  <a href="{{ site.baseurl }}{{ page.name | replace:'.html',''}}">
-                    English
-                  </a>
-                </li>
-              {% else %}
-                <li>
-                  <a href="{{ site.baseurl }}lang/{{ language[0] }}/{{ page.name | replace:'.html',''}}">
-                    {{ language[1].name }}
-                  </a>
-                </li>
-              {% endif %}            
-            {% endfor %}
-          </ul>
         </li>
       </ul>
       <label for="menu-btn" class="btn menu-btn">

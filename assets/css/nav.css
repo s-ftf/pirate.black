@@ -6,12 +6,6 @@ nav{
   transition: all 0.3s ease;
   background-color: var(--dark);
 }
-nav .lang img {
-  width: 100%;
-  max-width: 18px;
-  position: relative;
-  top: 6px;
-}
 nav .wrapper{
   position: relative;
   max-width: 1300px;
@@ -34,6 +28,9 @@ nav .wrapper{
   height: 30px;
   margin-top: 25px;
 }
+.wrapper .logo a[aria-current="page"] img {
+  filter: drop-shadow(0 0 6px var(--pirate-doubloon));
+}
 .wrapper .nav-links{
   display: inline-flex;
 }
@@ -52,35 +49,35 @@ nav .wrapper{
 .nav-links li a:hover{
   background: var(--nav-hover);
 }
+.nav-links > li > .home-link {
+  color: var(--pirate-doubloon);
+}
+.home-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}
+.nav-links > li > a[aria-current="page"],
+.nav-links > li > a.is-current,
+.nav-links > li > .mobile-item.is-current {
+  color: var(--pirate-goldensands);
+  background: rgba(187, 150, 69, 0.16);
+  box-shadow: inset 0 -2px var(--pirate-doubloon);
+  font-weight: 600;
+}
+.row .mega-links li a[aria-current="page"] {
+  color: var(--pirate-goldensands);
+  font-weight: 700;
+}
 .nav-links .mobile-item{
   display: none;
 }
-.nav-links .drop-menu{
-  position: absolute;
-  background: var(--dark);
-  width: 180px;
-  line-height: 45px;
-  top: 80px;
-  right: 20px;
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-  max-height: 50vh;
-  overflow-y: scroll;
-}
-.nav-links li:hover .drop-menu,
 .nav-links li:hover .mega-box{
   transition: all 0.3s ease;
   top: 60px;
   opacity: 1;
   visibility: visible;
-}
-.drop-menu li a{
-  width: 100%;
-  display: block;
-  padding: 0 0 0 15px;
-  font-weight: 400;
-  border-radius: 0px;
 }
 .mega-box{
   position: absolute;
@@ -198,19 +195,6 @@ nav .wrapper{
     display: block;
     font-size: 20px;
   }
-  .nav-links .drop-menu{
-    position: static;
-    opacity: 1;
-    top: 65px;
-    visibility: visible;
-    padding-left: 20px;
-    width: 100%;
-    max-height: 0px;
-    overflow: hidden;
-    box-shadow: none;
-    transition: all 0.3s ease;
-  }
-  #showDrop:checked ~ .drop-menu,
   #showMega:checked ~ .mega-box{
     max-height: 100%;
   }
@@ -229,13 +213,6 @@ nav .wrapper{
   }
   .nav-links .mobile-item:hover{
     background: var(--nav-hover);
-  }
-  .drop-menu li{
-    margin: 0;
-  }
-  .drop-menu li a{
-    border-radius: 5px;
-    font-size: 18px;
   }
   .mega-box{
     position: static;
