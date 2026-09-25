@@ -10,9 +10,11 @@ let url = apiUrl + kind + part + maxResults + playlistIds + apiKey
 // create iframe for youtube video
 function createIframe(title, link) {
   var iframe = document.createElement('iframe');
-  iframe.frameborder=0;
-  iframe.allow="accelerometer; encrypted-media; gyroscope;"
-  iframe.titel=title;
+  iframe.frameBorder = '0';
+  iframe.allow = 'accelerometer; encrypted-media; gyroscope; picture-in-picture';
+  iframe.title = title;
+  iframe.loading = 'lazy';
+  iframe.allowFullscreen = true;
   iframe.setAttribute("src", link);
   return iframe
 };
@@ -22,6 +24,7 @@ function updateVideoSources() {
     fetch(url)
     .then(response => response.json())
     .then(data => {
+        if (!Array.isArray(data.items)) return;
 
         // iterate through teh results (one item for each playlist)
         for (const key in data.items) {
@@ -39,11 +42,12 @@ function updateVideoSources() {
 
             // append iframe source 
             var title = data.items[key].snippet.title;
-            var link = `https://www.youtube.com/embed/${videoId}?modestbranding=1&controls=0&showinfo=0&fs=0`;
+            var link = `https://www.youtube-nocookie.com/embed/${videoId}?modestbranding=1&controls=0&showinfo=0&fs=0`;
             var iframe = createIframe(title, link);
-            document.getElementById(playlistId).appendChild(iframe);
+            const container = document.getElementById(playlistId);
+            if (container) container.appendChild(iframe);
         };  
-    });
+    }).catch(error => console.warn('Community playlists unavailable:', error));
 };
 
 // get most recent DDoPC video
@@ -57,67 +61,32 @@ function updateDDoPC() {
   .then(data => {
 
     // get the most recent video id
-    var videoId = data.items[0].snippet.resourceId.videoId;
+    var videoId = data.items?.[0]?.snippet?.resourceId?.videoId;
+    if (!videoId) return;
 
     // append iframe source 
     var title = "Daily Dose of Pirate Chain";
-    var link = `https://www.youtube.com/embed/${videoId}?modestbranding=1&controls=0&showinfo=0&fs=0`;
+    var link = `https://www.youtube-nocookie.com/embed/${videoId}?modestbranding=1&controls=0&showinfo=0&fs=0`;
     var iframe = createIframe(title, link);
-    document.getElementById("ddopc").appendChild(iframe);
-  });
+    const container = document.getElementById('ddopc');
+    if (container) container.appendChild(iframe);
+  }).catch(error => console.warn('Daily Dose video unavailable:', error));
 };
 
-// fade out the header video on scroll
-function fadeOutOnScroll(element) {
-    if (!element) {
-        return;
-    };    
-    var distanceToTop = window.pageYOffset + element.getBoundingClientRect().top;
-    var elementHeight = element.offsetHeight;
-    var scrollTop = document.documentElement.scrollTop;    
-    var opacity = 1;    
-    if (scrollTop > distanceToTop) {
-        opacity = 1 - ((scrollTop - distanceToTop) / elementHeight) * 1.25;
-    };    
-    if (opacity >= 0) {
-        element.style.opacity = opacity;
+document.addEventListener('DOMContentLoaded', function() {
+    const loadVideos = () => {
+      updateVideoSources();
+      updateDDoPC();
     };
-};
-
-window.onload = function() {
-    updateVideoSources();
-    updateDDoPC();
-
-    // fade out the header video on scroll
-    var header = document.getElementById('video-header');
-    function scrollHandler() {    
-        fadeOutOnScroll(header);
+    const firstPlaylist = document.getElementById('ddopc');
+    if (!firstPlaylist || !('IntersectionObserver' in window)) {
+      loadVideos();
+      return;
     }
-    window.addEventListener('scroll', scrollHandler);
-
-
-
-const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.7
-  };
-  
-  function observerCallback(entries, observer) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // fade in observed elements that are in view
-        entry.target.classList.replace('fadeOut', 'fadeIn');
-      } else {
-        // fade out observed elements that are not in view
-        entry.target.classList.replace('fadeIn', 'fadeOut');
-      }
-    });
-  }
-  
-  const observer = new IntersectionObserver(observerCallback, observerOptions);
-  
-  const fadeElms = document.querySelectorAll('.fade');
-  fadeElms.forEach(el => observer.observe(el));
-};
-
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      observer.disconnect();
+      loadVideos();
+    }, { rootMargin: '400px' });
+    observer.observe(firstPlaylist);
+});

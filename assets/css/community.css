@@ -1,74 +1,19 @@
 
-/* ----- header video section ----- */
-.header-section {
-    padding:0px;
-    -webkit-filter: drop-shadow(0px 0px 60px #000000e0);
-    filter: drop-shadow(0px 0px 60px #000000e0);
-}
-.header-section .video-container {
-    width: 100%;    
-    margin:auto;
-    position: relative;   
-    top: -1px;
-}
-.header-section video {
-  position:absolute;top:0;left:0;width:100%;height:100%;
-}
-.overlay {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    height: 100%;
-    width: 100%;   
-    z-index: 1;
-    background-color: rgba(19, 13, 1, 0.5);
-}
-.msg-container {
-    display: block;
-    position: absolute;
-    top: 100px;
-    left: 2%;
-    z-index: 2;
-    color: var(--pirate-cloud);
-    font-size: 14px;
-    font-weight: 100;
-    font-family: var(--pirate-font-alternative);
-    margin-right: 20px;
-}
-.msg-container .msg {
-    padding: 32px;
-    z-index: 9;
-    width: 100%;
-    max-width: 700px;
-    border: none;
-    background-color: rgba(188, 193, 197, 0.05);
-    box-shadow: 6px 6px 20px rgba(2,2,2,0.3);
-    backdrop-filter: blur(10px);
-    margin-right: 20px;
-    border-radius: 10px;
-}
-.msg-container .msg h1 {
-    color: var(--pirate-cloud);
-    margin-top: 0px;
-    font-size: 32px;
-    font-weight: 200;
-}
-@media screen and (max-width:800px) {
-  .msg-container {
-    display: none;
-  }
-}
-
-
 /* ----- videos section ----- */
 .videos-section {
   text-align: center;
   padding-top: 120px;
 }
+.videos-section .community-logo-heading {
+  line-height: 0;
+}
 .videos-section .logo {
+  display: block;
   width: 100%;
   max-width: 360px;
-  margin-bottom: 70px;
+  height: auto;
+  aspect-ratio: 802.5 / 268.6;
+  margin: 0 auto 70px;
   -webkit-filter: drop-shadow(0px 0px 64px rgba(255, 201, 52, 0.11));
   filter: drop-shadow(0px 0px 64px rgba(255, 201, 52, 0.11));
 }
@@ -78,10 +23,10 @@
 }
 .video-box {
   display: inline-block;
-  background-image: url(../img/thumbnails/ytplaceholder.png);
-  background-repeat: none;
+  background-image: url(../img/thumbnails/pirate-chain-youtube-video-placeholder.webp);
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: fit;
+  background-size: cover;
   width:560px;
   height: 372px;
   padding: 0px 0px;
@@ -157,23 +102,24 @@
     height: 116px;
   }
 } 
-.lol {  
+.featured-video {
   display: block;
-  margin: 160px auto 40px;
+  margin: 55px auto 200px;
   max-width: 650px;
-  height: 400px;
-  padding: 0px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  padding: 0;
   position: relative;
   border: 2px solid var(--pirate-doubloon);
   border-radius: 15px;
-  width: 100%;
   -webkit-filter: drop-shadow(0px 0px 64px rgba(255, 201, 52, 0.11));
   filter: drop-shadow(0px 0px 64px rgba(255, 201, 52, 0.11));
 }
-.lol:hover {
+.featured-video:hover {
   transform: translateY(0px);
 }
-.lol .featured {
+.featured-video .featured {
   background-color: var(--pirate-doubloon);
   color: var(--pirate-leviathan);
   position: absolute;  
@@ -184,19 +130,13 @@
   border-radius: 15px 15px 0 0;
   font-weight: 700;
 }
-.lol iframe {  
+.featured-video iframe {
   display: block;
-  margin: 0px auto 4px;
+  margin: 0;
   width: 100%;
-  max-width: 650px;
-  height: 400px;
+  height: 100%;
   border-radius: 15px;
 }
-.fade {
-  transition: opacity 0.7s ease-in;
-}
-.fadeOut { opacity: 0; }
-.fadeIn { opacity: 1; }
 
 
 /* ----- socials ----- */
@@ -209,7 +149,10 @@
   color: var(--pirate-cloud);
 }
 .socials-section .social-container {
-  margin-top:100px;
+  margin-top: 0;
+}
+.socials-section .pirate-divider {
+  margin: 80px auto 70px;
 }
 .socials-section h2{
   color: var(--pirate-doubloon);
@@ -233,38 +176,4 @@
 }
 .socials-section .social img:hover {
   transform: rotate(360deg);
-}
-
-/* ----- divider ----- */
-.divider_wrapper {
-  padding-bottom: 30px;
-  padding-top: 80px;
-}
-.divider {
-  position: relative;
-  margin-top: 0px;
-  height: 1px;
-}
-.div-transparent:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 5%;
-  right: 5%;
-  width: 90%;
-  height: 1px;
-  background-image: linear-gradient(to right,transparent,var(--pirate-doubloon),transparent);
-}
-.div-arrow-down:after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: -7px;
-  left: calc(50% - 7px);
-  width: 14px;
-  height: 14px;
-  transform: rotate(45deg);
-  background-color: var(--pirate-cloud);
-  border-bottom: 1px solid var(--pirate-doubloon);
-  border-right: 1px solid var(--pirate-doubloon);
 }

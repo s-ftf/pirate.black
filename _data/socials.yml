@@ -1,0 +1,122 @@
+# Social platforms shown on the Community page, in this order.
+# Set enabled to false to hide a platform without deleting its details.
+# Icons are filenames in assets/img/socials/.
+- name: BitChute
+  url: https://www.bitchute.com/channel/pirate-chain/
+  icon: bitchute.svg
+  enabled: false
+
+- name: BitClout
+  url: https://bitclout.com/u/PirateChainOfficial
+  icon: bitclout.svg
+  enabled: false
+
+- name: BitcoinTalk
+  url: https://bitcointalk.org/index.php?topic=4979549.0
+  icon: bitcointalk.svg
+  enabled: true
+
+- name: BitTube
+  url: https://bittube.tv/profile/Pirate
+  icon: bittube.svg
+  enabled: false
+
+- name: Discord
+  url_config: discord_invite_url
+  icon: discord.svg
+  enabled: true
+
+- name: Facebook
+  url: https://www.facebook.com/piratechain
+  icon: facebook.svg
+  enabled: false
+
+- name: Facebook Group
+  url: https://www.facebook.com/groups/piratechainofficial/
+  icon: facebook.svg
+  enabled: false
+
+- name: Flote
+  url: https://flote.app/pirate
+  icon: flote.svg
+  enabled: false
+
+- name: Instagram
+  url: https://www.instagram.com/piratechain/
+  icon: instagram.svg
+  enabled: false
+
+- name: Keybase
+  url: https://keybase.io/team/pirate_arrr
+  icon: keybase.svg
+  enabled: true
+
+- name: LinkedIn
+  url: https://www.linkedin.com/company/piratechain
+  icon: linkedin.svg
+  enabled: false
+
+- name: Mastodon
+  url: https://mastodon.social/@arrr
+  icon: mastodon.svg
+  enabled: false
+
+- name: Medium
+  url_config: medium_publication_url
+  icon: medium.svg
+  enabled: true
+
+- name: Odysee
+  url: https://odysee.com/@piratechain:8
+  icon: odysee.svg
+  enabled: true
+
+- name: Onion site
+  url: http://piratearrrsxxeis.onion/
+  icon: tor.svg
+  enabled: false
+
+- name: Pinterest
+  url: https://www.pinterest.co.uk/piratechain/
+  icon: pintrest.svg
+  enabled: false
+
+- name: Reddit
+  url: https://www.reddit.com/r/piratechain
+  icon: reddit.svg
+  enabled: true
+
+- name: Telegram
+  url: https://t.me/piratechain/
+  icon: telegram.svg
+  enabled: true
+
+- name: Telegram ANN
+  url: https://t.me/piratechainAnnouncements
+  icon: telegram.svg
+  enabled: false
+
+- name: TikTok
+  url: https://www.tiktok.com/@pirateblockchain
+  icon: tiktok.svg
+  enabled: false
+
+- name: Trello
+  url: https://trello.com/b/BqhdZbiS/pirate-chain-progress-board
+  icon: trello.svg
+  enabled: false
+
+- name: Twitch
+  url: https://www.twitch.tv/piratechain
+  icon: twitch.svg
+  enabled: false
+
+- name: Twitter
+  url: https://twitter.com/PirateChain
+  icon: twitter.svg
+  enabled: true
+
+- name: YouTube
+  url: https://www.youtube.com/c/piratechain
+  icon: youtube.svg
+  enabled: true
