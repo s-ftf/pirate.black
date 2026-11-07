@@ -3269,7 +3269,7 @@ body.download-modal-open {
 
 #community::before {
   transform: scaleX(-1);
-  opacity: .6;
+  opacity: .7;
 }
 
 #community > .wrap {
