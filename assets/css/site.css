@@ -223,7 +223,7 @@
   height: 100%;
   object-fit: cover;
   filter: grayscale(1);
-  opacity: .6;
+  opacity: .72;
   transition: filter .25s,opacity .25s;
 }
 
@@ -3287,7 +3287,7 @@ body.download-modal-open {
 }
 
 .video-player :is(button, a) > img:not(.youtube-play-icon) {
-  filter: saturate(.6);
+  filter: saturate(.75);
 }
 
 .video-player :is(button, a):hover > img:not(.youtube-play-icon) {
