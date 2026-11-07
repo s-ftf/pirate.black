@@ -322,14 +322,9 @@
 }
 
 .varrr-reserve-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-.varrr-reserve-heading > div {
   max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .varrr-reserve-heading p {
@@ -337,10 +332,6 @@
   font-size: 16px;
   line-height: 1.8;
   color: #b7bbb1;
-}
-
-.varrr-reserve-heading > a {
-  flex: none;
 }
 
 .varrr-reserve-values {
@@ -391,9 +382,9 @@
   max-width: 420px;
   margin: 38px auto 0;
   padding: 28px 30px 24px;
-  border: 1px solid #444335;
   border-radius: 4px;
   background: #171918;
+  box-shadow: 0 14px 34px rgb(0 0 0 / 35%);
 }
 
 .varrr-monitor-heading {
@@ -679,12 +670,6 @@
 
   .varrr-key h3 {
     font-size: 21px;
-  }
-
-  .varrr-reserve-heading {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
   }
 
   .varrr-reserve-values {
