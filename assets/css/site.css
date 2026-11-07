@@ -1114,31 +1114,31 @@
   }
 
   .swap-summary {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 28px;
+    --gauge-gap: clamp(12px, 4vw, 28px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 var(--gauge-gap);
   }
 
   .swap-summary > div {
-    width: 200px;
+    flex: none;
+    width: min(200px, 38vw, calc((100% - var(--gauge-gap)) / 2));
   }
 
   .swap-summary > div:last-child {
-    grid-column: 1 / -1;
-    margin-top: -32px;
+    margin-top: clamp(-32px, -5vw, -16px);
+  }
+
+  .swap-summary dt {
+    top: auto;
+    bottom: 67%;
+    font-size: clamp(10px, 2.6vw, 12px);
+    line-height: 1.25;
   }
 
   .swap-summary dd {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 479px) {
-  .swap-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .swap-summary > div:not(:first-child) {
-    margin-top: -60px;
+    font-size: clamp(20px, 4.7vw, 28px);
   }
 }
 
