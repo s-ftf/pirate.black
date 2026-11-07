@@ -1346,7 +1346,6 @@
 }
 
 .network-whitepaper {
-  --hero-bg: #1d1d1d;
   gap: 10px;
   filter: none;
   transition: filter .25s ease, box-shadow .25s ease;
@@ -2709,10 +2708,11 @@ body.download-modal-open {
   white-space: nowrap;
 }
 
-.pool-luck {
+.pool-blocks {
   color: #d8bc6a;
   font-size: 14px;
   text-align: right;
+  white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 

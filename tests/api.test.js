@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { formatZat, formatRoundedARRR, formatNumber, formatCompactCount, formatCompactARRR, formatCompactSwapTime, safeURL, statsAreValid, swapStatsAreValid, formatClaimTime, privacyCount, calculatorQuery, calculatorDefaultsValid, CALCULATOR_FIELDS, recentMiningPools, poolLastSeen, poolTimingLuck } from '../assets/js/api.js';
+import { formatZat, formatRoundedARRR, formatNumber, formatCompactCount, formatCompactARRR, formatCompactSwapTime, safeURL, statsAreValid, swapStatsAreValid, formatClaimTime, privacyCount, calculatorQuery, calculatorDefaultsValid, CALCULATOR_FIELDS, recentMiningPools, poolLastSeen, poolBlockCount } from '../assets/js/api.js';
 
 test('compact swap values round at unit boundaries and preserve monetary precision', () => {
   assert.equal(formatCompactCount(28900), '29k');
@@ -38,10 +38,14 @@ test('recent mining pools use last-seen times rather than lifetime block counts,
   assert.deepEqual(recentMiningPools(null), []);
 });
 
-test('pool timing luck preserves zero and leaves unavailable or invalid observations empty', () => {
-  assert.equal(poolTimingLuck({ timing_luck_percent: 92.731674 }), 92.731674);
-  assert.equal(poolTimingLuck({ timing_luck_percent: 0 }), 0);
-  for (const value of [null, '100', -1, NaN, Infinity]) assert.equal(poolTimingLuck({ timing_luck_percent: value }), null);
+test('pool totals use compact quantities, retain zero, and reject unavailable counts', () => {
+  assert.equal(formatCompactCount(poolBlockCount({ blocks: 102229 })), '102k');
+  assert.equal(formatCompactCount(poolBlockCount({ blocks: 43585 })), '44k');
+  assert.equal(formatCompactCount(poolBlockCount({ blocks: 2450000 })), '2.5 M');
+  assert.equal(formatCompactCount(poolBlockCount({ blocks: 0 })), '0');
+  for (const value of [null, undefined, '100', -1, 0.5, NaN, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+    assert.equal(formatCompactCount(poolBlockCount({ blocks: value })), '—');
+  }
 });
 
 test('calculator accepts every API miner and rejects incomplete defaults', () => {
