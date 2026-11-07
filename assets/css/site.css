@@ -1402,8 +1402,8 @@
   min-height: 190px;
   padding: 32px;
   background: #1d1d1d;
-  border: 1px solid #30312c;
-  border-radius: 6px;
+  border: 1px solid transparent;
+  border-radius: 4px;
   transition: border-color .18s, background .18s;
 }
 
@@ -1443,8 +1443,8 @@
   line-height: 1.7;
 }
 
-.explore-card:hover {
-  border-color: #76643b;
+.explore-card:is(:hover, :focus-visible) {
+  border-color: #d8bc6a;
   background: #20201e;
 }
 
