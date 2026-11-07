@@ -3293,11 +3293,11 @@ body.download-modal-open {
 }
 
 .video-player button > img:not(.youtube-play-icon) {
-  filter: saturate(.45);
+  filter: saturate(.6);
 }
 
 .video-player button:hover > img:not(.youtube-play-icon) {
-  filter: saturate(.65);
+  filter: saturate(.8);
 }
 
 .video-player .youtube-play-icon {
