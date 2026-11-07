@@ -3268,7 +3268,7 @@ body.download-modal-open {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 132px 0 240px;
+  padding: 132px 0 90px;
 }
 
 #community::before {
@@ -3485,7 +3485,7 @@ body.download-modal-open {
   }
 
   #community {
-    padding: 100px 0 180px;
+    padding-top: 100px;
   }
 
   #community .social-row {
@@ -3494,14 +3494,22 @@ body.download-modal-open {
   }
 }
 
-/* The community background continues through the homepage footer. */
-#community {
-  padding-bottom: 20px;
+/* The page scrolls over the footer, which reserves its height in the flow. */
+#main {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
 }
 
 .home-footer {
-  padding: 160px 0 50px;
-  background: transparent;
+  position: sticky;
+  bottom: 0;
+  padding: 70px 0;
+  background: #0a0b0b;
+}
+
+.home-footer:has(.footer-link:focus-visible) {
+  position: static;
 }
 
 .home-footer .footer-link {
