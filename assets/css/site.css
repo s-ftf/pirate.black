@@ -1442,16 +1442,6 @@
   background: #20201e;
 }
 
-@media (min-width: 781px) {
-  .explore-card:nth-child(1) {
-    transform: rotate(-1.1deg);
-  }
-
-  .explore-card:nth-child(2) {
-    transform: translateY(4px) rotate(1deg);
-  }
-}
-
 @media (max-width: 600px) {
   .explore-section {
     max-width: 520px;
