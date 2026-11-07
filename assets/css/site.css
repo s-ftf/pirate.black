@@ -3153,6 +3153,7 @@ body.download-modal-open {
   }
 
   #resources .resource-links {
+    justify-items: center;
     gap: 16px;
   }
 
