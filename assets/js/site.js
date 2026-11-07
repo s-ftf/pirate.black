@@ -678,7 +678,7 @@ function renderArticles(items) {
     if (imageURL) {
       const image = element('img', 'publication-thumbnail');
       image.setAttribute('itemprop', 'image');
-      image.src = imageURL; image.alt = ''; image.loading = 'lazy'; image.width = 264; image.height = 172;
+      image.src = imageURL; image.alt = ''; image.loading = 'lazy'; image.width = 528; image.height = 297;
       row.append(image);
     } else row.classList.add('publication-without-thumbnail');
     const copy = element('div', 'publication-copy');
@@ -709,7 +709,7 @@ function setupVideos() {
       iframe.allowFullscreen = true;
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
       button.parentElement.replaceChildren(iframe);
-      iframe.focus();
+      iframe.focus({ preventScroll: true });
     });
     link.replaceWith(button);
   });

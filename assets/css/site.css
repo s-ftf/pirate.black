@@ -202,14 +202,17 @@
 
 .video-player {
   position: relative;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #242823;
 }
 
 .video-player > :is(button, a) {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 0;
   width: 100%;
+  height: 100%;
   border: 0;
   background: none;
   position: relative;
@@ -233,8 +236,7 @@
 .video-player iframe {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   border: 0;
 }
 
@@ -3199,8 +3201,9 @@ body.download-modal-open {
 .publication-thumbnail {
   display: block;
   width: 132px;
-  height: 86px;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
   border-radius: 3px;
   filter: saturate(.6);
   opacity: .74;
@@ -3244,7 +3247,6 @@ body.download-modal-open {
 
   .publication-thumbnail {
     width: 88px;
-    height: 72px;
   }
 
   #publications .publication-copy h3 {
