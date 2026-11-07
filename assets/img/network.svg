@@ -6,6 +6,11 @@
     @media(prefers-reduced-motion:reduce){.signal{animation:none}}
   </style>
   <defs>
+    <linearGradient id="shield-gold" gradientUnits="userSpaceOnUse" x1="219" y1="108" x2="281" y2="176">
+      <stop stop-color="#b38c30" />
+      <stop offset=".55" stop-color="#f2de98" />
+      <stop offset="1" stop-color="#bb9645" />
+    </linearGradient>
     <filter id="mark-soften" x="-10%" y="-10%" width="120%" height="120%">
       <feOffset in="SourceAlpha" dx="0.65" dy="0.65" result="shadow-offset" />
       <feGaussianBlur in="shadow-offset" stdDeviation="0.45" result="shadow-soft" />
@@ -63,7 +68,7 @@
     <use href="#padlock" x="38" y="139.25" width="24" height="31.5" />
     <use href="#padlock" x="438" y="139.25" width="24" height="31.5" />
   </g>
-  <path d="M250 108L281 120V146C281 170 250 187 250 187S219 170 219 146V120Z" fill="#1d1d1d" stroke="#bba978" stroke-width="1.2" />
+  <path d="M250 108L281 120V146C281 170 250 187 250 187S219 170 219 146V120Z" fill="#1d1d1d" stroke="url(#shield-gold)" stroke-width="1.8" stroke-linejoin="round" />
   <use href="#pirate-sailboat" x="231" y="122" width="38" height="49.2" opacity="0.7" filter="url(#mark-soften)" />
   <text x="250" y="212" text-anchor="middle" fill="#b9bcb0" font-family="monospace" font-size="9" letter-spacing="2">SHIELDED BY DEFAULT</text>
 </svg>
