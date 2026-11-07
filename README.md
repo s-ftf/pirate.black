@@ -12,6 +12,6 @@ python3 -m http.server 4173 --bind 127.0.0.1
 
 Then open [127.0.0.1:4173](http://127.0.0.1:4173).
 
-Edit the HTML pages and files in `assets/`, then check local links with `python3 scripts/check-site.py`. Contributions are welcome through issues and pull requests.
+Edit the HTML pages and files in `assets/`. Contributions are welcome through issues and pull requests.
 
 Licensed under [0BSD](LICENSE); third-party assets retain their own notices.
