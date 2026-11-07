@@ -3135,8 +3135,8 @@ body.download-modal-open {
 }
 
 @media (max-width: 780px) {
-  #resources .resource-group {
-    padding-top: 0;
+  #resources .resource-links {
+    justify-items: center;
   }
 }
 
@@ -3156,7 +3156,6 @@ body.download-modal-open {
   }
 
   #resources .resource-links {
-    justify-items: center;
     gap: 16px;
   }
 
@@ -3488,6 +3487,7 @@ body.download-modal-open {
   #community .social-row {
     grid-template-columns: 1fr;
     gap: 36px;
+    max-width: 520px;
   }
 }
 
