@@ -1,7 +1,21 @@
 (() => {
-  const key = `pirate-scroll:${location.pathname}${location.search}`;
+  const previousKey = `pirate-scroll:${location.pathname}${location.search}`;
+  // Keep homepage bookmarks on the directory URL, including project-path hosting.
+  const url = new URL(location.href);
+  if (/^https?:$/.test(url.protocol) && /\/index\.html$/i.test(url.pathname)) {
+    url.pathname = url.pathname.replace(/index\.html$/i, '');
+    // Let the browser finish its initial fragment navigation before changing the URL.
+    window.addEventListener('load', () => requestAnimationFrame(() => {
+      const current = new URL(location.href);
+      current.pathname = current.pathname.replace(/index\.html$/i, '');
+      history.replaceState(history.state, '', current);
+    }), { once: true });
+  }
+  const key = `pirate-scroll:${url.pathname}${url.search}`;
   let saved;
-  try { saved = JSON.parse(sessionStorage.getItem(key)); } catch { /* Storage can be unavailable. */ }
+  try {
+    saved = JSON.parse(sessionStorage.getItem(key) ?? sessionStorage.getItem(previousKey));
+  } catch { /* Storage can be unavailable. */ }
   let restoring = performance.getEntriesByType('navigation')[0]?.type === 'reload'
     && Number.isFinite(saved?.x) && Number.isFinite(saved?.y);
   let observer, deadline, saveTimer;

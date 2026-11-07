@@ -68,6 +68,8 @@ def check_link(source, value):
     if url.scheme or url.netloc:
         return
     target = (source.parent / unquote(url.path)).resolve() if url.path else source
+    if target.is_dir():
+        target = target / 'index.html'
     if not target.is_relative_to(ROOT):
         errors.append(f'{source.relative_to(ROOT)}: path leaves the project: {value}')
     elif not target.is_file():
