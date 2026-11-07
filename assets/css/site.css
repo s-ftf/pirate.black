@@ -3500,8 +3500,7 @@ body.download-modal-open {
 .home-footer {
   position: sticky;
   bottom: 0;
-  padding: 70px 0;
-  background: #0a0b0b;
+  padding: 35px 0;
 }
 
 .home-footer:has(.footer-link:focus-visible) {
