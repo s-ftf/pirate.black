@@ -25,3 +25,7 @@ Please:
 7. Test cold and warm caches, concurrent visitors sharing an IP, independent visitors, requests across these endpoints, upstream outages/timeouts, stale observations, and genuine abuse. Verify that concurrent refreshes do not multiply RPC calls and that CORS/retry headers remain readable on 429/503 responses. Verify existing API contracts and exact monetary values remain compatible.
 
 Report the root cause, changes made, tests run, cache and rate-limit behavior, and any frontend changes actually required. Recommend a documented polling interval that remains reliable under normal multi-visitor traffic. Keep the scope on API reliability; the website should remain a directly editable static site.
+
+## Pool website URLs
+
+A later frontend check found that records under `mining-pools.pools` do not include official website URLs. Add an optional `url` field containing the pool's verified absolute HTTPS website URL. Keep it absent or null if unknown. The frontend is prepared to link directly to this field and leaves rows without a valid URL unlinked; it no longer substitutes Pirate Watch miner pages.

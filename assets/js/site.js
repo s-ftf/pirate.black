@@ -169,8 +169,9 @@ function renderMiningPools(group) {
   const header = element('div', 'pool-list-heading');
   header.append(element('span', '', 'Pool'), element('span', '', 'Last seen'), element('span', '', 'Total blocks'));
   const rows = pools.map(pool => {
-    const row = element('a', 'pool-row');
-    row.href = `https://pirate.watch/miner/${pool.address}`;
+    const url = safeURL(pool.url);
+    const row = element(url ? 'a' : 'div', 'pool-row');
+    if (url) row.href = url;
     const seen = poolLastSeen(pool);
     const time = element('time', 'pool-last-seen', ago(seen));
     if (seen !== null) {
