@@ -1347,21 +1347,32 @@
 
 .network-whitepaper {
   gap: 10px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-color: #5b5747;
+  background: #191b19;
+  color: #c4b27a;
+  font-size: 14px;
+  font-weight: 500;
   filter: none;
-  transition: filter .25s ease, box-shadow .25s ease;
+  transition: filter .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
 }
 
 @media (forced-colors: none) {
   .network-whitepaper:hover,
   .network-whitepaper:focus-visible {
-    filter: var(--gold-glow);
+    border-color: #9c884a;
+    background: #1d1f1c;
+    color: #d8bc6a;
+    filter: drop-shadow(0 0 6px rgb(216 188 106 / .12));
   }
 }
 
 .whitepaper-icon {
   flex: none;
-  width: 18px;
-  height: 22px;
+  width: 16px;
+  height: 20px;
   background: currentColor;
   -webkit-mask: url("../img/icons/file-lines.svg") center / contain no-repeat;
   mask: url("../img/icons/file-lines.svg") center / contain no-repeat;
