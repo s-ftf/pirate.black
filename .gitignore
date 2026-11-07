@@ -1,0 +1,58 @@
+# Generated site, reports, and local previews
+/_site/
+/dist/
+/build/
+/coverage/
+/test-results/
+/playwright-report/
+/screenshots/
+/tmp/
+.cache/
+*.log
+
+# Python tooling and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Editor-local settings and workspaces
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.fleet/
+.history/
+.project
+.classpath
+.settings/
+*.code-workspace
+*.sublime-workspace
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+*.bak
+
+# Local secrets; documentation examples stay trackable
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Incidental local tooling dependencies; the site has none
+node_modules/
+
+# Operating-system metadata
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
