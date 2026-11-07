@@ -7,6 +7,7 @@
 /playwright-report/
 /screenshots/
 /tmp/
+/docs/
 .cache/
 *.log
 
