@@ -163,7 +163,10 @@
 }
 
 .publication-list {
-  margin-top: 33px;
+  display: grid;
+  gap: 12px;
+  max-width: 450px;
+  margin: 33px auto 0;
 }
 
 .publication-row {
@@ -188,6 +191,7 @@
 #publication-status {
   font-size: 10px;
   margin-top: 12px;
+  text-align: center;
 }
 
 .video-grid {
@@ -3175,13 +3179,21 @@ body.download-modal-open {
   font-size: clamp(28px, 3vw, 36px);
   font-weight: 400;
   letter-spacing: -.7px;
+  text-align: center;
 }
 
 #publications .publication-row {
   grid-template-columns: 132px minmax(0, 1fr);
-  gap: 28px;
-  padding-block: 22px;
-  border-bottom: 0;
+  gap: 20px;
+  padding: 16px 14px;
+  background: #1d1d1d;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: border-color .2s;
+}
+
+#publications .publication-row:is(:hover, :focus-visible) {
+  border-color: #d8bc6a;
 }
 
 .publication-thumbnail {
@@ -3207,6 +3219,11 @@ body.download-modal-open {
 }
 
 .publication-copy h3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  overflow-wrap: anywhere;
   font-weight: 400;
 }
 
@@ -3221,8 +3238,8 @@ body.download-modal-open {
 @media (max-width: 600px) {
   #publications .publication-row {
     grid-template-columns: 88px minmax(0, 1fr);
-    gap: 15px;
-    padding-block: 20px;
+    gap: 12px;
+    padding: 14px 10px;
   }
 
   .publication-thumbnail {
