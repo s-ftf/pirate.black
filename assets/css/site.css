@@ -2164,6 +2164,11 @@ body.download-modal-open {
   text-align: center;
 }
 
+.stashi-download-label > span {
+  color: var(--ink);
+  font-weight: 400;
+}
+
 .stashi-download-area .downloads {
   margin-top: 0;
   padding-top: 0;
