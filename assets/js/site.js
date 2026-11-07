@@ -47,7 +47,7 @@ function setStat(name, value, timestamp) {
 // Apply the same external-link behavior to static content and asynchronously rendered links.
 function setupExternalLinks() {
   const iconExceptions = '.discord-link, .stashi-play, .download-signature, ' +
-    '[data-download-section="Signatures"], .watch-footer, #publications, #resources, .x-post-brand, .video-player > a';
+    '[data-download-section="Signatures"], .watch-footer, #publications, #resources, .video-player > a';
   function enhance(link) {
     const href = link.getAttribute('href');
     if (!href) return;

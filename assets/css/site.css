@@ -3362,6 +3362,7 @@ body.download-modal-open {
 }
 
 .x-post {
+  position: relative;
   margin: 0;
   padding: 18px 20px;
   max-width: 520px;
@@ -3370,6 +3371,11 @@ body.download-modal-open {
   background: linear-gradient(145deg, #151817, #0e1010 75%);
   box-shadow: 8px 16px 28px rgb(0 0 0 / .28), inset 0 1px 0 rgb(216 188 106 / .05);
   transform: rotate(-1deg);
+  transition: border-color .2s;
+}
+
+.x-post:is(:hover, :focus-within) {
+  border-color: #d8bc6a;
 }
 
 .x-post-header {
@@ -3397,6 +3403,8 @@ body.download-modal-open {
 }
 
 .x-post-account {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -3411,7 +3419,7 @@ body.download-modal-open {
   font-weight: 600;
 }
 
-.x-post-profile:hover strong {
+.x-post-account:hover strong {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -3431,7 +3439,7 @@ body.download-modal-open {
   height: 20px;
 }
 
-.x-post-brand:hover {
+.x-post:hover .x-post-brand {
   opacity: 1;
 }
 
@@ -3464,6 +3472,12 @@ body.download-modal-open {
 .x-post-footer a {
   color: #d8bc6a;
   white-space: nowrap;
+}
+
+.x-post-footer a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 .x-post-footer a:hover {
