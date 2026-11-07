@@ -3290,7 +3290,7 @@ body.download-modal-open {
 
 #community::before {
   transform: scaleX(-1);
-  opacity: .4;
+  opacity: .5;
 }
 
 #community > .wrap {
