@@ -28,7 +28,7 @@ Open [the local site](http://127.0.0.1:4173). Use HTTP rather than opening the H
 | `scripts/check-site.py` | Check local links, imports, resources, SVG parsing, and duplicate HTML IDs |
 | `tests/` | Data/service, wallet sorting, bookmark, reserve, and media-updater tests |
 
-All data fetching belongs in `api.js`. Wallet filename rules belong in `wallet-releases.js`; UI code calls those functions rather than duplicating them. `site.js` imports both modules. The scroll bootstrap stays separate because it must run in the page head before rendering; moving it into the deferred module can make refreshes jump.
+All data fetching belongs in `api.js`. Wallet filename rules belong in `wallet-releases.js`; UI code calls those functions rather than duplicating them. `site.js` imports both modules. The scroll bootstrap stays separate because it must run in the page head before rendering; moving it into the deferred module can make refreshes jump. It also normalizes homepage `/index.html` URLs to the containing directory while preserving query parameters, bookmarks, history state, and saved refresh positions.
 
 Keep assets under `assets/`, use relative local paths, and preserve the no-JavaScript content and download fallbacks. Display block heights with `#` and no thousands separators. The current styles support narrow screens and reduced-motion preferences. The homepage ends with the gold skull and white MareLiberum link inside the community section. Both pages use normal document flow.
 
