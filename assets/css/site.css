@@ -1348,6 +1348,15 @@
 .network-whitepaper {
   --hero-bg: #1d1d1d;
   gap: 10px;
+  filter: none;
+  transition: filter .25s ease, box-shadow .25s ease;
+}
+
+@media (forced-colors: none) {
+  .network-whitepaper:hover,
+  .network-whitepaper:focus-visible {
+    filter: var(--gold-glow);
+  }
 }
 
 .whitepaper-icon {
