@@ -746,6 +746,7 @@
 
 #network::before {
   transform: scaleX(-1);
+  opacity: .85;
 }
 
 .network-divider {
@@ -851,7 +852,7 @@
 }
 
 .swaps-section::before {
-  opacity: .45;
+  opacity: .5;
 }
 
 .swaps-section > .wrap {
@@ -1078,7 +1079,7 @@
   }
 
   .swaps-section::before {
-    opacity: .3;
+    opacity: .35;
   }
 
   .swaps-section > .wrap {
