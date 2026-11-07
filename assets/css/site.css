@@ -165,7 +165,7 @@
 .publication-list {
   display: grid;
   gap: 12px;
-  max-width: 450px;
+  max-width: 500px;
   margin: 33px auto 0;
 }
 
@@ -3202,8 +3202,8 @@ body.download-modal-open {
   height: 86px;
   object-fit: cover;
   border-radius: 3px;
-  filter: saturate(.45);
-  opacity: .6;
+  filter: saturate(.6);
+  opacity: .74;
   transition: filter .25s, opacity .25s;
 }
 
