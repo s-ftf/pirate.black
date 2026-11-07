@@ -1545,13 +1545,18 @@
   height: auto;
 }
 
+.stashi-guide,
+.wallet-feature .release-version,
+#wallets .wallet-name {
+  color: #d8bc6a;
+}
+
 .stashi-guide {
   display: flex;
   align-items: center;
   gap: 10px;
   width: fit-content;
   margin-top: 18px;
-  color: #d8bc6a;
   font-size: 14px;
 }
 
@@ -1610,7 +1615,6 @@
 .wallet-feature .release-version {
   display: inline-block;
   font-size: 13px;
-  color: #d8bc6a;
   margin-bottom: 24px;
 }
 
@@ -1742,7 +1746,6 @@
 }
 
 #wallets-title {
-  color: #d8bc6a;
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -.5px;
@@ -1781,7 +1784,6 @@
 }
 
 #wallets .wallet-name {
-  color: #d8bc6a;
   font-size: 19px;
   line-height: 1.25;
 }
