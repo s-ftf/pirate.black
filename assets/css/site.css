@@ -1115,6 +1115,7 @@
 
   .swap-summary {
     --gauge-gap: clamp(12px, 4vw, 28px);
+    --gauge-width: min(200px, 38vw, calc((100% - var(--gauge-gap)) / 2));
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1123,11 +1124,11 @@
 
   .swap-summary > div {
     flex: none;
-    width: min(200px, 38vw, calc((100% - var(--gauge-gap)) / 2));
+    width: var(--gauge-width);
   }
 
   .swap-summary > div:last-child {
-    margin-top: clamp(-32px, -5vw, -16px);
+    margin-top: calc(var(--gauge-width) * -.33);
   }
 
   .swap-summary dt {
