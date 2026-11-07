@@ -1,0 +1,276 @@
+@font-face {
+  font-family: "IM Fell English";
+  src: url("../fonts/im-fell-english-italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("../fonts/inter.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plex;
+  src: url("../fonts/ibm-plex-mono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+html {
+  scrollbar-color: #d8bc6a #101111;
+  scrollbar-gutter: stable;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #101111;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #d8bc6a;
+  border: 3px solid #101111;
+  border-radius: 0;
+}
+
+@supports selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: auto;
+  }
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #101111;
+  --surface: #151716;
+  --ink: #eeeee8;
+  --muted: #989d94;
+  --accent: #c4b27a;
+  --line: #2c302b;
+  --mono: Plex,monospace;
+  --sans: Inter,Arial,sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a,
+input,
+select,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+}
+
+a,
+button,
+summary {
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+dl {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(28px,3vw,38px);
+  letter-spacing: -1.3px;
+}
+
+h3 {
+  font-size: 18px;
+  letter-spacing: -.35px;
+}
+
+p {
+  color: var(--muted);
+}
+
+.wrap {
+  width: calc(100% - 112px);
+  max-width: 1264px;
+  margin-inline: auto;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 12px;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  line-height: 1.6;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  z-index: 40;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 12px;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+.section {
+  padding-block: 86px;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *:before,
+  *:after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.watch-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 120px 0 24px;
+  background: #1d1d1d;
+  text-align: center;
+}
+
+.watch-footer > img {
+  display: block;
+  flex: none;
+  width: 32px;
+  height: auto;
+}
+
+.watch-footer .footer-motto {
+  margin: 0;
+  color: #bb9645;
+  font: italic 14px/1.5 "IM Fell English", Georgia, "Times New Roman", serif;
+  letter-spacing: .04em;
+}
+
+.watch-footer a:hover {
+  color: #f2de98;
+}
+
+html.restoring-scroll {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+}
+
+a .external-link-icon {
+  display: inline-block;
+  flex: none;
+  width: .85em;
+  min-width: .85em;
+  height: .85em;
+  margin-left: .3em;
+  vertical-align: -.05em;
+  background: currentColor;
+  -webkit-mask: url("../img/icons/arrow-up-right-from-square.svg") center / contain no-repeat;
+  mask: url("../img/icons/arrow-up-right-from-square.svg") center / contain no-repeat;
+}
+
+@media (max-width: 1100px) {
+  .wrap { width: calc(100% - 72px); }
+}
+
+@media (max-width: 780px) {
+  .wrap { width: calc(100% - 40px); }
+  .section { padding-block: 60px; }
+  .eyebrow { font-size: 9px; }
+}

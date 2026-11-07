@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320">
+  <defs>
+    <circle id="ring" cx="120" cy="120" r="100" fill="none" stroke="#d8bc6a" stroke-width="2.5"/>
+    <linearGradient id="fade" x1="0" y1="227" x2="0" y2="300" gradientUnits="userSpaceOnUse"><stop stop-color="white" stop-opacity=".23"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient>
+    <mask id="floor" maskUnits="userSpaceOnUse" x="0" y="226" width="240" height="94"><rect y="226" width="240" height="94" fill="url(#fade)"/></mask>
+    <filter id="soften"><feGaussianBlur stdDeviation=".7"/></filter>
+  </defs>
+  <use href="#ring" opacity=".8"/>
+  <g mask="url(#floor)"><g transform="translate(0 326) scale(1 -.45)" filter="url(#soften)"><use href="#ring"/></g></g>
+</svg>

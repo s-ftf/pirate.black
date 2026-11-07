@@ -1,0 +1,14 @@
+# Pirate Chain community
+
+> An open-source community website about Pirate Chain (ARRR), an electronic cash network using shielded transactions.
+
+## Pages
+- [Pirate Chain](https://s-ftf.github.io/pirate.black/): Network fundamentals, open-source wallets, exchanges and atomic swaps, mining, publications, and community links.
+- [vARRR](https://s-ftf.github.io/pirate.black/varrr.html): Verus network features, launch and supply, and public ARRR reserve verification.
+
+## Sources
+- [Website source](https://github.com/s-ftf/pirate.black): HTML, CSS, JavaScript, maintenance notes, and asset credits.
+- [Pirate Chain](https://piratechain.com/): Project documentation and information.
+- [Pirate Watch API](https://pirate.watch/api): Live observations used by this website. Values and freshness change; consult the API for current data.
+
+Wallet software belongs to its linked project repositories. The reserve monitor reports a public API observation; the vARRR page also provides a viewing-key command for independent verification.

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1000 100">
+  <path opacity=".5" d="M0 51V66L724 23Z" fill="#0c0d0d"/>
+  <path opacity=".3" d="M0 0V51L600 28Z" fill="#0c0d0d"/>
+  <path d="m0 65v38l1000-3V0Z" fill="#0c0d0d"/>
+</svg>

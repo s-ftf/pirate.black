@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://s-ftf.github.io/pirate.black/sitemap.xml
