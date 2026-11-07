@@ -10,6 +10,7 @@
 /docs/
 /scripts/
 /tests/
+/AGENTS.md
 .cache/
 *.log
 
