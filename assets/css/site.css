@@ -203,7 +203,7 @@
   background: #242823;
 }
 
-.video-player>button {
+.video-player > :is(button, a) {
   display: block;
   padding: 0;
   width: 100%;
@@ -223,7 +223,7 @@
   transition: filter .25s,opacity .25s;
 }
 
-.video-player button:hover img {
+.video-player :is(button, a):hover img {
   filter: grayscale(0);
   opacity: .85;
 }
@@ -242,14 +242,6 @@
 
 .video-item>p {
   font: 9px var(--mono);
-}
-
-.video-fallback {
-  min-height: 180px;
-  display: flex;
-  align-items: center;
-  background: #1b1e19;
-  padding: 20px;
 }
 
 .social-row {
@@ -460,15 +452,6 @@
   .resource-group {
     font-size: 11px;
   }
-}
-
-.video-text-poster {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  font: 12px var(--mono);
-  letter-spacing: 2px;
-  color: var(--muted);
 }
 
 .no-script {
@@ -3292,11 +3275,11 @@ body.download-modal-open {
   margin-bottom: 48px;
 }
 
-.video-player button > img:not(.youtube-play-icon) {
+.video-player :is(button, a) > img:not(.youtube-play-icon) {
   filter: saturate(.6);
 }
 
-.video-player button:hover > img:not(.youtube-play-icon) {
+.video-player :is(button, a):hover > img:not(.youtube-play-icon) {
   filter: saturate(.8);
 }
 
@@ -3312,8 +3295,8 @@ body.download-modal-open {
   opacity: .68;
 }
 
-.video-player button:hover .youtube-play-icon,
-.video-player button:focus-visible .youtube-play-icon {
+.video-player :is(button, a):hover .youtube-play-icon,
+.video-player :is(button, a):focus-visible .youtube-play-icon {
   opacity: .9;
   filter: saturate(.65);
 }
@@ -3367,13 +3350,6 @@ body.download-modal-open {
 
 #x-feed {
   min-width: 0;
-}
-
-#x-feed > a.twitter-timeline {
-  display: inline-block;
-  padding-block: 14px;
-  color: #d8bc6a;
-  font-size: 14px;
 }
 
 .x-post {

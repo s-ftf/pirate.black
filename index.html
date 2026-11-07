@@ -239,8 +239,8 @@
     <script src="assets/js/scroll-position.js?v=2">
     </script>
     <link href="assets/css/base.css?v=2" rel="stylesheet"/>
-    <link href="assets/css/site.css?v=10" rel="stylesheet"/>
-    <script fetchpriority="low" src="assets/js/site.js?v=4" type="module">
+    <link href="assets/css/site.css?v=11" rel="stylesheet"/>
+    <script fetchpriority="low" src="assets/js/site.js?v=5" type="module">
     </script>
   </head>
   <body>
@@ -1227,7 +1227,6 @@
           Pirate publication
         </h2>
         <div class="publication-list" id="publication-list">
-          <!-- saved-publications:start -->
           <a target="_blank" rel="noopener noreferrer" class="publication-row" href="https://medium.com/piratechain/consensus-exploit-of-14-october-2026-chain-restart-and-what-it-means-for-holders-2eb534e45146?source=rss----b2ed2ef02cf0---4" itemscope="" itemtype="https://schema.org/Article" itemid="https://medium.com/piratechain/consensus-exploit-of-14-october-2026-chain-restart-and-what-it-means-for-holders-2eb534e45146">
             <img alt="" class="publication-thumbnail" height="172" loading="lazy" src="assets/img/publications/2eb534e45146.webp" width="264" itemprop="image"/>
             <div class="publication-copy">
@@ -1249,20 +1248,39 @@
               <h3 itemprop="headline">Pirate Chain Monthly Update December 2023 Recap</h3>
             </div>
           </a>
-          <!-- saved-publications:end -->
         </div>
         <p class="small muted" hidden="" id="publication-status">
         </p>
         <div class="video-grid" id="videos">
-          <a target="_blank" rel="noopener noreferrer" class="video-fallback" href="https://www.youtube.com/@PirateChain/videos">
-            Latest from Pirate Chain
-          </a>
-          <a target="_blank" rel="noopener noreferrer" class="video-fallback" href="https://piratechain.com/community/">
-            The Privacy Shanty · Scott Perrie
-          </a>
-          <a target="_blank" rel="noopener noreferrer" class="video-fallback" href="https://www.youtube.com/watch?v=9iw5Jo0bfc8">
-            Legend of Lootz
-          </a>
+          <article class="video-item" data-latest-video="">
+            <div class="video-player">
+              <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=8bIgfmtZijY" data-video-id="8bIgfmtZijY" aria-label="Play Pirate Chain Podcast | May 2026 (New Tech Explained) on YouTube">
+                <img alt="" height="270" loading="lazy" src="assets/img/videos/latest.jpg" width="480"/>
+                <img alt="" class="youtube-play-icon" height="48" src="assets/img/icons/youtube-play.svg" width="64"/>
+              </a>
+            </div>
+            <h3><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=8bIgfmtZijY">Pirate Chain Podcast | May 2026 (New Tech Explained)</a></h3>
+          </article>
+          <article class="video-item">
+            <div class="video-player">
+              <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=EKcs6v5tE-8" data-video-id="EKcs6v5tE-8" aria-label="Play The Privacy Shanty on YouTube">
+                <img alt="" height="270" loading="lazy" src="assets/img/videos/privacy-shanty.jpg" width="480"/>
+                <img alt="" class="youtube-play-icon" height="48" src="assets/img/icons/youtube-play.svg" width="64"/>
+              </a>
+            </div>
+            <h3><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=EKcs6v5tE-8">The Privacy Shanty</a></h3>
+            <p>SCOTT PERRIE</p>
+          </article>
+          <article class="video-item">
+            <div class="video-player">
+              <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=9iw5Jo0bfc8" data-video-id="9iw5Jo0bfc8" aria-label="Play Legend of Lootz on YouTube">
+                <img alt="" height="270" loading="lazy" src="assets/img/videos/legend-of-lootz.jpg" width="480"/>
+                <img alt="" class="youtube-play-icon" height="48" src="assets/img/icons/youtube-play.svg" width="64"/>
+              </a>
+            </div>
+            <h3><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=9iw5Jo0bfc8">Legend of Lootz</a></h3>
+            <p>A PIRATE STORY</p>
+          </article>
         </div>
       </section>
       <section aria-label="Community and resources" class="section community-section" id="community">
@@ -1275,9 +1293,22 @@
           <div class="social-row">
             <div class="social-x">
               <div id="x-feed">
-                <a target="_blank" rel="noopener noreferrer" class="twitter-timeline" data-chrome="noheader nofooter noborders transparent" data-dnt="true" data-theme="dark" data-tweet-limit="1" href="https://twitter.com/PirateChain">
-                  View the latest posts from @PirateChain <span class="external-link-icon" aria-hidden="true"></span>
-                </a>
+                <article class="x-post" aria-label="Pirate Chain post on X">
+                  <div class="x-post-header">
+                    <a class="x-post-profile" target="_blank" rel="noopener noreferrer" href="https://x.com/PirateChain">
+                      <img alt="" class="x-post-avatar" height="38" loading="lazy" src="assets/img/social/pirate-x-avatar.jpg" width="38"/>
+                      <span class="x-post-account"><strong>Pirate Chain</strong><span>@PirateChain</span></span>
+                    </a>
+                    <a class="x-post-brand" target="_blank" rel="noopener noreferrer" href="https://x.com/PirateChain/status/2118436386877645169" aria-label="Open this post on X">
+                      <img alt="" height="20" src="assets/img/icons/x-twitter.svg" width="20"/>
+                    </a>
+                  </div>
+                  <p class="x-post-text">ARRR is fully back in @EdgeWallet with Ironwood + Supernova Sync Engine!  The rebuilt integration brings full send/receive support for Pirate Chain’s new trustless Ironwood shielded pool and the blazing fast Supernova sync engine.  Edge and Pirate Chain make financial privacy…</p>
+                  <div class="x-post-footer">
+                    <time datetime="2026-11-05">Nov 5, 2026</time>
+                    <a target="_blank" rel="noopener noreferrer" href="https://x.com/PirateChain/status/2118436386877645169">View post</a>
+                  </div>
+                </article>
               </div>
             </div>
             <div class="social-links-column">

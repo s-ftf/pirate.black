@@ -7,7 +7,7 @@
 - [vARRR](https://s-ftf.github.io/pirate.black/varrr.html): Verus network features, launch and supply, and public ARRR reserve verification.
 
 ## Sources
-- [Website source](https://github.com/s-ftf/pirate.black): HTML, CSS, JavaScript, maintenance notes, and asset credits.
+- [Website source](https://github.com/s-ftf/pirate.black): HTML, CSS, JavaScript, and static assets.
 - [Pirate Chain](https://piratechain.com/): Project documentation and information.
 - [Pirate Watch API](https://pirate.watch/api): Live observations used by this website. Values and freshness change; consult the API for current data.
 

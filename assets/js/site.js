@@ -22,9 +22,9 @@ import {
   watchMiningPreset,
   calculateMining,
   getRelease,
-  loadMedia,
+  loadLatestVideo,
   loadPublications
-} from './api.js?v=2';
+} from './api.js?v=3';
 import { releaseLinks, pairDownloadSignatures } from './wallet-releases.js?v=1';
 
 function element(tag, className, text) {
@@ -47,7 +47,7 @@ function setStat(name, value, timestamp) {
 // Apply the same external-link behavior to static content and asynchronously rendered links.
 function setupExternalLinks() {
   const iconExceptions = '.discord-link, .stashi-play, .download-signature, ' +
-    '[data-download-section="Signatures"], .watch-footer, #publications, #resources, .x-post-brand';
+    '[data-download-section="Signatures"], .watch-footer, #publications, #resources, .x-post-brand, .video-player > a';
   function enhance(link) {
     const href = link.getAttribute('href');
     if (!href) return;
@@ -653,27 +653,28 @@ function setupWallets() {
   });
   setupCoreWalletDialogs(loadWallet);
 }
-// Local media and click-to-play video.
-function articleImage(item, saved) {
-  const local = item.image || saved?.find(article => article.link?.split('?')[0] === item.link.split('?')[0])?.image;
+// Live feeds enhance the editable HTML; a failed request leaves it intact.
+function articleImage(item, local) {
   if (typeof local === 'string' && /^assets\/img\/publications\/[a-f0-9]{12}\.(png|jpg|webp)$/.test(local)) return local;
   const content = typeof item.content === 'string' ? item.content : typeof item.description === 'string' ? item.description : '';
   const candidates = [item.thumbnail, ...[...content.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(match => match[1].replaceAll('&amp;', '&'))];
   return candidates.map(url => safeURL(url, ['cdn-images-1.medium.com', 'cdn-images-2.medium.com', 'miro.medium.com'])).find(Boolean);
 }
 
-function renderArticles(items, saved) {
+function renderArticles(items) {
   const container = document.querySelector('#publication-list');
   if (!container) return false;
   const articles = items.filter(item => typeof item.title === 'string' && safeURL(item.link, ['medium.com']) && Number.isFinite(Date.parse(item.pubDate))).slice(0, 3);
   if (articles.length < 3) return false;
+  const fallbackImages = new Map([...container.querySelectorAll('.publication-row')].map(row =>
+    [row.href.split('?')[0], row.querySelector('img')?.getAttribute('src')]));
   container.replaceChildren(...articles.map(item => {
     const row = element('a', 'publication-row'); row.href = safeURL(item.link, ['medium.com']);
     row.setAttribute('itemscope', ''); row.setAttribute('itemtype', 'https://schema.org/Article'); row.setAttribute('itemid', row.href.split('?')[0]);
     const date = item.pubDate.slice(0, 10);
     const time = element('time', '', new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }));
     time.dateTime = date; time.setAttribute('itemprop', 'datePublished');
-    const imageURL = articleImage(item, saved);
+    const imageURL = articleImage(item, fallbackImages.get(item.link.split('?')[0]));
     if (imageURL) {
       const image = element('img', 'publication-thumbnail');
       image.setAttribute('itemprop', 'image');
@@ -689,38 +690,43 @@ function renderArticles(items, saved) {
   return true;
 }
 
-function videoItem(video) {
-  const article = element('article', 'video-item');
-  const player = element('div', 'video-player');
-  const button = element('button'); button.type = 'button'; button.setAttribute('aria-label', `Play ${video.title} on YouTube`);
-  if (video.image && /^assets\/img\/videos\/[\w-]+\.(jpg|webp)$/.test(video.image)) {
-    const img = element('img'); img.src = video.image; img.alt = ''; img.loading = 'lazy'; img.width = 480; img.height = 270; button.append(img);
-  } else {
-    const poster = element('span', 'video-text-poster', 'PIRATE CHAIN'); button.append(poster);
-  }
-  const play = element('img', 'youtube-play-icon');
-  play.src = 'assets/img/icons/youtube-play.svg'; play.alt = ''; play.width = 64; play.height = 48;
-  button.append(play);
-  button.addEventListener('click', () => {
-    const iframe = element('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`;
-    iframe.title = video.title; iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    player.replaceChildren(iframe); iframe.focus();
-  });
-  player.append(button);
-  const title = element('h3');
-  const link = element('a', '', video.title); link.href = `https://www.youtube.com/watch?v=${video.id}`; title.append(link);
-  article.append(player, title);
-  if (video.caption) article.append(element('p', '', video.caption));
-  return article;
-}
-
-function renderVideos(videos) {
+function setupVideos() {
   const container = document.querySelector('#videos');
   if (!container) return;
-  const valid = videos.filter(v => /^[\w-]{11}$/.test(v.id) && typeof v.title === 'string');
-  if (valid.length) container.replaceChildren(...valid.map(videoItem));
+  container.querySelectorAll('.video-player > a[data-video-id]').forEach(link => {
+    const button = element('button');
+    button.type = 'button';
+    button.dataset.videoId = link.dataset.videoId;
+    button.setAttribute('aria-label', link.getAttribute('aria-label'));
+    button.append(...link.childNodes);
+    button.addEventListener('click', () => {
+      const id = button.dataset.videoId;
+      if (!/^[\w-]{11}$/.test(id)) return;
+      const iframe = element('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = button.getAttribute('aria-label');
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      button.parentElement.replaceChildren(iframe);
+      iframe.focus();
+    });
+    link.replaceWith(button);
+  });
+  lazy(container, async () => {
+    try {
+      const video = await loadLatestVideo();
+      const article = container.querySelector('[data-latest-video]');
+      const button = article?.querySelector('.video-player > button');
+      if (!button) return; // Keep an already-playing video uninterrupted.
+      button.dataset.videoId = video.id;
+      button.setAttribute('aria-label', `Play ${video.title} on YouTube`);
+      button.querySelector('img:not(.youtube-play-icon)').src = video.image;
+      const link = article.querySelector('h3 a');
+      link.textContent = video.title;
+      link.href = `https://www.youtube.com/watch?v=${video.id}`;
+    } catch { /* Keep the video and thumbnail written in the HTML. */ }
+  });
 }
 
 function lazy(section, task) {
@@ -732,54 +738,19 @@ function lazy(section, task) {
   observer.observe(section);
 }
 
-function renderXPost(post) {
-  const host = document.querySelector('#x-feed');
-  if (!host || !post || !/^\d{15,25}$/.test(post.id) || post.url !== `https://x.com/PirateChain/status/${post.id}` || typeof post.text !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(post.publishedAt)) return;
-  const card = element('article', 'x-post');
-  card.setAttribute('aria-label', 'Latest Pirate Chain post on X');
-  const header = element('div', 'x-post-header');
-  const profile = element('a', 'x-post-profile'); profile.href = 'https://x.com/PirateChain';
-  const avatar = element('img', 'x-post-avatar');
-  avatar.src = 'assets/img/social/pirate-x-avatar.jpg'; avatar.alt = ''; avatar.width = 38; avatar.height = 38; avatar.loading = 'lazy';
-  const account = element('span', 'x-post-account');
-  account.append(element('strong', '', 'Pirate Chain'), element('span', '', '@PirateChain'));
-  profile.append(avatar, account);
-  const brand = element('a', 'x-post-brand'); brand.href = post.url;
-  brand.setAttribute('aria-label', 'Open this post on X');
-  const brandIcon = element('img'); brandIcon.src = 'assets/img/icons/x-twitter.svg'; brandIcon.alt = ''; brandIcon.width = 20; brandIcon.height = 20;
-  brand.append(brandIcon); header.append(profile, brand);
-  card.append(header);
-  card.append(element('p', 'x-post-text', post.text));
-  const date = new Date(`${post.publishedAt}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
-  const footer = element('div', 'x-post-footer');
-  const time = element('time', '', date); time.dateTime = post.publishedAt;
-  const source = element('a', '', 'View post'); source.href = post.url;
-  footer.append(time, source); card.append(footer);
-  host.replaceChildren(card);
-}
-
-async function setupMedia() {
-  if (!document.querySelector('#publications')) return;
-  let saved;
-  try {
-    saved = await loadMedia();
-    renderArticles(saved.publications || []);
-    renderVideos(saved.videos || []);
-    renderXPost(saved.xPost);
-  } catch { /* HTML includes direct links if the local data cannot load. */ }
+function setupMedia() {
+  setupVideos();
   lazy(document.querySelector('#publications'), async () => {
     const status = document.querySelector('#publication-status');
     try {
       const items = await loadPublications();
-      if (!renderArticles(items, saved?.publications)) throw new Error('Insufficient publication entries');
+      if (!renderArticles(items)) throw new Error('Insufficient publication entries');
       status.hidden = true;
     } catch {
       status.hidden = false;
-      status.textContent = saved ? `Saved feed · ${saved.updatedAt.slice(0, 10)}. Open the publication for the latest.` : 'The feed is unavailable. Open the publication directly.';
+      status.textContent = 'Showing selected articles. Open the publication for the latest.';
     }
   });
-  // Video and X metadata are maintained in the local media snapshot.
-  // No visitor request to YouTube, or a YouTube feed proxy, occurs before play.
 }
 // Mining calculator UI. API requests and polling are centralized.
 function calculatorWarning(code) {
