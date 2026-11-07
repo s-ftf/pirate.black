@@ -13,7 +13,7 @@ import {
   formatClaimTime,
   CALCULATOR_FIELDS,
   poolLastSeen,
-  poolTimingLuck,
+  poolBlockCount,
   recentMiningPools,
   reserveCoverage,
   reserveComparison,
@@ -24,7 +24,7 @@ import {
   getRelease,
   loadMedia,
   loadPublications
-} from './api.js?v=1';
+} from './api.js?v=2';
 import { releaseLinks, pairDownloadSignatures } from './wallet-releases.js?v=1';
 
 function element(tag, className, text) {
@@ -150,7 +150,9 @@ function renderPrivacy(data) {
     if (count !== null) card.querySelector('.privacy-count').title = `Source updated ${new Date(data.privacy.updated_at).toLocaleString()}`;
     else card.querySelector('.privacy-count').removeAttribute('title');
   });
-}function ago(timestamp) {
+}
+
+function ago(timestamp) {
   if (timestamp === null) return '—';
   const minutes = Math.max(0, Math.floor((Date.now() - timestamp) / 60000));
   if (minutes < 1) return 'Just now';
@@ -164,22 +166,20 @@ function renderMiningPools(group) {
   if (!container) return;
   const pools = recentMiningPools(group);
   if (!pools.length) return;
-  const haveDates = pools.some(pool => poolLastSeen(pool) !== null);
-  const haveLuck = pools.some(pool => poolTimingLuck(pool) !== null);
   const header = element('div', 'pool-list-heading');
-  header.append(element('span', '', 'Pool'), element('span', '', haveDates ? 'Last seen' : ''), element('span', '', haveLuck ? 'Timing luck' : ''));
-  if (haveLuck) header.lastChild.title = '60-second target ÷ mean positive parent-block interval. This is block timing, not pool-share luck.';
+  header.append(element('span', '', 'Pool'), element('span', '', 'Last seen'), element('span', '', 'Total blocks'));
   const rows = pools.map(pool => {
     const row = element('a', 'pool-row');
     row.href = `https://pirate.watch/miner/${pool.address}`;
     const seen = poolLastSeen(pool);
-    const time = element('time', 'pool-last-seen', haveDates ? ago(seen) : '');
+    const time = element('time', 'pool-last-seen', ago(seen));
     if (seen !== null) {
       time.dateTime = new Date(seen).toISOString();
       time.title = `Last observed block: ${new Date(seen).toLocaleString()}`;
     }
-    const luck = poolTimingLuck(pool);
-    const value = element('span', 'pool-luck', haveLuck ? (luck === null ? '—' : `${formatNumber(luck, 1)}%`) : '');
+    const blocks = poolBlockCount(pool);
+    const value = element('span', 'pool-blocks', formatCompactCount(blocks));
+    if (blocks !== null) value.title = `${formatNumber(blocks)} total blocks`;
     row.append(element('span', 'pool-name', pool.name), time, value);
     return row;
   });

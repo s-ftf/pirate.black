@@ -138,9 +138,9 @@ export function poolLastSeen(pool) {
   return null;
 }
 
-export function poolTimingLuck(pool) {
-  const value = pool.timing_luck_percent ?? pool.stats?.pace;
-  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null;
+export function poolBlockCount(pool) {
+  const value = pool.blocks;
+  return Number.isSafeInteger(value) && value >= 0 ? value : null;
 }
 
 export function recentMiningPools(group, limit = 5) {
