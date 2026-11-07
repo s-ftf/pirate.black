@@ -3321,13 +3321,14 @@ body.download-modal-open {
   height: 48px;
   object-fit: contain;
   transform: translate(-50%, -50%);
-  filter: none;
-  opacity: 1;
+  filter: saturate(.4);
+  opacity: .68;
 }
 
-.video-player button:hover .youtube-play-icon {
-  opacity: 1;
-  filter: none;
+.video-player button:hover .youtube-play-icon,
+.video-player button:focus-visible .youtube-play-icon {
+  opacity: .9;
+  filter: saturate(.65);
 }
 
 #community .social-row {
