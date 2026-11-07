@@ -1612,9 +1612,14 @@
   margin-top: 8px;
 }
 
+.wallet-feature .release-version,
+#wallets .wallet-name {
+  font: 13px var(--mono);
+  letter-spacing: normal;
+}
+
 .wallet-feature .release-version {
   display: inline-block;
-  font-size: 13px;
   margin-bottom: 24px;
 }
 
@@ -1781,12 +1786,6 @@
 .wallet-card-copy {
   display: grid;
   gap: 2px;
-}
-
-#wallets .wallet-name {
-  font-size: 19px;
-  font-weight: 350;
-  line-height: 1.25;
 }
 
 #wallets .wallet-type {
