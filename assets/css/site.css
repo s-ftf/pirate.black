@@ -1771,6 +1771,7 @@
   padding: 14px 16px;
   border: 1px solid transparent;
   border-radius: 4px;
+  transition: border-color .2s;
 }
 
 .wallet-card-copy {
@@ -1779,6 +1780,7 @@
 }
 
 #wallets .wallet-name {
+  color: #d8bc6a;
   font-size: 19px;
   line-height: 1.25;
 }
@@ -1791,11 +1793,8 @@
   padding: 0 16px 20px;
 }
 
-.core-wallet-trigger:hover .wallet-name,
-.core-wallet[data-wallet-active] .wallet-name {
-  color: #d8bc6a;
-}
-
+#wallets .wallet summary:is(:hover, :focus-visible),
+.core-wallet-trigger:is(:hover, :focus-visible),
 .core-wallet[data-wallet-active] .core-wallet-trigger {
   border-color: #d8bc6a;
 }
