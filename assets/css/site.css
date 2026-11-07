@@ -3153,8 +3153,11 @@ body.download-modal-open {
   }
 
   #resources .resource-links {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 16px;
+  }
+
+  #resources .resource-group > a {
+    gap: 8px;
   }
 }
 
