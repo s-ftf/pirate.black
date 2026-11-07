@@ -3503,7 +3503,7 @@ body.download-modal-open {
   padding: 35px 0;
   background-color: #1a1a1a;
   background-image: radial-gradient(ellipse 48% 100% at center,
-    rgb(216 188 106 / .085), rgb(216 188 106 / .035) 50%, transparent 100%);
+    rgb(216 188 106 / .065), rgb(216 188 106 / .027) 50%, transparent 100%);
 }
 
 .home-footer:has(.footer-link:focus-visible) {
