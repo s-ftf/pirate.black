@@ -3206,6 +3206,7 @@ body.download-modal-open {
   -webkit-line-clamp: 3;
   overflow: hidden;
   overflow-wrap: anywhere;
+  color: #d8bc6a;
   font-weight: 400;
 }
 
