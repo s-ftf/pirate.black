@@ -11,6 +11,7 @@
 /scripts/
 /tests/
 /AGENTS.md
+/.editorconfig
 .cache/
 *.log
 
