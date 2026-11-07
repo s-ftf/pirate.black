@@ -46,6 +46,8 @@ function setStat(name, value, timestamp) {
 
 // Apply the same external-link behavior to static content and asynchronously rendered links.
 function setupExternalLinks() {
+  const iconExceptions = '.discord-link, .stashi-play, .download-signature, ' +
+    '[data-download-section="Signatures"], .watch-footer, #publications, #resources, .x-post-brand';
   function enhance(link) {
     const href = link.getAttribute('href');
     if (!href) return;
@@ -54,7 +56,7 @@ function setupExternalLinks() {
     if (!['http:', 'https:'].includes(url.protocol) || url.origin === location.origin) return;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    const showIcon = !link.closest('.discord-link, .watch-footer, #publications, #resources, .x-post-brand');
+    const showIcon = !link.closest(iconExceptions);
     if (!showIcon) link.querySelectorAll('.external-link-icon').forEach(icon => icon.remove());
     if (showIcon && !link.querySelector('.external-link-icon')) {
       const icon = element('span', 'external-link-icon');
