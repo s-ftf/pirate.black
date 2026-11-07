@@ -842,9 +842,10 @@
   .network-heading {
     grid-column: 1;
     grid-row: 2;
-    width: 100%;
-    max-width: 440px;
+    width: fit-content;
+    max-width: min(100%, 440px);
     margin-inline: auto;
+    text-align: left;
   }
 
   .network-visual {
@@ -1130,20 +1131,31 @@
   }
 
   .swap-summary {
-    grid-template-columns: 1fr;
-    gap: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 28px;
   }
 
   .swap-summary > div {
     width: 200px;
   }
 
-  .swap-summary > div + div {
-    margin-top: -60px;
+  .swap-summary > div:last-child {
+    grid-column: 1 / -1;
+    margin-top: -32px;
   }
 
   .swap-summary dd {
     font-size: 28px;
+  }
+}
+
+@media (max-width: 479px) {
+  .swap-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .swap-summary > div:not(:first-child) {
+    margin-top: -60px;
   }
 }
 
