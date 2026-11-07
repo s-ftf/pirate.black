@@ -93,7 +93,7 @@ Both pages have canonical URLs, index/follow crawler directives, unrestricted pr
 
 `robots.txt` allows all crawlers, including AI crawlers. On GitHub Pages project hosting, the effective robots file must be served at the origin root (`https://s-ftf.github.io/robots.txt`); this repository's project-path copy cannot set origin-wide policy. The per-page indexing directives and sitemap still describe this site. `llms.txt` is an optional readable guide, not a promise of search indexing or AI inclusion.
 
-External links use `target="_blank"` and `rel="noopener noreferrer"` in HTML and generated UI. The square-and-arrow icon is omitted from Discord, publications/YouTube, resource links, the X brand mark, and footers. Mining pool icons sit inside their name cell. Internal section bookmarks and wallet dialogs stay in the same tab.
+External links use `target="_blank"` and `rel="noopener noreferrer"` in HTML and generated UI. The square-and-arrow icon is omitted from Discord, the Google Play badge, signature icons, publications/YouTube, resource links, the X brand mark, and footers. Mining pool icons sit inside their name cell. Internal section bookmarks and wallet dialogs stay in the same tab.
 
 Keep HTML, CSS, JavaScript, and SVG files readable and directly editable. There is no minification, compression, font-subsetting, or build step required to edit or publish the site. The full original webfonts and license notices are included. Raster images may be optimized: publication covers use local WebP files, and the mobile vARRR coast image is a smaller version of the desktop asset. SVG artwork stays in SVG format.
 
