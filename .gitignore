@@ -8,6 +8,8 @@
 /screenshots/
 /tmp/
 /docs/
+/scripts/
+/tests/
 .cache/
 *.log
 

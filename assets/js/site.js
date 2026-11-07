@@ -778,7 +778,7 @@ async function setupMedia() {
       status.textContent = saved ? `Saved feed · ${saved.updatedAt.slice(0, 10)}. Open the publication for the latest.` : 'The feed is unavailable. Open the publication directly.';
     }
   });
-  // YouTube RSS is refreshed into local metadata by scripts/update-media.py.
+  // Video and X metadata are maintained in the local media snapshot.
   // No visitor request to YouTube, or a YouTube feed proxy, occurs before play.
 }
 // Mining calculator UI. API requests and polling are centralized.
