@@ -10,6 +10,9 @@ export const CONFIG = Object.freeze({
   staleAfter: 5 * 60 * 1000,
   publicationFeed: 'https://medium.com/feed/piratechain',
   feedService: 'https://api.rss2json.com/v1/api.json',
+  youtubeUploads: 'UUd2zagYKjbo1mLTwIxEd06w',
+  // Public browser key used by the example community website.
+  youtubeAPIKey: 'AIzaSyAzrBuUUtL34scmof_gZN2Vbk4iimMhBV8',
   wallets: {
     'treasure-chest': { repository: 'PirateNetwork/pirate', assetType: 'qt' },
     stashi: { repository: 'PirateNetwork/Stashi-Wallet', installerOnly: true },
@@ -180,7 +183,7 @@ export function retryDelay(value, minimum = CONFIG.pollInterval, now = Date.now(
   return Number.isFinite(delay) ? Math.max(minimum, delay) : minimum;
 }
 
-export async function requestJSON(url, { signal, minimumRetry = CONFIG.pollInterval } = {}) {
+export async function requestJSON(url, { signal, minimumRetry = CONFIG.pollInterval, referrerPolicy = 'no-referrer' } = {}) {
   const controller = new AbortController();
   const abort = () => controller.abort();
   if (signal?.aborted) abort();
@@ -188,7 +191,7 @@ export async function requestJSON(url, { signal, minimumRetry = CONFIG.pollInter
   const timeout = setTimeout(abort, 12000);
   try {
     const response = await fetch(url, {
-      signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer'
+      signal: controller.signal, credentials: 'omit', referrerPolicy
     });
     if (!response.ok) {
       const error = new Error(`HTTP ${response.status}`);
@@ -321,9 +324,25 @@ export function getRelease(repository) {
   return releases.get(repository);
 }
 
-export const loadMedia = () => requestJSON('assets/data/media.json');
 export async function loadPublications() {
   const data = await requestJSON(`${CONFIG.feedService}?rss_url=${encodeURIComponent(CONFIG.publicationFeed)}`);
   if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('Invalid publication feed');
   return data.items;
+}
+
+// Read the newest public upload directly from YouTube, as in the example site.
+export async function loadLatestVideo() {
+  const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
+  url.search = new URLSearchParams({
+    part: 'snippet', maxResults: '1', playlistId: CONFIG.youtubeUploads, key: CONFIG.youtubeAPIKey
+  });
+  const data = await requestJSON(url.href, { referrerPolicy: 'strict-origin-when-cross-origin' });
+  const snippet = data.items?.[0]?.snippet;
+  const id = snippet?.resourceId?.videoId;
+  if (!/^[\w-]{11}$/.test(id) || typeof snippet?.title !== 'string') throw new Error('Invalid video feed');
+  return {
+    id,
+    title: snippet.title,
+    image: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+  };
 }
