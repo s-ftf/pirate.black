@@ -55,6 +55,8 @@ html::-webkit-scrollbar-thumb {
   --ink: #eeeee8;
   --muted: #989d94;
   --accent: #c4b27a;
+  --sailboat-gold: linear-gradient(134.474deg, #b38c30, #f2de98);
+  --gold-glow: drop-shadow(0 0 5px rgb(230 194 99 / .2)) drop-shadow(0 0 12px rgb(230 194 99 / .1));
   --line: #2c302b;
   --mono: Plex,monospace;
   --sans: Inter,Arial,sans-serif;

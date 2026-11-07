@@ -1,9 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 310">
   <style>
-    .signal{fill:none;stroke:url(#signal-lines);stroke-width:1.5;stroke-dasharray:20 650;animation:transmit 8s linear infinite}
-    .return{animation-delay:-4s;animation-direction:reverse}
-    @keyframes transmit{to{stroke-dashoffset:-670}}
-    @media(prefers-reduced-motion:reduce){.signal{animation:none}}
+    /* Adjacent bands follow each bend: bright head, muted midpoint, transparent tail. */
+    .signal {
+      --offset: calc(var(--segment) * -2px);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-dasharray: 2 668;
+      stroke-dashoffset: var(--offset);
+      animation: transmit 8s linear infinite;
+    }
+    .signal-return .signal {
+      --offset: calc(-18px + var(--segment) * 2px);
+      animation-delay: -4s;
+      animation-direction: reverse;
+    }
+    @keyframes transmit {
+      from { stroke-dashoffset: var(--offset); }
+      to { stroke-dashoffset: calc(var(--offset) - 670px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .signal { animation: none; }
+    }
   </style>
   <defs>
     <linearGradient id="shield-gold" gradientUnits="userSpaceOnUse" x1="219" y1="108" x2="281" y2="176">
@@ -11,6 +28,15 @@
       <stop offset=".55" stop-color="#f2de98" />
       <stop offset="1" stop-color="#bb9645" />
     </linearGradient>
+    <linearGradient id="shield-edge-light" gradientUnits="userSpaceOnUse" x1="250" y1="108" x2="281" y2="146">
+      <stop stop-color="#f2de98" stop-opacity="0" />
+      <stop offset=".3" stop-color="#f2de98" />
+      <stop offset=".7" stop-color="#f2de98" />
+      <stop offset="1" stop-color="#f2de98" stop-opacity="0" />
+    </linearGradient>
+    <filter id="shield-edge-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.4" />
+    </filter>
     <filter id="mark-soften" x="-10%" y="-10%" width="120%" height="120%">
       <feOffset in="SourceAlpha" dx="0.65" dy="0.65" result="shadow-offset" />
       <feGaussianBlur in="shadow-offset" stdDeviation="0.45" result="shadow-soft" />
@@ -32,12 +58,17 @@
       <stop offset=".78" stop-color="#46493f" />
       <stop offset="1" stop-color="#46493f" stop-opacity="0" />
     </linearGradient>
-    <linearGradient id="signal-lines" gradientUnits="userSpaceOnUse" x1="18" y1="155" x2="484" y2="155">
-      <stop stop-color="#c4b27a" stop-opacity="0" />
-      <stop offset=".18" stop-color="#c4b27a" />
-      <stop offset=".82" stop-color="#c4b27a" />
-      <stop offset="1" stop-color="#c4b27a" stop-opacity="0" />
+    <linearGradient id="signal-edge-fade" gradientUnits="userSpaceOnUse" x1="18" y1="155" x2="484" y2="155">
+      <stop stop-color="white" stop-opacity="0" />
+      <stop offset=".18" stop-color="white" />
+      <stop offset=".82" stop-color="white" />
+      <stop offset="1" stop-color="white" stop-opacity="0" />
     </linearGradient>
+    <mask id="signal-edges" maskUnits="userSpaceOnUse" x="0" y="0" width="500" height="310">
+      <rect width="500" height="310" fill="url(#signal-edge-fade)" />
+    </mask>
+    <path id="signal-outbound" d="M18 80H94L173 155H328L406 230H484" />
+    <path id="signal-inbound" d="M18 230H94L173 155H328L406 80H484" />
     <symbol id="padlock" viewBox="234 124 32 42">
       <path d="M241 143V136a9 9 0 0 1 18 0v7" fill="none" stroke="#c7b886" stroke-width="1.5" />
       <rect x="239" y="143" width="22" height="17" fill="#1d1d1d" stroke="#c7b886" stroke-width="1.5" />
@@ -58,8 +89,32 @@
     <path stroke="url(#vertical-lines)" d="M96 36V80L173 155L96 230V274" />
     <path stroke="url(#vertical-lines)" d="M406 36V80L328 155L406 230V274" />
   </g>
-  <path class="signal" d="M18 80H94L173 155H328L406 230H484" />
-  <path class="signal return" d="M18 230H94L173 155H328L406 80H484" />
+  <g mask="url(#signal-edges)">
+    <g>
+      <use class="signal" href="#signal-outbound" style="--segment: 0" stroke="#c4b27a" opacity="0" />
+      <use class="signal" href="#signal-outbound" style="--segment: 1" stroke="#c4b27a" opacity=".15" />
+      <use class="signal" href="#signal-outbound" style="--segment: 2" stroke="#c4b27a" opacity=".35" />
+      <use class="signal" href="#signal-outbound" style="--segment: 3" stroke="#c4b27a" opacity=".6" />
+      <use class="signal" href="#signal-outbound" style="--segment: 4" stroke="#c4b27a" opacity=".85" />
+      <use class="signal" href="#signal-outbound" style="--segment: 5" stroke="#c4b27a" />
+      <use class="signal" href="#signal-outbound" style="--segment: 6" stroke="#c5b37b" />
+      <use class="signal" href="#signal-outbound" style="--segment: 7" stroke="#ceba82" />
+      <use class="signal" href="#signal-outbound" style="--segment: 8" stroke="#e1cc8e" />
+      <use class="signal" href="#signal-outbound" style="--segment: 9" stroke="#f2de98" />
+    </g>
+    <g class="signal-return">
+      <use class="signal" href="#signal-inbound" style="--segment: 0" stroke="#c4b27a" opacity="0" />
+      <use class="signal" href="#signal-inbound" style="--segment: 1" stroke="#c4b27a" opacity=".15" />
+      <use class="signal" href="#signal-inbound" style="--segment: 2" stroke="#c4b27a" opacity=".35" />
+      <use class="signal" href="#signal-inbound" style="--segment: 3" stroke="#c4b27a" opacity=".6" />
+      <use class="signal" href="#signal-inbound" style="--segment: 4" stroke="#c4b27a" opacity=".85" />
+      <use class="signal" href="#signal-inbound" style="--segment: 5" stroke="#c4b27a" />
+      <use class="signal" href="#signal-inbound" style="--segment: 6" stroke="#c5b37b" />
+      <use class="signal" href="#signal-inbound" style="--segment: 7" stroke="#ceba82" />
+      <use class="signal" href="#signal-inbound" style="--segment: 8" stroke="#e1cc8e" />
+      <use class="signal" href="#signal-inbound" style="--segment: 9" stroke="#f2de98" />
+    </g>
+  </g>
   <g>
     <use href="#padlock" x="82" y="64.25" width="24" height="31.5" />
     <use href="#padlock" x="82" y="214.25" width="24" height="31.5" />
@@ -69,6 +124,7 @@
     <use href="#padlock" x="438" y="139.25" width="24" height="31.5" />
   </g>
   <path d="M250 108L281 120V146C281 170 250 187 250 187S219 170 219 146V120Z" fill="#1d1d1d" stroke="url(#shield-gold)" stroke-width="1.8" stroke-linejoin="round" />
+  <path d="M250 108L281 120V146" fill="none" stroke="url(#shield-edge-light)" stroke-width="4" opacity=".23" filter="url(#shield-edge-glow)" />
   <use href="#pirate-sailboat" x="231" y="122" width="38" height="49.2" opacity="0.7" filter="url(#mark-soften)" />
   <text x="250" y="212" text-anchor="middle" fill="#b9bcb0" font-family="monospace" font-size="9" letter-spacing="2">SHIELDED BY DEFAULT</text>
 </svg>

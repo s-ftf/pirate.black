@@ -481,8 +481,6 @@
 
 .hero {
   --hero-bg: #1d1d1d;
-  --sailboat-gold: linear-gradient(134.474deg, #b38c30, #f2de98);
-  --gold-glow: drop-shadow(0 0 5px rgb(230 194 99 / .2)) drop-shadow(0 0 12px rgb(230 194 99 / .1));
   position: relative;
   overflow: hidden;
   display: grid;
@@ -1348,19 +1346,8 @@
 }
 
 .network-whitepaper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  --hero-bg: #1d1d1d;
   gap: 10px;
-  min-height: 46px;
-  padding: 11px 18px;
-  border: 1px solid rgb(216 188 106 / .55);
-  background: rgb(216 188 106 / .04);
-  color: #d8bc6a;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.4;
-  transition: background .2s, border-color .2s, color .2s;
 }
 
 .whitepaper-icon {
@@ -1370,13 +1357,6 @@
   background: currentColor;
   -webkit-mask: url("../img/icons/file-lines.svg") center / contain no-repeat;
   mask: url("../img/icons/file-lines.svg") center / contain no-repeat;
-}
-
-.network-whitepaper:hover,
-.network-whitepaper:focus-visible {
-  border-color: #d8bc6a;
-  background: rgb(216 188 106 / .08);
-  color: #f2de98;
 }
 
 .resources-background {
