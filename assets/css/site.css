@@ -892,7 +892,7 @@
 
 .exchanges-quote {
   width: fit-content;
-  margin: 28px 0 68px;
+  margin: 68px auto;
   text-align: left;
 }
 
@@ -1110,7 +1110,7 @@
   }
 
   .exchanges-quote {
-    margin-bottom: 52px;
+    margin-block: 52px;
   }
 
   .exchanges-intro h2 {
