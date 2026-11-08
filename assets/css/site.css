@@ -891,6 +891,7 @@
 }
 
 .exchanges-quote {
+  width: fit-content;
   margin: 28px 0 68px;
   text-align: left;
 }
@@ -900,10 +901,15 @@
   font: italic clamp(22px, 2.5vw, 28px)/1.4 "IM Fell English", Georgia, "Times New Roman", serif;
 }
 
+.exchanges-quote-end {
+  position: absolute;
+}
+
 .exchanges-quote figcaption {
   margin-top: 4px;
   color: var(--muted);
   font-size: 13px;
+  text-align: right;
 }
 
 .swaps-layout {
