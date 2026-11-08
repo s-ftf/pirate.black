@@ -1313,7 +1313,7 @@
   display: block;
   width: 18px;
   height: 20px;
-  fill: #3298da;
+  fill: currentColor;
 }
 
 @media (min-width: 768px) {
