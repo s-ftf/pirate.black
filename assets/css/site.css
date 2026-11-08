@@ -1209,7 +1209,7 @@
 #network-title small {
   display: block;
   margin-top: 8px;
-  color: #3298da;
+  color: var(--muted);
   font-size: 15px;
   font-weight: 400;
   letter-spacing: normal;
