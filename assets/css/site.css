@@ -3247,7 +3247,7 @@ body.download-modal-open {
 
 .contribute-section {
   padding-block: clamp(28px, 3vw, 40px);
-  background: #d8bc6a;
+  background: #b8a46d;
   color: var(--bg);
   box-shadow:
     inset 0 20px 24px -20px rgb(16 17 17 / .75),
