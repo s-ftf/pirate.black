@@ -1305,7 +1305,7 @@
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  color: #3298da;
+  color: var(--muted);
   font: 700 10px/1.5 var(--mono);
 }
 
@@ -1313,7 +1313,7 @@
   display: block;
   width: 18px;
   height: 20px;
-  fill: currentColor;
+  fill: #3298da;
 }
 
 @media (min-width: 768px) {
