@@ -982,17 +982,22 @@ function setupMiningCalculator() {
 }
 
 // Page motion and clipboard actions.
-function setupMiningParallax() {
-  const section = document.querySelector('#mining');
-  if (!section) return;
+function setupParallax() {
+  const sections = [
+    { section: document.querySelector('#mining'), property: '--mining-shift', rate: .3, limit: 140 },
+    { section: document.querySelector('#contribute'), property: '--contribute-shift', rate: .04, limit: 14 }
+  ].filter(({ section }) => section);
+  if (!sections.length) return;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let frame = 0;
   const update = () => {
     frame = 0;
-    const rect = section.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > innerHeight) return;
-    const offset = (innerHeight / 2 - rect.top - rect.height / 2) * .3;
-    section.style.setProperty('--mining-shift', `${Math.max(-140, Math.min(140, offset))}px`);
+    for (const { section, property, rate, limit } of sections) {
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > innerHeight) continue;
+      const offset = (innerHeight / 2 - rect.top - rect.height / 2) * rate;
+      section.style.setProperty(property, `${Math.max(-limit, Math.min(limit, offset))}px`);
+    }
   };
   const schedule = () => {
     if (!reducedMotion.matches && !frame) frame = requestAnimationFrame(update);
@@ -1001,7 +1006,7 @@ function setupMiningParallax() {
   addEventListener('resize', schedule);
   reducedMotion.addEventListener('change', () => {
     cancelAnimationFrame(frame); frame = 0;
-    section.style.removeProperty('--mining-shift');
+    for (const { section, property } of sections) section.style.removeProperty(property);
     schedule();
   });
   schedule();
@@ -1078,7 +1083,7 @@ function initializeSite() {
   setupMedia();
   setupCopy();
   setupMiningCalculator();
-  setupMiningParallax();
+  setupParallax();
   setupSectionLinks();
   setupNetwork();
   setupReserveStats();

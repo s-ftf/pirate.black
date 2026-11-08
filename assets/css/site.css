@@ -3261,6 +3261,7 @@ body.download-modal-open {
   justify-content: space-between;
   gap: 24px 40px;
   max-width: 1000px;
+  transform: translate3d(0, var(--contribute-shift, 0px), 0);
 }
 
 .contribute-section h2 {
