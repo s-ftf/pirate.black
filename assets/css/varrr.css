@@ -384,7 +384,6 @@
   padding: 28px 30px 24px;
   border-radius: 4px;
   background: #171918;
-  box-shadow: 5px 7px 9px -4px rgb(0 0 0 / 17%);
 }
 
 .varrr-monitor-heading {
@@ -402,41 +401,13 @@
 }
 
 .varrr-monitor-result {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
   color: #b7bbb1;
   font-size: 13px;
-}
-
-.varrr-monitor-result::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  flex: none;
-  border-radius: 50%;
-  background: #74796f;
 }
 
 .varrr-monitor[data-health="matched"] .varrr-monitor-result,
 .varrr-monitor[data-health="above"] .varrr-monitor-result {
   color: #f5f5ef;
-}
-
-.varrr-monitor[data-health="matched"] .varrr-monitor-result::before,
-.varrr-monitor[data-health="above"] .varrr-monitor-result::before {
-  content: "✓";
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 20px;
-  border-radius: 0;
-  background: none;
-  color: #6ac58c;
-  font-size: 20px;
-  line-height: 1;
 }
 
 .varrr-monitor[data-health="below"] .varrr-monitor-result {
@@ -454,30 +425,17 @@
 .varrr-monitor-art {
   display: block;
   flex: none;
-  width: 220px;
+  width: 76px;
   height: auto;
 }
 
-.varrr-monitor-art .reserve-signal {
-  opacity: 0;
+.varrr-monitor-check {
+  visibility: hidden;
 }
 
-.varrr-monitor[data-health="matched"] .reserve-signal,
-.varrr-monitor[data-health="above"] .reserve-signal {
-  opacity: .65;
-  animation: reserve-check 6s linear infinite;
-}
-
-@keyframes reserve-check {
-  to {
-    stroke-dashoffset: -292;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .varrr-monitor .reserve-signal {
-    animation: none;
-  }
+.varrr-monitor[data-health="matched"] .varrr-monitor-check,
+.varrr-monitor[data-health="above"] .varrr-monitor-check {
+  visibility: visible;
 }
 
 .varrr-monitor .varrr-observation {
@@ -653,10 +611,6 @@
     flex-direction: column;
     gap: 16px;
     margin-top: 14px;
-  }
-
-  .varrr-monitor-art {
-    width: 220px;
   }
 
   .varrr-monitor .varrr-reserve-values {
