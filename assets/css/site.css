@@ -1907,7 +1907,7 @@
 .core-wallet-dialog .release-version {
   display: inline-block;
   margin: 4px 0 0;
-  color: #d8bc6a;
+  color: #3298da;
   font-size: 13px;
 }
 
@@ -2244,8 +2244,13 @@ body.download-modal-open {
 
 .wallet-dialog-version {
   display: inline-block;
-  color: #d8bc6a;
+  color: #3298da;
   font-size: 13px;
+}
+
+.core-wallet-dialog .release-version .external-link-icon,
+.wallet-dialog-version .external-link-icon {
+  color: #fff;
 }
 
 .wallet-dialog-version[hidden] {
