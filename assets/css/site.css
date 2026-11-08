@@ -3152,7 +3152,7 @@ body.download-modal-open {
 
 #publications {
   max-width: 1000px;
-  padding-bottom: 180px;
+  padding-bottom: 120px;
 }
 
 #publications > .video-grid {
@@ -3478,7 +3478,7 @@ body.download-modal-open {
   }
 
   #publications {
-    padding-bottom: 132px;
+    padding-bottom: 88px;
   }
 
   #community {
