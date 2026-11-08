@@ -1188,7 +1188,7 @@
 #network-title small {
   display: block;
   margin-top: 8px;
-  color: var(--muted);
+  color: #3298da;
   font-size: .62em;
   font-weight: 400;
   letter-spacing: normal;
