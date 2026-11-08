@@ -865,6 +865,7 @@
 
 .exchanges-intro {
   max-width: 720px;
+  margin-bottom: 68px;
 }
 
 .exchanges-intro h2 {
@@ -888,28 +889,6 @@
   color: #b7bbb1;
   font-size: 16px;
   line-height: 1.8;
-}
-
-.exchanges-quote {
-  width: fit-content;
-  margin: 68px auto;
-  text-align: left;
-}
-
-.exchanges-quote blockquote {
-  margin: 0;
-  font: italic clamp(22px, 2.5vw, 28px)/1.4 "IM Fell English", Georgia, "Times New Roman", serif;
-}
-
-.exchanges-quote-end {
-  position: absolute;
-}
-
-.exchanges-quote figcaption {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 13px;
-  text-align: right;
 }
 
 .swaps-layout {
@@ -1109,8 +1088,8 @@
     max-width: 520px;
   }
 
-  .exchanges-quote {
-    margin-block: 52px;
+  .exchanges-intro {
+    margin-bottom: 52px;
   }
 
   .exchanges-intro h2 {
