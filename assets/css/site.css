@@ -904,7 +904,7 @@
 }
 
 .swaps-copy h3 {
-  color: #3298da;
+  color: #d8bc6a;
   font-size: 26px;
   font-weight: 400;
   letter-spacing: -.5px;
@@ -992,6 +992,7 @@
 }
 
 .swap-stashi h3 {
+  color: #3298da;
   font-size: 22px;
   font-weight: 400;
   line-height: 1.35;
