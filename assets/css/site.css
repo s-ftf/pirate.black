@@ -1290,16 +1290,14 @@
   align-items: center;
   gap: 3px;
   color: #3298da;
-  font: 10px/1.5 var(--mono);
+  font: 700 10px/1.5 var(--mono);
 }
 
 .pool-locked svg {
   display: block;
   width: 18px;
   height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 9;
+  fill: currentColor;
 }
 
 @media (min-width: 768px) {
