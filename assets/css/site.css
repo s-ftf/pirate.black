@@ -1284,7 +1284,7 @@
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  color: var(--muted);
+  color: #3298da;
   font: 10px/1.5 var(--mono);
 }
 
@@ -1293,7 +1293,7 @@
   width: 18px;
   height: 20px;
   fill: none;
-  stroke: #3298da;
+  stroke: currentColor;
   stroke-width: 9;
 }
 
