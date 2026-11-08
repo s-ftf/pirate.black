@@ -2326,27 +2326,23 @@ body.download-modal-open {
   overflow-wrap: anywhere;
 }
 
-.wallet-dialog-links a:not(.download-source) .external-link-icon {
+.wallet-dialog-links .external-link-icon {
   color: #fff;
+  -webkit-mask-image: url("../img/icons/arrow-up-right-from-square-thin.svg");
+  mask-image: url("../img/icons/arrow-up-right-from-square-thin.svg");
 }
 
-.wallet-dialog-links a:hover {
+.wallet-dialog-links a:not(.download-source):hover {
   color: #f2de98;
-}
-
-.wallet-dialog-links a.download-source {
-  color: #d8bc6a;
 }
 
 .wallet-download-dialog .wallet-dialog-links a.download-source {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #fff;
 }
 
-.wallet-download-dialog .wallet-dialog-links a.download-source:hover {
-  color: #fff;
+.wallet-dialog-links a.download-source:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
