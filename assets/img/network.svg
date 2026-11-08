@@ -125,6 +125,7 @@
   </g>
   <path d="M250 108L281 120V146C281 170 250 187 250 187S219 170 219 146V120Z" fill="#1d1d1d" stroke="url(#shield-gold)" stroke-width="1.8" stroke-linejoin="round" />
   <path d="M250 108L281 120V146" fill="none" stroke="url(#shield-edge-light)" stroke-width="4" opacity=".23" filter="url(#shield-edge-glow)" />
-  <use href="#pirate-sailboat" x="231" y="122" width="38" height="49.2" opacity="0.7" filter="url(#mark-soften)" />
+  <!-- Center the mast at symbol x=89.05 on the shield's x=250 axis (scale 0.2). -->
+  <use href="#pirate-sailboat" x="234.19" y="122" width="38" height="49.2" opacity="0.7" filter="url(#mark-soften)" />
   <text x="250" y="212" text-anchor="middle" fill="#b9bcb0" font-family="monospace" font-size="9" letter-spacing="2">SHIELDED BY DEFAULT</text>
 </svg>
