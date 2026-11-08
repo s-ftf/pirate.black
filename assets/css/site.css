@@ -1907,7 +1907,7 @@
 .core-wallet-dialog .release-version {
   display: inline-block;
   margin: 4px 0 0;
-  color: #3298da;
+  color: #d8bc6a;
   font-size: 13px;
 }
 
@@ -2244,13 +2244,8 @@ body.download-modal-open {
 
 .wallet-dialog-version {
   display: inline-block;
-  color: #3298da;
+  color: #d8bc6a;
   font-size: 13px;
-}
-
-.core-wallet-dialog .release-version .external-link-icon,
-.wallet-dialog-version .external-link-icon {
-  color: #fff;
 }
 
 .wallet-dialog-version[hidden] {
@@ -2326,9 +2321,13 @@ body.download-modal-open {
   width: fit-content;
   max-width: 100%;
   padding-block: 5px;
-  color: #b6bab0;
+  color: #3298da;
   font-size: 15px;
   overflow-wrap: anywhere;
+}
+
+.wallet-dialog-links a:not(.download-source) .external-link-icon {
+  color: #fff;
 }
 
 .wallet-dialog-links a:hover {
