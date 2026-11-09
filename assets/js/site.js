@@ -246,6 +246,7 @@ function createWalletDownloads() {
     const model = models.get(wallet);
     current = { wallet, model, trigger, initialName: name, index: 0 };
     title.textContent = model.name;
+    version.toggleAttribute('data-no-external-icon', wallet.querySelector('[data-wallet-version]')?.hasAttribute('data-no-external-icon') || false);
     version.textContent = model.version;
     version.href = model.versionURL || '#';
     version.hidden = !model.version;
