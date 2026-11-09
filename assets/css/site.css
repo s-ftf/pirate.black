@@ -2120,7 +2120,7 @@ body.download-modal-open {
   border-radius: 8px;
   background: transparent;
   cursor: pointer;
-  transition: background .18s, border-color .18s;
+  transition: background .12s ease-out, border-color .12s ease-out, box-shadow .12s ease-out;
 }
 
 .wallet-platform-choice img,
@@ -2130,14 +2130,13 @@ body.download-modal-open {
   height: 38px;
   object-fit: contain;
   filter: none;
-  opacity: 1;
+  opacity: .85;
+  transition: opacity .12s ease-out;
 }
 
 .stashi-section .wallet-platform-choice img {
   width: 40px;
   height: 42px;
-  filter: saturate(.72);
-  opacity: .92;
 }
 
 .stashi-download-area {
@@ -2150,7 +2149,7 @@ body.download-modal-open {
   margin-bottom: 12px;
   color: #d8bc6a;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -2171,8 +2170,7 @@ body.download-modal-open {
 
 .wallet-platform-choice:hover,
 .wallet-platform-tab:hover {
-  background: rgb(215 187 106 / .06);
-  border-color: rgb(215 187 106 / .25);
+  border-color: #b79951;
 }
 
 .wallet-platform-choice:focus-visible,
@@ -2246,30 +2244,18 @@ body.download-modal-open {
   margin: 30px 0;
 }
 
-.wallet-platform-tab img {
-  filter: grayscale(1);
-  opacity: .38;
-  transition: filter .18s, opacity .18s;
-}
-
-.wallet-platform-tab:hover img {
-  opacity: .65;
-}
-
+.wallet-platform-choice:hover img,
+.wallet-platform-choice:focus-visible img,
+.wallet-platform-tab:hover img,
+.wallet-platform-tab:focus-visible img,
 .wallet-platform-tab[aria-selected="true"] img {
-  filter: none;
   opacity: 1;
 }
 
 .wallet-platform-tab[aria-selected="true"] {
   background: rgb(215 187 106 / .08);
   border-color: #b79951;
-}
-
-.core-wallet-platforms .wallet-platform-tab img,
-.core-wallet-platforms .wallet-platform-tab:hover img {
-  filter: none;
-  opacity: 1;
+  box-shadow: 0 0 10px rgb(215 187 106 / .22), inset 0 0 8px rgb(215 187 106 / .06);
 }
 
 .core-wallet-dialog .wallet-download-panel[hidden] {
