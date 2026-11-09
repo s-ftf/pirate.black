@@ -2286,6 +2286,10 @@ body.download-modal-open {
   font-weight: 500;
 }
 
+.wallet-download-panel .wallet-store-link {
+  margin: 0 0 18px;
+}
+
 .wallet-dialog-links {
   display: grid;
   gap: 8px;

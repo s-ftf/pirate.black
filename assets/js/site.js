@@ -223,6 +223,11 @@ function createWalletDownloads() {
       list.append(row);
     }
     target.replaceChildren(element('h3', '', group.name), list);
+    if (group.playStoreLink) {
+      const storeLink = group.playStoreLink.cloneNode(true);
+      storeLink.classList.add('wallet-store-link');
+      list.before(storeLink);
+    }
   }
 
   function selectPlatform(index, focus = false) {
@@ -387,6 +392,8 @@ function createWalletDownloads() {
         label: link.textContent.trim(), href: link.href, title: link.title, source: link.classList.contains('download-source'), section: link.dataset.downloadSection || ''
       }))
     })).filter(group => group.name && group.icon && group.links.length);
+    const android = platforms.find(group => group.icon.endsWith('/android.svg'));
+    if (android) android.playStoreLink = wallet.querySelector('a[href^="https://play.google.com/store/apps/details"]');
     if (wallet.hasAttribute('data-wallet-feature')) {
       const github = platforms.find(group => group.icon.endsWith('/github.svg'));
       if (github) github.links = github.links.filter(link => link.source);
