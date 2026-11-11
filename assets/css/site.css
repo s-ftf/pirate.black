@@ -721,7 +721,7 @@
   --display-ink: #ecd38f;
   --display-glow: rgb(232 201 122 / .38);
   color: var(--display-ink);
-  font: 14px/1.8 var(--mono);
+  font: 14.5px/1.8 var(--mono);
   white-space: nowrap;
 }
 
@@ -737,7 +737,7 @@
   --display-ink: #f0f3ed;
   --display-glow: rgb(210 227 245 / .28);
   color: var(--display-ink);
-  font: 400 17px/1.8 var(--mono);
+  font: 400 17.5px/1.8 var(--mono);
   overflow-wrap: anywhere;
 }
 
@@ -800,11 +800,11 @@
   }
 
   .fundamentals-intro p {
-    font-size: 15px;
+    font-size: 15.5px;
   }
 
   .pgp-marker {
-    font-size: 12px;
+    font-size: 12.5px;
   }
 }
 
