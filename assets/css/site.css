@@ -680,15 +680,48 @@
 }
 
 .fundamentals-intro {
-  max-width: 600px;
-  margin: 0 auto 32px;
-  padding: 12px 28px 24px;
+  max-width: 760px;
+  margin: 2px auto 48px;
+  padding: 36px 42px 40px;
   text-align: left;
 }
 
+.pgp-display-filters {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Bow the glass and lettering together before applying the camera angle. */
+.pgp-message {
+  position: relative;
+  isolation: isolate;
+  filter: url(#pgp-display-bow);
+  transform: perspective(1200px) rotateZ(-.75deg) rotateY(5deg) rotateX(2deg);
+  transform-origin: center;
+}
+
+/* Fade only the glass and reflections, leaving the illuminated text intact. */
+.pgp-message::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 12%, rgb(236 237 207 / .012) 28%,
+      rgb(236 237 207 / .045) 28.2%, rgb(236 237 207 / .008) 47%, transparent 65%),
+    linear-gradient(125deg, rgb(224 230 206 / .035), transparent 45%, rgb(216 188 106 / .015)),
+    linear-gradient(180deg, rgb(184 208 180 / .012), transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, rgb(0 0 0 / .75) 48%, transparent 71%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, rgb(0 0 0 / .75) 48%, transparent 71%);
+}
+
 .pgp-marker {
-  color: #d8bc6a;
-  font: 14px/1.8 var(--mono);
+  --display-ink: #ecd38f;
+  --display-glow: rgb(232 201 122 / .38);
+  color: var(--display-ink);
+  font: 15px/1.8 var(--mono);
   white-space: nowrap;
 }
 
@@ -701,9 +734,51 @@
 }
 
 .fundamentals-intro p {
-  color: #d5d8cf;
-  font: 400 15px/1.8 var(--mono);
+  --display-ink: #f0f3ed;
+  --display-glow: rgb(210 227 245 / .28);
+  color: var(--display-ink);
+  font: 400 18px/1.8 var(--mono);
   overflow-wrap: anywhere;
+}
+
+/* Each pixel contains red, green and blue emitters separated by fine gaps.
+   Multiplying by the ink preserves the gold markers; the text stays selectable. */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .pgp-message > :is(p, .pgp-marker) {
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 1.6px, rgb(8 11 14 / .38) 1.6px 2px),
+      repeating-linear-gradient(90deg,
+        #ff8b80 0 .85px, #34383b .85px 1px,
+        #8fefa5 1px 1.85px, #34383b 1.85px 2px,
+        #8db7ff 2px 2.85px, #34383b 2.85px 3px),
+      linear-gradient(var(--display-ink), var(--display-ink));
+    background-blend-mode: normal, multiply, normal;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 .4px var(--display-glow)) drop-shadow(0 0 2px var(--display-glow));
+  }
+
+  .pgp-message > :is(p, .pgp-marker)::selection {
+    color: #101111;
+    background: #d8bc6a;
+  }
+}
+
+@media (forced-colors: active) {
+  .pgp-message {
+    filter: none;
+  }
+
+  .pgp-message > :is(p, .pgp-marker) {
+    color: CanvasText;
+    background: none;
+    filter: none;
+  }
+
+  .pgp-message::before {
+    display: none;
+  }
 }
 
 .fundamentals-intro .pgp-privacy,
@@ -716,16 +791,46 @@
     padding-top: 24px;
   }
 
+  .pgp-message {
+    transform: perspective(1400px) rotateZ(-.5deg) rotateY(4deg) rotateX(1.5deg);
+  }
+
   .fundamentals-intro {
-    padding: 12px 20px 20px;
+    padding: 30px 28px 34px;
   }
 
   .fundamentals-intro p {
-    font-size: 14px;
+    font-size: 16px;
+  }
+
+  .pgp-marker {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Keep the message easy to read on narrow screens. */
+  .pgp-message {
+    filter: none;
+    transform: none;
+  }
+
+  .fundamentals-intro {
+    padding: 26px 20px 30px;
   }
 
   .pgp-marker {
     font-size: 12px;
+  }
+
+  .pgp-marker:first-child {
+    margin-bottom: 18px;
+  }
+
+  .pgp-marker:last-child,
+  .fundamentals-intro .pgp-privacy,
+  .fundamentals-intro .pgp-closing {
+    margin-top: 18px;
   }
 }
 

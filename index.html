@@ -239,11 +239,22 @@
     <script src="assets/js/scroll-position.js?v=2">
     </script>
     <link href="assets/css/base.css?v=2" rel="stylesheet"/>
-    <link href="assets/css/site.css?v=85" rel="stylesheet"/>
+    <link href="assets/css/site.css?v=98" rel="stylesheet"/>
     <script fetchpriority="low" src="assets/js/site.js?v=12" type="module">
     </script>
   </head>
   <body>
+    <svg aria-hidden="true" class="pgp-display-filters" width="0" height="0" focusable="false">
+      <defs>
+        <!-- Inverse curve map, x/y in [0,1], bow = sin(pi*y)^2:
+             R = .5 - .8*(x-.5)*bow; G = .5 - .6*(y-.5)*bow.
+             Negative displacement keeps the reversed bow very shallow. -->
+        <filter id="pgp-display-bow" x="-.05" y="-.05" width="1.1" height="1.1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+          <feImage href="assets/img/pgp-display-curve.png" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="curve-map"/>
+          <feDisplacementMap in="SourceGraphic" in2="curve-map" scale="-.015" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+    </svg>
     <a class="skip-link" href="#main">
       Skip to content
     </a>
@@ -295,7 +306,7 @@
               -----BEGIN PGP MESSAGE-----
             </div>
             <p>
-              Bitcoin made peer-to-peer money possible through a decentralized public ledger. Pirate Chain sees a private ledger as the natural next step in the evolution of cryptocurrency.
+              Bitcoin made peer-to-peer money possible through a decentralized public ledger. Pirate Chain sees that ledger made private as the natural next step in the evolution of cryptocurrency.
             </p>
             <p class="pgp-privacy">
               Protecting your privacy means no longer sharing your entire transaction history every time you make a payment.
