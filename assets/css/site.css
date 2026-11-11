@@ -1550,13 +1550,13 @@
   height: auto;
 }
 
-.stashi-guide,
 .wallet-feature .release-version,
 #wallets .wallet-name {
   color: #d8bc6a;
 }
 
 .stashi-guide {
+  color: #f2de98;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -2297,7 +2297,7 @@ body.download-modal-open {
   width: fit-content;
   max-width: 100%;
   padding-block: 5px;
-  color: #3298da;
+  color: #6bbcf0;
   font-size: 15px;
   overflow-wrap: anywhere;
 }
