@@ -134,7 +134,7 @@
 
 .varrr-connections {
   padding-block: 0 96px;
-  background: var(--varrr-hero-edge);
+  background: linear-gradient(to bottom, var(--varrr-hero-edge), var(--bg));
 }
 
 .varrr-feature-grid {
@@ -150,7 +150,7 @@
   padding: 28px;
   border: 0;
   border-radius: 4px;
-  background: var(--bg);
+  background: #1d1d1d;
 }
 
 .varrr-feature-grid h3 {
