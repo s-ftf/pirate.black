@@ -556,6 +556,7 @@
   .varrr-hero {
     display: flex;
     align-items: flex-end;
+    padding-bottom: 0;
   }
 
   .varrr-hero > .varrr-wrap {
@@ -584,7 +585,7 @@
 
   .varrr-mobile-wallet {
     display: block;
-    padding-block: 24px 32px;
+    padding-block: 0 32px;
   }
 
   .varrr-mobile-wallet .varrr-actions {
