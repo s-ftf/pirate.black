@@ -1057,11 +1057,11 @@
 .swap-stashi:hover,
 .swap-stashi:focus-visible {
   color: var(--ink);
-  background: #1b1b16;
-  border-top-color: #f2de98;
-  box-shadow: 0 0 18px rgb(216 188 106 / .22),
-    0 0 42px rgb(216 188 106 / .1),
-    inset 0 0 20px rgb(216 188 106 / .055);
+  background: #181916;
+  border-top-color: #e5cd86;
+  box-shadow: 0 0 30px rgb(216 188 106 / .1),
+    0 0 64px rgb(216 188 106 / .04),
+    inset 0 0 32px rgb(216 188 106 / .025);
 }
 
 @media (prefers-reduced-motion: reduce) {
