@@ -127,27 +127,6 @@
   background: #e7cd85;
 }
 
-.varrr-hero-facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
-  max-width: 660px;
-  margin-top: 58px;
-}
-
-.varrr-hero-facts dt {
-  color: #a8aca2;
-  font-size: 12px;
-  margin-bottom: 7px;
-}
-
-.varrr-hero-facts dd {
-  margin: 0;
-  color: #d8bc6a;
-  font-size: 20px;
-  font-variant-numeric: tabular-nums;
-}
-
 .varrr-connections {
   padding-block: 0 96px;
   background: var(--varrr-hero-edge);
@@ -594,8 +573,7 @@
     height: 72px;
   }
 
-  .varrr-actions,
-  .varrr-hero-facts {
+  .varrr-actions {
     display: none;
   }
 
