@@ -1027,9 +1027,9 @@
   display: block;
   position: relative;
   margin-top: 62px;
-  padding: 28px;
+  padding: 27px;
   background: #151716;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-top-color: #d8bc6a;
   transform: rotate(1.2deg);
   transition: border-color .16s ease-out;
