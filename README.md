@@ -16,8 +16,8 @@ Edit the HTML pages and files in `assets/`. Contributions are welcome through is
 
 ## External APIs
 
-This site is not suitable, in its current form, for use as the official Pirate Chain website. Like many static sites, it consumes external APIs for YouTube videos, GitHub releases, publications, and network statistics, and links to external blockchain explorers.
+In my opinion, this site is not suitable, as it is now, for use as the official Pirate Chain website. Like most static sites, it consumes external APIs for YouTube videos, GitHub releases, publications, and network statistics, and links to external blockchain explorers. Some of those API sources are unofficial and should be treated as untrusted.
 
-Some API sources are unofficial and should be treated as untrusted. Before this site is used as the official website, remove the features that depend on those sources or replace their endpoints with officially operated API servers.
+It can be used as is, but before this site is used as the official website, I would suggest removing the parts that depend on those sources or replace their endpoints from an official server, like explorer stats server for example.
 
 See [API_EXAMPLES.json](API_EXAMPLES.json) for the current requests and minimum response examples. Endpoints are configured in [assets/js/config.js](assets/js/config.js).
