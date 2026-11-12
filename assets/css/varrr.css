@@ -2,6 +2,10 @@
   max-width: 1000px;
 }
 
+.varrr-page .home-footer {
+  background-color: #292927;
+}
+
 .varrr-page main h2 {
   font-size: clamp(27px, 3vw, 34px);
   font-weight: 400;
