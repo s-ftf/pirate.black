@@ -948,7 +948,7 @@
   }
 }
 
-/* Exchanges: introduce native swaps and the upcoming Stashi integration. */
+/* Exchanges: introduce native swaps and the Stashi integration. */
 
 .swaps-section {
   position: relative;
@@ -1017,18 +1017,10 @@
   line-height: 1.8;
 }
 
-.swap-benefits {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 12px;
-  margin-top: 22px;
+.swap-quote {
+  margin: 24px 0 0;
   color: #d8bc6a;
-  font-size: 14px;
-}
-
-.swap-benefits > span {
-  white-space: nowrap;
+  font: italic clamp(22px, 2.1vw, 26px)/1.45 "IM Fell English", Georgia, "Times New Roman", serif;
 }
 
 .swap-source-link {
@@ -1052,12 +1044,30 @@
 }
 
 .swap-stashi {
+  display: block;
   position: relative;
   margin-top: 62px;
   padding: 28px;
   background: #151716;
   border-top: 2px solid #d8bc6a;
   transform: rotate(1.2deg);
+  transition: box-shadow .32s ease, border-color .32s ease, background-color .32s ease;
+}
+
+.swap-stashi:hover,
+.swap-stashi:focus-visible {
+  color: var(--ink);
+  background: #1b1b16;
+  border-top-color: #f2de98;
+  box-shadow: 0 0 18px rgb(216 188 106 / .22),
+    0 0 42px rgb(216 188 106 / .1),
+    inset 0 0 20px rgb(216 188 106 / .055);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swap-stashi {
+    transition: none;
+  }
 }
 
 .swap-stashi::before {
