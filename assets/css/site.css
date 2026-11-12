@@ -1037,11 +1037,11 @@
 .swap-stashi:hover,
 .swap-stashi:focus-visible {
   color: var(--ink);
-  background: #181916;
-  border-top-color: #e5cd86;
-  box-shadow: 0 0 30px rgb(216 188 106 / .1),
-    0 0 64px rgb(216 188 106 / .04),
-    inset 0 0 32px rgb(216 188 106 / .025);
+  background: #191815;
+  border-top-color: #dfc278;
+  box-shadow: 0 0 30px rgb(230 194 99 / .075),
+    0 0 64px rgb(179 140 48 / .05),
+    inset 0 0 32px rgb(187 150 69 / .035);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1057,7 +1057,7 @@
   left: 0;
   right: 0;
   height: 24px;
-  background: linear-gradient(to top, rgb(216 188 106 / .065), transparent);
+  background: linear-gradient(to top, rgb(187 150 69 / .06), transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
   pointer-events: none;
