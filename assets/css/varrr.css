@@ -133,7 +133,7 @@
 }
 
 .varrr-connections {
-  padding-block: 0 96px;
+  padding-block: 32px 64px;
   background: linear-gradient(to bottom, var(--varrr-hero-edge), var(--bg));
 }
 
@@ -203,7 +203,7 @@
 }
 
 .varrr-launch {
-  padding-block: 140px;
+  padding-block: 96px 140px;
   text-align: center;
   scroll-margin-top: 52px;
 }
@@ -594,7 +594,7 @@
   }
 
   .varrr-connections {
-    padding-block: 0 72px;
+    padding-block: 24px 40px;
   }
 
   .varrr-reserve {
@@ -616,7 +616,7 @@
   }
 
   .varrr-launch {
-    padding-block: 104px;
+    padding-block: 72px 104px;
   }
 
   .varrr-allocation {
