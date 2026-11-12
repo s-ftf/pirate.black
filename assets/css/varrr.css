@@ -219,7 +219,7 @@
 }
 
 .varrr-launch {
-  padding-block: 64px 140px;
+  padding-block: 140px;
   text-align: center;
   scroll-margin-top: 52px;
 }
@@ -622,7 +622,7 @@
   }
 
   .varrr-launch {
-    padding-block: 48px 104px;
+    padding-block: 104px;
   }
 
   .varrr-allocation {
