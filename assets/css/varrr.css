@@ -25,7 +25,7 @@
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(0deg, #1d1d1d, transparent 30%), url("../img/varrr/varrr-gold-arches.webp") center / cover no-repeat;
+  background: linear-gradient(0deg, #1d1d1d, transparent 30%), url("../img/varrr/varrr-branded-shield.webp") center / cover no-repeat;
 }
 
 .varrr-home {
@@ -558,7 +558,7 @@
   }
 
   .varrr-hero::before {
-    background: linear-gradient(90deg, rgb(17 19 18 / .82), rgb(17 19 18 / .35)), linear-gradient(0deg, #1d1d1d, transparent 55%), url("../img/varrr/varrr-gold-arches.webp") 68% center / cover no-repeat;
+    background: linear-gradient(90deg, rgb(17 19 18 / .88), rgb(17 19 18 / .65)), linear-gradient(0deg, #1d1d1d, transparent 55%), url("../img/varrr/varrr-branded-shield.webp") 68% center / cover no-repeat;
   }
 
   .varrr-hero-copy {
