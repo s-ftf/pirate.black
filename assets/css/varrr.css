@@ -557,10 +557,6 @@
     padding: 28px 0 56px;
   }
 
-  .varrr-hero::before {
-    background: linear-gradient(90deg, rgb(17 19 18 / .88), rgb(17 19 18 / .65)), linear-gradient(0deg, #1d1d1d, transparent 55%), url("../img/varrr/varrr-bottle-sand.webp") 68% center / cover no-repeat;
-  }
-
   .varrr-hero-copy {
     margin-top: 40px;
   }
