@@ -127,6 +127,11 @@
   background: #e7cd85;
 }
 
+.varrr-mobile-wallet {
+  display: none;
+  background: var(--varrr-hero-edge);
+}
+
 .varrr-connections {
   padding-block: 0 96px;
   background: var(--varrr-hero-edge);
@@ -573,8 +578,18 @@
     height: 72px;
   }
 
-  .varrr-actions {
+  .varrr-hero .varrr-actions {
     display: none;
+  }
+
+  .varrr-mobile-wallet {
+    display: block;
+    padding-block: 24px 32px;
+  }
+
+  .varrr-mobile-wallet .varrr-actions {
+    justify-content: flex-end;
+    margin-top: 0;
   }
 
   .varrr-connections {
