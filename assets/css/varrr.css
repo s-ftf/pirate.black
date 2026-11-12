@@ -92,6 +92,13 @@
   letter-spacing: -.35px;
 }
 
+.varrr-verus-wordmark {
+  display: inline-block;
+  width: auto;
+  height: 1.35em;
+  vertical-align: -.29em;
+}
+
 .varrr-actions {
   display: flex;
   flex-wrap: wrap;
