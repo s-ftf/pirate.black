@@ -25,7 +25,7 @@
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(0deg, #1d1d1d, transparent 30%), url("../img/varrr/varrr-bottle-dunes.webp") center / cover no-repeat;
+  background: linear-gradient(0deg, #1d1d1d, transparent 30%), url("../img/varrr/varrr-bottle-dunes.webp") right center / cover no-repeat;
 }
 
 .varrr-home {
