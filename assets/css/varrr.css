@@ -150,7 +150,7 @@
   padding: 28px;
   border: 0;
   border-radius: 4px;
-  background: #1d1d1d;
+  background: var(--bg);
 }
 
 .varrr-feature-grid h3 {
