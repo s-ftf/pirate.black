@@ -1,6 +1,6 @@
 /** Main site behavior. Data access lives in api.js; release sorting in wallet-releases.js. */
+import { CONFIG } from './config.js?v=1';
 import {
-  CONFIG,
   formatZat,
   formatRoundedARRR,
   formatCompactCount,
@@ -24,7 +24,7 @@ import {
   getRelease,
   loadLatestVideo,
   loadPublications
-} from './api.js?v=3';
+} from './api.js?v=4';
 import { releaseLinks, pairDownloadSignatures } from './wallet-releases.js?v=1';
 
 function element(tag, className, text) {

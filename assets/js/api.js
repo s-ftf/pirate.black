@@ -1,25 +1,9 @@
 /**
- * Data services: public endpoints, request/backoff policy, shared polling,
+ * Data services: request/backoff policy, shared polling,
  * response validation, and formatting of API values. No UI rendering here.
  */
 
-export const CONFIG = Object.freeze({
-  statsURL: 'https://pirate.watch/api/v1/stats',
-  miningCalculatorURL: 'https://pirate.watch/api/v1/mining-calculator/calculate',
-  pollInterval: 65000,
-  staleAfter: 5 * 60 * 1000,
-  publicationFeed: 'https://medium.com/feed/piratechain',
-  feedService: 'https://api.rss2json.com/v1/api.json',
-  youtubeUploads: 'UUd2zagYKjbo1mLTwIxEd06w',
-  // Public browser key used by the example community website.
-  youtubeAPIKey: 'AIzaSyAzrBuUUtL34scmof_gZN2Vbk4iimMhBV8',
-  wallets: {
-    'treasure-chest': { repository: 'PirateNetwork/pirate', assetType: 'qt' },
-    stashi: { repository: 'PirateNetwork/Stashi-Wallet', installerOnly: true },
-    paper: { repository: 'PirateNetwork/piratepaperwallet' },
-    cli: { repository: 'PirateNetwork/pirate', assetType: 'cli' }
-  }
-});
+import { CONFIG } from './config.js?v=1';
 
 // Value formatting and response validation.
 export function formatZat(value, decimals = 2) {
@@ -264,7 +248,7 @@ export const watchNetwork = onUpdate => watchResource({
 });
 
 export const watchReserve = onUpdate => watchResource({
-  url: `${CONFIG.statsURL}/supply`, cacheKey: 'pirate-supply-v1',
+  url: CONFIG.supplyURL, cacheKey: 'pirate-supply-v1',
   validate: reserveSupplyIsValid, timestamp: data => Date.parse(data.updated_at), onUpdate
 });
 
@@ -307,7 +291,7 @@ export function getRelease(repository) {
   }
   if (Date.now() < (releaseRetryAt.get(repository) || 0)) return Promise.reject(new Error('Release retry pending'));
   if (!releases.has(repository)) {
-    releases.set(repository, requestJSON(`https://api.github.com/repos/${repository}/releases/latest`)
+    releases.set(repository, requestJSON(CONFIG.githubReleaseURL.replace('{repository}', repository))
       .then(data => {
         if (!Array.isArray(data.assets) || typeof data.tag_name !== 'string' ||
             !safeURL(data.html_url, ['github.com']) ||
@@ -332,7 +316,7 @@ export async function loadPublications() {
 
 // Read the newest public upload directly from YouTube, as in the example site.
 export async function loadLatestVideo() {
-  const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
+  const url = new URL(CONFIG.youtubePlaylistURL);
   url.search = new URLSearchParams({
     part: 'snippet', maxResults: '1', playlistId: CONFIG.youtubeUploads, key: CONFIG.youtubeAPIKey
   });

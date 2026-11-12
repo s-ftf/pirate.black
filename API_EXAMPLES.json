@@ -1,0 +1,174 @@
+{
+  "endpoints": [
+    {
+      "name": "Network statistics",
+      "requests": [{"method": "GET", "url": "https://pirate.watch/api/v1/stats"}],
+      "expected_response": {
+        "network": {"height": 4000000, "peer_count": 24, "updated_at": "2026-11-11T12:00:00Z"},
+        "privacy": {
+          "commitments": {"sprout": 100000, "sapling": 2000000, "ironwood": 300000},
+          "updated_at": "2026-11-11T12:00:00Z"
+        },
+        "mining-pools": {
+          "pools": [
+            {
+              "name": "Example Pool",
+              "address": "R111111111111111111111111111111111",
+              "url": "https://pool.example.com",
+              "last_seen": "2026-11-11T11:59:00Z",
+              "blocks": 12345
+            }
+          ]
+        },
+        "swaps": {
+          "funded_count": 1200,
+          "median_claim_seconds": 90,
+          "claimed_zat": "250000000000",
+          "updated_at": "2026-11-11T12:00:00Z"
+        }
+      }
+    },
+    {
+      "name": "vARRR backing",
+      "requests": [{"method": "GET", "url": "https://pirate.watch/api/v1/stats/supply"}],
+      "expected_response": {"varrr_locked_zat": "1000000000000000", "updated_at": "2026-11-11T12:00:00Z"}
+    },
+    {
+      "name": "Mining calculator",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://pirate.watch/api/v1/mining-calculator/calculate",
+          "query": {"miner_id": "z15-pro"}
+        },
+        {
+          "method": "GET",
+          "url": "https://pirate.watch/api/v1/mining-calculator/calculate",
+          "query": {
+            "miner_id": "z15-pro",
+            "sol_s": 840000,
+            "watts": 2560,
+            "electricity_usd_kwh": 0.1,
+            "pool_fee_percent": 1,
+            "quantity": 1,
+            "cost_usd": 5000,
+            "price_usd": 0.5
+          }
+        }
+      ],
+      "expected_response": {
+        "api_version": 1,
+        "form": {"miners": [{"id": "z15-pro", "name": "Antminer Z15 Pro", "sol_s": 840000, "watts": 2560, "cost_usd": 5000}]},
+        "inputs": {
+          "miner_id": "z15-pro",
+          "sol_s": 840000,
+          "watts": 2560,
+          "electricity_usd_kwh": 0.1,
+          "pool_fee_percent": 1,
+          "quantity": 1,
+          "cost_usd": 5000,
+          "price_usd": 0.5
+        },
+        "results": {
+          "daily": {"arrr": 100, "net_usd": 43.856, "energy_kwh": 61.44},
+          "break_even_usd_kwh": 0.813802,
+          "payback_days": 114.01,
+          "network_share": 0.001,
+          "payouts": [{"period": "day", "arrr": 100, "revenue_usd": 50, "electricity_usd": 6.144, "net_usd": 43.856}]
+        }
+      }
+    },
+    {
+      "name": "Treasure Chest and CLI downloads",
+      "requests": [{"method": "GET", "url": "https://api.github.com/repos/PirateNetwork/pirate/releases/latest"}],
+      "expected_response": {
+        "tag_name": "v1.0.0",
+        "html_url": "https://github.com/PirateNetwork/pirate/releases/tag/v1.0.0",
+        "assets": [
+          {
+            "name": "pirate-qt-linux-v1.0.0.tar.gz",
+            "browser_download_url": "https://github.com/PirateNetwork/pirate/releases/download/v1.0.0/pirate-qt-linux-v1.0.0.tar.gz"
+          },
+          {
+            "name": "pirate-cli-linux-v1.0.0.tar.gz",
+            "browser_download_url": "https://github.com/PirateNetwork/pirate/releases/download/v1.0.0/pirate-cli-linux-v1.0.0.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Stashi downloads",
+      "requests": [{"method": "GET", "url": "https://api.github.com/repos/PirateNetwork/Stashi-Wallet/releases/latest"}],
+      "expected_response": {
+        "tag_name": "v1.0.0",
+        "html_url": "https://github.com/PirateNetwork/Stashi-Wallet/releases/tag/v1.0.0",
+        "assets": [
+          {
+            "name": "stashi-windows-v1.0.0.msi",
+            "browser_download_url": "https://github.com/PirateNetwork/Stashi-Wallet/releases/download/v1.0.0/stashi-windows-v1.0.0.msi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Paper wallet downloads",
+      "requests": [{"method": "GET", "url": "https://api.github.com/repos/PirateNetwork/piratepaperwallet/releases/latest"}],
+      "expected_response": {
+        "tag_name": "v1.0.0",
+        "html_url": "https://github.com/PirateNetwork/piratepaperwallet/releases/tag/v1.0.0",
+        "assets": [
+          {
+            "name": "piratepaperwallet-v1.0.0.zip",
+            "browser_download_url": "https://github.com/PirateNetwork/piratepaperwallet/releases/download/v1.0.0/piratepaperwallet-v1.0.0.zip"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Publications",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://api.rss2json.com/v1/api.json",
+          "query": {"rss_url": "https://medium.com/feed/piratechain"}
+        }
+      ],
+      "expected_response": {
+        "status": "ok",
+        "items": [
+          {
+            "title": "Example community update",
+            "link": "https://medium.com/piratechain/example-community-update",
+            "pubDate": "2026-11-11 12:00:00"
+          },
+          {
+            "title": "Example wallet update",
+            "link": "https://medium.com/piratechain/example-wallet-update",
+            "pubDate": "2026-11-10 12:00:00"
+          },
+          {
+            "title": "Example network update",
+            "link": "https://medium.com/piratechain/example-network-update",
+            "pubDate": "2026-11-09 12:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Latest YouTube video",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://www.googleapis.com/youtube/v3/playlistItems",
+          "query": {
+            "part": "snippet",
+            "maxResults": "1",
+            "playlistId": "UUd2zagYKjbo1mLTwIxEd06w",
+            "key": "<youtubeAPIKey from assets/js/config.js>"
+          }
+        }
+      ],
+      "expected_response": {"items": [{"snippet": {"title": "Example Pirate Chain video", "resourceId": {"videoId": "abcdefghijk"}}}]}
+    }
+  ]
+}

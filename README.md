@@ -14,4 +14,10 @@ Then open [127.0.0.1:4173](http://127.0.0.1:4173).
 
 Edit the HTML pages and files in `assets/`. Contributions are welcome through issues and pull requests.
 
-Licensed under [0BSD](LICENSE); third-party assets retain their own notices.
+## External APIs
+
+This site is not suitable, in its current form, for use as the official Pirate Chain website. Like many static sites, it consumes external APIs for YouTube videos, GitHub releases, publications, and network statistics, and links to external blockchain explorers.
+
+Some API sources are unofficial and should be treated as untrusted. Before this site is used as the official website, remove the features that depend on those sources or replace their endpoints with officially operated API servers.
+
+See [API_EXAMPLES.json](API_EXAMPLES.json) for the current requests and minimum response examples. Endpoints are configured in [assets/js/config.js](assets/js/config.js).
