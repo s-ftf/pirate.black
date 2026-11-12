@@ -1017,12 +1017,6 @@
   line-height: 1.8;
 }
 
-.swap-quote {
-  margin: 24px 0 0;
-  color: #fff;
-  font: italic clamp(22px, 2.1vw, 26px)/1.45 "IM Fell English", Georgia, "Times New Roman", serif;
-}
-
 .swap-stashi {
   display: block;
   position: relative;
