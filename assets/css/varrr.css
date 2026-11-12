@@ -16,6 +16,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  min-height: 520px;
   padding: 38px 0 70px;
   background: #1d1d1d;
 }
@@ -568,11 +569,18 @@
     padding: 28px 0 56px;
   }
 
+  .varrr-hero > .varrr-wrap {
+    max-width: none;
+  }
+
   .varrr-hero-copy {
     margin-top: 40px;
+    margin-left: auto;
+    text-align: right;
   }
 
   .varrr-brand {
+    justify-content: flex-end;
     gap: 16px;
   }
 
@@ -586,6 +594,7 @@
     margin-top: 22px;
   }
 
+  .varrr-actions,
   .varrr-hero-facts {
     display: none;
   }
