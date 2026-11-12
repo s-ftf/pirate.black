@@ -1,3 +1,7 @@
+.varrr-page {
+  --varrr-hero-edge: #1d1d1d;
+}
+
 .varrr-wrap {
   max-width: 1000px;
 }
@@ -18,7 +22,7 @@
   overflow: hidden;
   min-height: 520px;
   padding: 38px 0 70px;
-  background: #1d1d1d;
+  background: var(--varrr-hero-edge);
 }
 
 .varrr-hero::before {
@@ -26,7 +30,7 @@
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(0deg, #1d1d1d, transparent 30%), url("../img/varrr/varrr-bottle-dunes.webp") right center / cover no-repeat;
+  background: linear-gradient(0deg, var(--varrr-hero-edge), transparent 30%), url("../img/varrr/varrr-bottle-dunes.webp") right center / cover no-repeat;
 }
 
 .varrr-home {
@@ -146,6 +150,7 @@
 
 .varrr-connections {
   padding-block: 96px;
+  background: var(--varrr-hero-edge);
 }
 
 .varrr-feature-grid {
@@ -162,7 +167,7 @@
   padding: 28px;
   border: 0;
   border-radius: 4px;
-  background: #1d1d1d;
+  background: #252523;
 }
 
 .varrr-feature-grid h3 {
