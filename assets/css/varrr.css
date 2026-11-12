@@ -566,7 +566,8 @@
   }
 
   .varrr-hero {
-    padding: 28px 0 56px;
+    display: flex;
+    align-items: flex-end;
   }
 
   .varrr-hero > .varrr-wrap {
@@ -574,7 +575,7 @@
   }
 
   .varrr-hero-copy {
-    margin-top: 40px;
+    margin-top: 0;
     margin-left: auto;
     text-align: right;
   }
@@ -587,11 +588,6 @@
   .varrr-brand img {
     width: 72px;
     height: 72px;
-  }
-
-  .varrr-lead {
-    font-size: 20px;
-    margin-top: 22px;
   }
 
   .varrr-actions,
