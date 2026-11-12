@@ -317,8 +317,29 @@
 }
 
 .varrr-reserve {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding-block: 96px 120px;
   background: #1d1d1d;
+}
+
+.varrr-reserve::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 3px 3px, #66695f 1.3125px, transparent 1.5px);
+  background-size: 19px 19px;
+  opacity: .8;
+  transform: scaleX(-1);
+  -webkit-mask-image: linear-gradient(to left, rgb(0 0 0 / .165), rgb(0 0 0 / .6) 23%, rgb(0 0 0 / .06) 50%, rgb(0 0 0 / .015) 77%, transparent 100%);
+  mask-image: linear-gradient(to left, rgb(0 0 0 / .165), rgb(0 0 0 / .6) 23%, rgb(0 0 0 / .06) 50%, rgb(0 0 0 / .015) 77%, transparent 100%);
+}
+
+.varrr-reserve > .wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .varrr-reserve-heading {
@@ -650,20 +671,6 @@
   .varrr-key .command-wrap {
     padding: 16px;
   }
-}
-
-.varrr-page .watch-footer {
-  padding: 72px 0 28px;
-  background: #1d1d1d;
-}
-
-.varrr-page .watch-footer > img {
-  width: 34px;
-}
-
-.varrr-page .watch-footer .footer-motto {
-  color: #d8bc6a;
-  font-size: 14px;
 }
 
 .varrr-launch-date a {
