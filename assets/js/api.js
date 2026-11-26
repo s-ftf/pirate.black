@@ -321,18 +321,26 @@ export function loadPublications() {
 export async function loadLatestXPost() {
   const items = await loadRSSItems(CONFIG.xPostFeed, { cache: 'no-cache' });
   const feedHost = new URL(CONFIG.xPostFeed).hostname;
+  const countdown = /^(?:we(?:['’]re| are) )?(?:going live|starting|live) (?:now|soon|in \d+ (?:minutes?|hours?))[!.…]*$/i;
   let latest;
   for (const item of items) {
     const link = safeURL(item?.link, [feedHost, 'x.com', 'twitter.com']);
     const id = link && /^\/PirateChain\/status\/([1-9]\d{0,19})\/?$/i.exec(new URL(link).pathname)?.[1];
     const timestamp = typeof item?.pubDate === 'string' ? Date.parse(`${item.pubDate.replace(' ', 'T')}Z`) : NaN;
-    if (!id || !Number.isFinite(timestamp)) continue;
+    if (!id || !Number.isFinite(timestamp) || !/^@?PirateChain$/i.test(item.author ?? '')) continue;
+
+    // The mirror prefixes replies, plain reposts, and pinned posts in RSS titles.
+    const title = typeof item.title === 'string' ? item.title.replace(/^Pinned:\s*/i, '').trim() : '';
+    if (/^(?:R to|RT)\s+@/i.test(title)) continue;
+    const text = title.replace(/https?:\/\/\S+/gi, '').trim();
+    if (!/\p{L}/u.test(text) || countdown.test(text)) continue;
+
     // Mirrors can put an older pinned post ahead of newer posts.
     if (!latest || timestamp > latest.timestamp) {
       latest = {
         href: `https://x.com/PirateChain/status/${id}`,
         timestamp,
-        title: typeof item.title === 'string' ? item.title : ''
+        title: text
       };
     }
   }

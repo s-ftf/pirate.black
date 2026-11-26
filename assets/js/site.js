@@ -25,7 +25,7 @@ import {
   loadLatestVideo,
   loadPublications,
   loadLatestXPost
-} from './api.js?v=5';
+} from './api.js?v=6';
 import { releaseLinks, pairDownloadSignatures } from './wallet-releases.js?v=1';
 
 function element(tag, className, text) {
@@ -759,10 +759,11 @@ async function setupXPost() {
     const link = card.querySelector('.x-post-footer a');
     const date = new Date(post.timestamp);
     const template = document.createElement('template');
-    template.innerHTML = post.title;
-    const title = template.content.textContent.replace(/\s+/g, ' ').trim();
+    template.innerHTML = post.title.replaceAll('<', '&lt;');
+    const headline = template.content.textContent.split('\n').find(line => /\p{L}/u.test(line))?.trim();
+    if (!headline) return;
 
-    description.textContent = /^https?:\/\/\S+$/i.test(title) ? 'Shared a link on X.' : title || 'Shared a post on X.';
+    description.textContent = headline;
     time.dateTime = date.toISOString();
     time.textContent = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
     link.href = post.href;
