@@ -1,5 +1,5 @@
 /** Main site behavior. Data access lives in api.js; release sorting in wallet-releases.js. */
-import { CONFIG } from './config.js?v=1';
+import { CONFIG } from './config.js?v=2';
 import {
   formatZat,
   formatRoundedARRR,
@@ -23,8 +23,9 @@ import {
   calculateMining,
   getRelease,
   loadLatestVideo,
-  loadPublications
-} from './api.js?v=4';
+  loadPublications,
+  loadLatestXPost
+} from './api.js?v=5';
 import { releaseLinks, pairDownloadSignatures } from './wallet-releases.js?v=1';
 
 function element(tag, className, text) {
@@ -746,7 +747,33 @@ function lazy(section, task) {
   observer.observe(section);
 }
 
+async function setupXPost() {
+  const card = document.querySelector('#x-feed .x-post');
+  if (!card) return;
+  try {
+    const post = await loadLatestXPost();
+    if (!post) return;
+
+    const description = card.querySelector('.x-post-text');
+    const time = card.querySelector('time');
+    const link = card.querySelector('.x-post-footer a');
+    const date = new Date(post.timestamp);
+    const template = document.createElement('template');
+    template.innerHTML = post.title;
+    const title = template.content.textContent.replace(/\s+/g, ' ').trim();
+
+    description.textContent = /^https?:\/\/\S+$/i.test(title) ? 'Shared a link on X.' : title || 'Shared a post on X.';
+    time.dateTime = date.toISOString();
+    time.textContent = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+    link.href = post.href;
+    link.textContent = 'View post';
+    description.hidden = false;
+    time.hidden = false;
+  } catch { /* Keep the direct profile link when the feed is unavailable. */ }
+}
+
 function setupMedia() {
+  setupXPost();
   setupVideos();
   lazy(document.querySelector('#publications'), async () => {
     const status = document.querySelector('#publication-status');

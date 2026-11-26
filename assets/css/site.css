@@ -3548,7 +3548,7 @@ body.download-modal-open {
   opacity: 1;
 }
 
-.x-post .x-post-text {
+.x-post .x-post-text:not([hidden]) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;

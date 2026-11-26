@@ -3,7 +3,7 @@
  * response validation, and formatting of API values. No UI rendering here.
  */
 
-import { CONFIG } from './config.js?v=1';
+import { CONFIG } from './config.js?v=2';
 
 // Value formatting and response validation.
 export function formatZat(value, decimals = 2) {
@@ -167,7 +167,7 @@ export function retryDelay(value, minimum = CONFIG.pollInterval, now = Date.now(
   return Number.isFinite(delay) ? Math.max(minimum, delay) : minimum;
 }
 
-export async function requestJSON(url, { signal, minimumRetry = CONFIG.pollInterval, referrerPolicy = 'no-referrer' } = {}) {
+export async function requestJSON(url, { signal, minimumRetry = CONFIG.pollInterval, referrerPolicy = 'no-referrer', cache = 'default' } = {}) {
   const controller = new AbortController();
   const abort = () => controller.abort();
   if (signal?.aborted) abort();
@@ -175,7 +175,7 @@ export async function requestJSON(url, { signal, minimumRetry = CONFIG.pollInter
   const timeout = setTimeout(abort, 12000);
   try {
     const response = await fetch(url, {
-      signal: controller.signal, credentials: 'omit', referrerPolicy
+      signal: controller.signal, credentials: 'omit', referrerPolicy, cache
     });
     if (!response.ok) {
       const error = new Error(`HTTP ${response.status}`);
@@ -308,10 +308,35 @@ export function getRelease(repository) {
   return releases.get(repository);
 }
 
-export async function loadPublications() {
-  const data = await requestJSON(`${CONFIG.feedService}?rss_url=${encodeURIComponent(CONFIG.publicationFeed)}`);
-  if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('Invalid publication feed');
+async function loadRSSItems(feed, options) {
+  const data = await requestJSON(`${CONFIG.feedService}?rss_url=${encodeURIComponent(feed)}`, options);
+  if (data?.status !== 'ok' || !Array.isArray(data.items)) throw new Error('Invalid RSS feed');
   return data.items;
+}
+
+export function loadPublications() {
+  return loadRSSItems(CONFIG.publicationFeed);
+}
+
+export async function loadLatestXPost() {
+  const items = await loadRSSItems(CONFIG.xPostFeed, { cache: 'no-cache' });
+  const feedHost = new URL(CONFIG.xPostFeed).hostname;
+  let latest;
+  for (const item of items) {
+    const link = safeURL(item?.link, [feedHost, 'x.com', 'twitter.com']);
+    const id = link && /^\/PirateChain\/status\/([1-9]\d{0,19})\/?$/i.exec(new URL(link).pathname)?.[1];
+    const timestamp = typeof item?.pubDate === 'string' ? Date.parse(`${item.pubDate.replace(' ', 'T')}Z`) : NaN;
+    if (!id || !Number.isFinite(timestamp)) continue;
+    // Mirrors can put an older pinned post ahead of newer posts.
+    if (!latest || timestamp > latest.timestamp) {
+      latest = {
+        href: `https://x.com/PirateChain/status/${id}`,
+        timestamp,
+        title: typeof item.title === 'string' ? item.title : ''
+      };
+    }
+  }
+  return latest;
 }
 
 // Read the newest public upload directly from YouTube, as in the example site.

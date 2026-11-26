@@ -6,6 +6,7 @@ export const CONFIG = Object.freeze({
   // {repository} is replaced with the selected wallet's repository below.
   githubReleaseURL: 'https://api.github.com/repos/{repository}/releases/latest',
   publicationFeed: 'https://medium.com/feed/piratechain',
+  xPostFeed: 'https://www.teapawt.net/PirateChain/rss',
   feedService: 'https://api.rss2json.com/v1/api.json',
   youtubePlaylistURL: 'https://www.googleapis.com/youtube/v3/playlistItems',
   youtubeUploads: 'UUd2zagYKjbo1mLTwIxEd06w',
